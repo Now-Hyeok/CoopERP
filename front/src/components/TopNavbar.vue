@@ -1,20 +1,26 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg py-3" id="topNavbar">
   <div class="container-fluid">
-    <a class="navbar-brand"  href="/" id="Navbar">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="#">ERP System</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    <div class="collapse navbar-collapse" id="navbarScroll">
+      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/category/management" id="management">management</a>
+          <a class="nav-link active"  @click='userSelect("Category1")' >Category1</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/category/add1" id="add1">add1</a>
-        </li>     
+          <a class="nav-link active"  @click='userSelect("Category2")'>Category2</a>
+        </li>
         <li class="nav-item">
-          <a class="nav-link" href="/category/add2" id="add2">add2</a>
+          <a class="nav-link active"  @click='userSelect("Category3")' >Category3</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active"  @click='userSelect("Category4")'>Category4</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active"  @click='userSelect("Category5")'>Category5</a>
         </li>
       </ul>
       <form class="d-flex" role="search">
@@ -24,27 +30,35 @@
     </div>
   </div>
 </nav>
+<div class="line"></div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 export default {
-    name:"TopNavbar",
+    name:'TopNavbar',
     data(){
-      return{
-        chagePage:''
-      }
+        return{
+            select:"", 
+        }  
     },
     methods:{
-      choice(e){
-        console.log(e.target.id)
-      }
+        ...mapMutations(['userSelect']),
+        //mapmutations 쓰면 mutations에 있는 함수를 가져와 쓰는데 짧게 쓸수있음 그냥 함수처럼
     }
-  
+
 }
 </script>
 
 <style>
-.navber{
-  height: 100%;
+
+
+ul li{
+    margin-left: 25px;
+}
+.line{
+    width:100%;
+    height: 1px;
+    background: #eee;
 }
 </style>

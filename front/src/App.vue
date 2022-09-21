@@ -1,7 +1,7 @@
 <template>
 
 <div class="header">
-  <TopNavbar class="topnavbar"/>
+  <TopNavbar/>
 </div>
 
 
@@ -11,7 +11,6 @@
   </div>
 
   <div class="maincontent">
-    <router-view/>
   </div>
   
   
@@ -23,19 +22,20 @@
 </template>
 
 <script>
-import TopNavbar from "./components/TopNavbar.vue";
 import SideNavbar from "./components/SideNavbar.vue";
+import TopNavbar from "./components/TopNavbar.vue";
 
 
 export default {
   name: 'App',
   components: {
-    TopNavbar,
-    SideNavbar
+    SideNavbar,
+    TopNavbar
 },
+
   data(){
     return{
-      home:true,
+
     }
   }
 }
@@ -54,15 +54,18 @@ html,body,#app{
 }
 
 .sidebar{
-    clear:both;
-  width:20%;
+  clear:both;
+  width:15%;
   float: left;
-  height:100%;  
+  height:100%; 
+  
+  border-right: solid 1px #eee;
+   
 }
 
 .maincontent{
   float: left;
-  width: 80%;
+  width: 85%;
   height: 100%;
 }
 
