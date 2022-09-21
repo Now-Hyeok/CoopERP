@@ -1,8 +1,7 @@
 <template>
-  
-    <div>
-        
-    </div>
+<ul>
+    <li>사이드 네브바임</li>
+</ul>
 
 </template>
 
@@ -14,10 +13,4 @@ export default {
 
 <style>
 
-</style><div class="container" id="sidebar">
-
-</div>
-
-<div class="container" id="body">
-
-</div>
+</style>

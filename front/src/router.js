@@ -1,23 +1,30 @@
-// import { createWebHistory, createRouter } from "vue-router";
+import { createWebHistory, createRouter } from "vue-router";
 // import Login from "./pages/LoginPage.vue";
-// import first from "./pages/FirstPage.vue";
+import home from "./pages/HomePage.vue";
+import main from "./pages/MainPage.vue";
 
-// const routes=[
-//     {
-//         path:"/login",
-//         component:Login,
-//     },
+const routes=[
 
-//     {
-//         path:"/",
-//         component: first,
-//     }
-// ]
+    {
+        path:"/",
+        name:'home',
+        component: home,
+        
+        
+    },
+    {
+        path:"/category:selected",
+        name:'main',
+        component:main,
+    }
+
+
+]
     
 
-// const router = createRouter({
-//     history:createWebHistory(),
-//     routes
-// });
+const router = createRouter({
+    history:createWebHistory(),
+    routes
+});
 
-// export default router
+export default router

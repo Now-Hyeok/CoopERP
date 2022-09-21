@@ -1,21 +1,19 @@
 <template>
 
 <div class="header">
-  <TopNavbar class="topnavbar" :nonChoice="nonChoice" />
+  <TopNavbar class="topnavbar"/>
 </div>
 
 
 <div class="body">
-  <FirstPage v-if="nonChoice==false"/>
-  <span v-if="nonChoice==true">
-    <div class="" id="sidebar">
-    사이드바임
-    </div>
+  <div class="sidebar">
+    <SideNavbar />
+  </div>
 
-    <div class="" id="main">
-      메인화면임
-    </div>
-  </span>
+  <div class="maincontent">
+    <router-view/>
+  </div>
+  
   
 
 </div>
@@ -26,18 +24,18 @@
 
 <script>
 import TopNavbar from "./components/TopNavbar.vue";
-import FirstPage from "./pages/FirstPage.vue";
+import SideNavbar from "./components/SideNavbar.vue";
 
 
 export default {
   name: 'App',
   components: {
     TopNavbar,
-    FirstPage
+    SideNavbar
 },
   data(){
     return{
-      nonChoice:false,
+      home:true,
     }
   }
 }
@@ -54,19 +52,20 @@ html,body,#app{
   height: 100%;
 
 }
-#sidebar{
-  clear:both;
+
+.sidebar{
+    clear:both;
   width:20%;
   float: left;
-
   height:100%;  
 }
-#main{
+
+.maincontent{
   float: left;
   width: 80%;
   height: 100%;
-
 }
+
 
 
 
