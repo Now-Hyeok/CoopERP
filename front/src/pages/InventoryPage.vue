@@ -1,27 +1,25 @@
 <template>
 
-    <div class="header">
-      <TopNavbar/>
-    </div>
-    
-    
-    <div class="body">
-      <div class="sidebar">
+<div class="header">
+    <TopNavbar />
+</div>
+
+
+<div class="body">
+    <div class="sidebar">
         <SideNavbar />
-      </div>
-    
-      <div class="maincontent">
-      </div>
-      
-      <router-view></router-view>
-    
     </div>
+
+    <div class="maincontent">
+    </div>
+
+</div>
+
+
+
+</template>
     
-    
-    
-    </template>
-    
-    <script>
+<script>
     import SideNavbar from "../components/SideNavbar.vue";
     import TopNavbar from "../components/TopNavbar.vue";
     
@@ -41,7 +39,7 @@
     }
     </script>
     
-    <style>
+<style>
     
     html,body,#app{
      height: 100%;
