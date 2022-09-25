@@ -1,36 +1,18 @@
 <template>
 
-<div class="header">
-  <TopNavbar/>
+<div>
+  <router-view></router-view>
 </div>
-
-
-<div class="body">
-  <div class="sidebar">
-    <SideNavbar />
-  </div>
-
-  <div class="maincontent">
-  </div>
-  
-  
-
-</div>
-
 
 
 </template>
 
 <script>
-import SideNavbar from "./components/SideNavbar.vue";
-import TopNavbar from "./components/TopNavbar.vue";
-
 
 export default {
   name: 'App',
   components: {
-    SideNavbar,
-    TopNavbar
+
 },
 
   data(){
@@ -43,33 +25,13 @@ export default {
 
 <style>
 
-html,body,#app{
- height: 100%;
+#app {
+ font-family: Avenir, Helvetica, Arial, sans-serif;
+ -webkit-font-smoothing: antialiased;
+ -moz-osx-font-smoothing: grayscale;
+ text-align: center;
+ color: #2c3e50;
+ margin-top: 60px;
 }
-
-.body{
-  width: 100%;
-  height: 100%;
-
-}
-
-.sidebar{
-  clear:both;
-  width:15%;
-  float: left;
-  height:100%; 
-  
-  border-right: solid 1px #eee;
-   
-}
-
-.maincontent{
-  float: left;
-  width: 85%;
-  height: 100%;
-}
-
-
-
 
 </style>

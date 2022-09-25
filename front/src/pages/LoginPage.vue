@@ -1,7 +1,7 @@
 <template>
 
+  <img alt="Vue logo" src="../assets/logo.png">
   <body class="text-center">
-
     <main class="form-signin w-100 m-auto">
       <form>
         <h2 class="mb-5 fw-normal">Please sign in</h2>

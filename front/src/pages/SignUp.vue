@@ -73,7 +73,7 @@
             <label for="country" class="form-label">Country</label>
             <select class="form-select" id="country" required>
               <option value="">Choose...</option>
-              <option>United States</option>
+              <option>Republic of Korea</option>
             </select>
             <div class="invalid-feedback">
               Please select a valid country.
@@ -84,7 +84,7 @@
             <label for="state" class="form-label">State</label>
             <select class="form-select" id="state" required>
               <option value="">Choose...</option>
-              <option>California</option>
+              <option>Daejeon</option>
             </select>
             <div class="invalid-feedback">
               Please provide a valid state.
@@ -102,7 +102,7 @@
 
         <button class="w-100 btn btn-primary btn-lg" type="submit">Sign Up!</button>
 
-        <p class="mt-3 mb-3 text-muted">Return to <router-link to="/login">Login</router-link></p>
+        <p class="mt-3 mb-3 text-muted">Return to <router-link to="/">Login</router-link></p>
 
       </form>
     </div>
