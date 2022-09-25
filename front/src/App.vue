@@ -1,5 +1,6 @@
 <template>
 
+<<<<<<< HEAD
 <div class="header">
   <TopNavbar/>
 </div>
@@ -18,6 +19,11 @@
 </div>
 
 
+=======
+<div>
+  <router-view></router-view>
+</div>
+>>>>>>> 3ffd01ee4226f930c1396d79582e5818643d079b
 
 </template>
 
@@ -29,8 +35,12 @@ import TopNavbar from "./components/TopNavbar.vue";
 export default {
   name: 'App',
   components: {
+<<<<<<< HEAD
     SideNavbar,
     TopNavbar
+=======
+
+>>>>>>> 3ffd01ee4226f930c1396d79582e5818643d079b
 },
 
   data(){
@@ -43,6 +53,7 @@ export default {
 
 <style>
 
+<<<<<<< HEAD
 html,body,#app{
  height: 100%;
 }
@@ -72,4 +83,14 @@ html,body,#app{
 
 
 
+=======
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+>>>>>>> 3ffd01ee4226f930c1396d79582e5818643d079b
 </style>
