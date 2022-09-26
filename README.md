@@ -17,3 +17,6 @@ tools
 vscode
 
 
+AWS EC2,
+AWS RDS
+Maria DB
