@@ -24,7 +24,7 @@
         <p class="mt-3 mb-3 text-muted">If you don't have an account, please proceed with the <router-link to="/signup">
             Sign up</router-link> first!</p>
         <div>
-          <p class="mt-3 mb-3 text-muted">You can preview the <router-link to="/inventory">InventoryPage</router-link></p>
+          <p class="mt-3 mb-3 text-muted">You can preview the <router-link to="/home">InventoryPage</router-link></p>
         </div>
       </form>
     </main>
