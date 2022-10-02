@@ -1,33 +1,32 @@
 <template>
-<nav class="navbar navbar-expand-lg py-3" id="topNavbar">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">ERP System</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarScroll">
-      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-        <li class="nav-item">
-          <a class="nav-link active"  @click='userSelect("Category1")' >Category1</a>
+
+<nav class="wrapper hw-100">
+  <ul class="categoryhome">
+    <li class="hw-100">
+
+      <router-link class="cate-home-link hw-100 " to="/home">ERP System</router-link>
+
+    </li>
+    
+  </ul>
+  <div class="topnavb">
+    <ul class="menu hw-100">
+        <li class="menu-item">
+          <router-link  @click='userSelect("coop-management")' to="/coop-management" class="menu-link">COOP management</router-link>
         </li>
-        <li class="nav-item">
-          <a class="nav-link active"  @click='userSelect("Category2")'>Category2</a>
+        <li class="menu-item">
+          <router-link   @click='userSelect("inventory-management")' to="/inventory-management" class="menu-link">Inventory Management</router-link>
         </li>
-        <li class="nav-item">
-          <a class="nav-link active"  @click='userSelect("Category3")' >Category3</a>
+        <li class="menu-item">
+          <router-link   @click='userSelect("transaction-management")' to="/transaction-management" class="menu-link">Transaction management</router-link>
         </li>
-        <li class="nav-item">
-          <a class="nav-link active"  @click='userSelect("Category4")'>Category4</a>
+        <li class="menu-item">
+          <router-link   @click='userSelect("statistics")' to="/statistics" class="menu-link">Statistics</router-link>
         </li>
-        <li class="nav-item">
-          <a class="nav-link active"  @click='userSelect("Category5")'>Category5</a>
+        <li class="menu-item">
+          <router-link @click='userSelect("communication")' to="/communication" class="menu-link">Communication</router-link>
         </li>
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
   </div>
 </nav>
 <div class="line"></div>
@@ -51,14 +50,90 @@ export default {
 </script>
 
 <style>
+ul li {
+  margin :0;
+  padding:0;
 
-
-ul li{
-    margin-left: 25px;
 }
+
+.cate-home-link{
+  display: block;
+  padding: 18px;
+  font-size: 17px;
+}
+
+a {
+  text-decoration: none;
+  color:black;
+  font-weight: bold;
+  text-align: center;
+  font-size: 12px;
+}
+
+
+.categoryhome{
+
+  width: 12%;
+  float: left;
+  height: 100%;
+
+}
+
+
+.topnavb{
+  float: left;
+  width:88%;
+  height: 100%;
+}
+body,ul,li {
+  margin: 0;
+  padding: 0;
+}
+ul, li {
+  list-style:none;
+}
+.menu {
+  display: flex;
+}
+.menu-item {
+  background-color: rgb(255, 255, 255);
+  flex-grow: 1;
+  transition: 0.5s;
+}
+.menu-item:hover {
+  background-color: rgb(0, 162, 255);
+  flex-grow: 1.2;
+}
+.menu-link {
+  /* block이면 마우스 클릭영역이 더 커짐, a태그는 inline으로서 클릭영역이 콘텐츠에 한정됨*/
+  height: 100%;
+  widows: 100%;
+  padding: 18px;
+  display: block; 
+  font-size: 15px;
+  font-weight: bold;
+  color: #555;
+  text-decoration: none;
+  text-align: center;
+}
+.menu-link:hover {
+  color: white;
+}
+
+
+
 .line{
     width:100%;
     height: 1px;
     background: #eee;
+    clear: both;
 }
+
+.hw-100{
+  width:100%;
+  height: 100%;
+}
+
+
+
 </style>

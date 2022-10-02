@@ -1,14 +1,13 @@
 <template>
-  <div>
-    
-    
-   
-    <ul v-for="item in categoryData[category]" :key="item">
-        <li>{{item}}</li>
+
+<ul class="sidemenu" v-for="item in categoryData[category]" :key="item">
+        <li class="sidemenu-list">
+            <div class="sidemenu-item" @click="$router.push(`/${category}/${item}`)" >{{item}}</div>
+        </li>
     </ul>
+
+
     
-    
-  </div>
 
 </template>
 
@@ -35,6 +34,19 @@ export default {
 </script>
 
 <style>
+
+.sidemenu{
+  width:100%;
+  text-align: center;
+
+}
+.sidemenu-list{
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+.sidemenu-item{
+  cursor: pointer;
+}
 
 
 </style>
