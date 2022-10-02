@@ -3,13 +3,10 @@ import Login from "./pages/LoginPage"
 import SignUp from './pages/SignUp'
 import Home from './pages/HomePage'
 import Main from './pages/MainPage'
-import coopmenu1 from './pages/COOPmanagement/CoopMenu1.vue'
+import coopManagement from './pages/COOPmanagement/CoopManagement.vue'
 import coopRegister from './pages/COOPmanagement/CoopRegister'
-// import CoopMain from './pages/COOPmanagement/CoopMainPage.vue'
-// import InvenMain from './pages/InventoryManagement/InventoryMainPage.vue'
-// import StatisticsMain from './pages/Statistics/StatisticsMainPage.vue'
-// import TransactionMain from './pages/TransactionManagement/TransactionMainPage.vue'
-// import C1M1 from "./pages/category1/Menu1Page"
+import inventoryStatus from './pages/InventoryManagement/InventoryStatus'
+import inventoryRegister from './pages/InventoryManagement/InventoryRegister'
 
 const routes = [
     {
@@ -33,9 +30,9 @@ const routes = [
         name:'coop-main',
         children:[
             {
-                path:'coopmenu',
-                name:'coopmenu',
-                component:coopmenu1,
+                path:'COOP Management',
+                name:'coopManagement',
+                component:coopManagement,
             },
             {
                 path:'Member Register',
@@ -50,8 +47,14 @@ const routes = [
         name:'category2',
         children:[
             {
-                path:'menu1',
-                name:'menu1',
+                path:'Inventory status',
+                name:'inventoryStatus',
+                component:inventoryStatus,
+            },
+            {
+                path:'Inventory Register',
+                name:'inventoryRegister',
+                component:inventoryRegister,
             }
         ]
     },
@@ -62,7 +65,7 @@ const routes = [
         children:[
             {
                 path:'menu1',
-                name:'menu1',
+                
             }
         ]
     },
@@ -73,9 +76,13 @@ const routes = [
         children:[
             {
                 path:'menu1',
-                name:'menu1',
             }
         ]
+    },
+    {
+        path:"/communication",
+        component:Main,
+        name:"communication",
     },
     {
         path:'/', redirect:'/login'

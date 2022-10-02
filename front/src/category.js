@@ -1,6 +1,7 @@
 export default {
-    'coop-management':['coopmenu','Member Register','menu1-3'],
-    'inventory-management':['menu2-1','menu2-2','menu2-3'],
-    'transaction-management':['menu3-1','menu3-2','menu3-3'],
+    'coop-management':['Member Register','COOP Management','menu1-3'],
+    'inventory-management':['Inventory Status','Inventory Register','Item'],
+    'transaction-management':['Order','menu3-2','menu3-3'],
     'statistics':['menu4-1','menu4-2','menu4-3'],
+    'communication':['menu1','menu2','menu3'],
 }

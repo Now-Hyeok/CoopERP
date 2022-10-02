@@ -36,7 +36,7 @@
 <style>
 .maincontent{
   width:100%;
-  height: 88%;
+  height: 50%;
   text-align: center;
   margin-top: 300px;
 }

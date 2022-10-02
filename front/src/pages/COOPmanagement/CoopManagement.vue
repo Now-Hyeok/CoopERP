@@ -1,13 +1,13 @@
 <template>
     
     <p>
-        메뉴1
+        coop management page
     </p>
 </template>
         
 <script>
     export default {
-      name: 'menu1Page',
+      name: 'coopManagement',
       components: {
     },
     

@@ -1,10 +1,11 @@
 <template>
-  <p>coop member register page</p>
+  <p>inventory status page</p>
 </template>
 
 <script>
 export default {
-    name:"coopRegister",
+    name:'inventoryStatus',
+
 }
 </script>
 

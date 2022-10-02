@@ -23,6 +23,9 @@
         <li class="menu-item">
           <router-link   @click='userSelect("statistics")' to="/statistics" class="menu-link">Statistics</router-link>
         </li>
+        <li class="menu-item">
+          <router-link @click='userSelect("communication")' to="/communication" class="menu-link">Communication</router-link>
+        </li>
       </ul>
   </div>
 </nav>
