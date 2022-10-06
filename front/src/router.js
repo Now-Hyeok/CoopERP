@@ -6,13 +6,14 @@ import Main from './pages/MainPage'
 
 import coopMain from './pages/COOPmanagement/CoopMain'
 import coopManagement from './pages/COOPmanagement/CoopManagement.vue'
-import coopRegister from './pages/COOPmanagement/CoopRegister'
+import coopMember from './pages/COOPmanagement/CoopMember'
 
 import inventoryMain from './pages/InventoryManagement/InventoryMain'
 import inventoryStatus from './pages/InventoryManagement/InventoryStatus'
 import inventoryRegister from './pages/InventoryManagement/InventoryRegister'
 
 import transactionMain from './pages/TransactionManagement/TransactionMain'
+import transactionOrder from './pages/TransactionManagement/TransactionOrder'
 
 import statisticsMain from './pages/Statistics/StatisticsMain'
 
@@ -46,14 +47,14 @@ const routes = [
                 component:coopMain
             },
             {
-                path:'COOP Management',
+                path:'coop-management',
                 name:'coopManagement',
                 component:coopManagement,
             },
             {
-                path:'Member Register',
+                path:'member',
                 name:'register',
-                component:coopRegister,
+                component:coopMember,
             },
         ]
     },
@@ -69,12 +70,12 @@ const routes = [
                 component:inventoryMain,
             },
             {
-                path:'Inventory status',
+                path:'inventory-status',
                 name:'inventoryStatus',
                 component:inventoryStatus,
             },
             {
-                path:'Inventory Register',
+                path:'product-registration',
                 name:'inventoryRegister',
                 component:inventoryRegister,
             }
@@ -90,7 +91,12 @@ const routes = [
                 path:'main',
                 name:'transactionMain',
                 component:transactionMain,
-                
+            },
+            {
+                path:'order',
+                name:'transaction order',
+                component:transactionOrder,
+
             }
         ]
     },

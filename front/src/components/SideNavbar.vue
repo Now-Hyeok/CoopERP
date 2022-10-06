@@ -2,7 +2,7 @@
 
 <ul class="sidemenu" v-for="item in categoryData[category]" :key="item">
         <li class="sidemenu-list">
-            <div class="sidemenu-item" @click="$router.push(`/${category}/${item}`)" >{{item}}</div>
+            <div class="sidemenu-item" @click="$router.push(`/${category}/${item.replace(/\s/gi,'-').toLowerCase()}`)" >{{item}}</div>
         </li>
     </ul>
 
