@@ -9,7 +9,7 @@
         <h1 class="modal-title fs-5" id="exampleModalLabel">New COOP Member Register</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form action="/api/user/registration" method="POST">
+      <form action="/api/member/registration" method="POST">
         <div class="modal-body">
       
           <div class="input-group mb-3">

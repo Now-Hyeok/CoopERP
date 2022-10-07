@@ -2,23 +2,29 @@ const express = require('express');
 const router = express.Router();
 let db = require('../config/config');
 
-router.post('/api/user/registration',(req,res,next)=>{
-    // db.connect((err)=>{
-    //     if(err) throw err
+router.post('/registration',(req,res,next)=>{
 
-    //     db.query(`INSERT INTO coopMember (Coop_name, Coop_address, Coop_pw, Coop_login_id) VALUES(${req.body.name},${req.body.address},${req.body.password},${req.body.id})`,(err, rows,fields)=>{
-    //         if(err){
-    //           throw err;
-    //         }else{
-    //           console.log("성공");
-    //         }
-    //       });
-    // });
 
-    // db.end();
 
-    res.send('success');
+    db.connect((err)=>{
+        if(err) console.error(err);
+
+        console.log(req.body)
+    });
+    db.end();
+
+  
+    
+});
+
+router.get('/data',(req,res,next)=>{
+  db.connect((err)=>{
+    if(err) console.error(err);
+
+    console.log('success');
+  })
 })
+
 
 module.exports = router;
 

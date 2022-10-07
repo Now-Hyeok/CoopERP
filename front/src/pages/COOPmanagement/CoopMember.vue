@@ -65,7 +65,7 @@ export default {
     },
     methods:{
       getUserData(){
-        axios.get('api/user/data')
+        axios.get('/api/user/data')
         .then((result)=>{
           console.log(result);
         })
