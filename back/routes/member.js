@@ -22,7 +22,8 @@ router.get('/data',(req,res,next)=>{
     if(err) console.error(err);
 
     console.log('success');
-  })
+  });
+  db.end();
 })
 
 
