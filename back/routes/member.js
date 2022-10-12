@@ -1,40 +1,62 @@
 const express = require('express');
+const { off } = require('../config/config');
 const router = express.Router();
-let db = require('../config/config');
+let pool = require('../config/config');
 
 router.post('/registration',(req,res,next)=>{
 
-  db.connect((err)=>{
+  pool.getConnection((err,conn)=>{
       if(err) console.error(err);
-      let sql =`INSERT INTO coopMember(Member_name,Member_address,Member_pw,Member_login_id,Member_phone) VALUES(${req.body.name},${req.body.address},${req.body.password},${req.body.id},${req.body.phone})`; 
-      db.query(sql,(err,result)=>{
+      let sql =`INSERT INTO coopMember(Member_name,Member_address,Member_pw,Member_login_id,Member_phone) VALUES("${req.body.name}","${req.body.address}","${req.body.password}","${req.body.id}",${req.body.phone});`; 
+      conn.query(sql,(err,result)=>{
+        conn.release();
         if(err){
           console.error(err);
-          db.end();
         } 
         console.log('1 record inserted');
-        db.end();
+
       });
   });
+
 });
 
 router.get('/data',(req,res,next)=>{
-  db.connect((err)=>{
+  pool.getConnection((err,conn)=>{
     if(err) console.error(err);
-    let sql = "SELECT * FROM coopMember";
-    db.query(sql ,(err,result)=>{
+    let sql = "SELECT * FROM coopMember;";
+    conn.query(sql ,(err,result)=>{
+      conn.release();
       if(err){ 
-        db.end();
         console.error(err);
       }
       res.send(result);
-      db.end();
+
 
     });
   });
 
+
 });
 
+router.delete('/delete/:id',(req,res,next)=>{
+  if(!req.params.id){
+    res.status(500).send('ID is not exist.');
+    return;
+  }
+  pool.getConnection((err,conn)=>{
+    if(err) console.error(err);
+    let sql = `DELETE FROM coopMember WHERE Member_id = '${req.params.id}';`;
+    conn.query(sql,(err,result)=>{
+      conn.release();
+      console.log(result);
+      if(err){
+        console.error(err);
+        res.status(500).send('Internal Serve Error');
+      }
+      res.send({});
+    })
+  })
+})
 
 module.exports = router;
 

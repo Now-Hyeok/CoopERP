@@ -2,7 +2,7 @@
 
 <MemebrRegister/>
 <div class="register">
-  <table class="table caption-top">
+  <table class="table caption-top" draggable=".memberList">
     <caption>List of Members</caption>
     <thead>
       <tr>
@@ -14,12 +14,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr scope="row" v-for="(item,i) in memberList" :key="item" >
+      <tr class="memberList" scope="row" v-for="(item,i) in memberList" :key="item" >
         <th>{{i+1}}</th>
         <td>{{item.Member_name}}</td>
         <td>{{item.Member_address}}</td>
         <td>{{item.Member_phone}}</td>
-        <td><button type="button" class="btn btn-light">X</button></td>
+        <td><button type="button" class="btn btn-light" @click="deleteMember(item.Member_id)">X</button></td>
       </tr>
     </tbody>
   </table>
@@ -54,6 +54,17 @@ export default {
       .catch((err)=>{
         console.error(err);
       })
+      },
+
+      deleteMember(id){
+        axios.delete(`/api/member/delete/:${id}`)
+        .then((res)=>{
+          console.log(res);
+          this.getMemberList();
+        })
+        .catch((err)=>{
+          console.error(err);
+        })
       }
     },
     data() {
@@ -69,5 +80,8 @@ export default {
 <style>
 .register{
   padding:20px;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
 }
 </style>

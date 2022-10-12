@@ -2,7 +2,10 @@
 <!-- Button trigger modal -->
 
 <!-- Modal -->
+
+
 <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
@@ -19,6 +22,7 @@
           <div class="input-group mb-3">
             <lable class="input-group-text" id="inputGroup-sizing-default" for="id">ID</lable>
             <input type="text" class="form-control"  name="id" id="id" v-model="id">
+
             <lable class="input-group-text" id="inputGroup-sizing-default" type="password" for="password">Password</lable>
             <input type="password" class="form-control" name="password" id="password" v-model="password">
           </div>
@@ -55,11 +59,13 @@
 </template>
 
 <script>
+import $ from 'jquery';
 
 // document.getElementById('registerBtn').setAttribute('data-bs-dismiss','modal');
 
 export default {
   name:"memberRegister",
+
   data(){
     return{
       errors:[],
@@ -74,12 +80,9 @@ export default {
   methods:{
 
     checkForm(e){
+
       if(this.name && this.id && this.address && this.phone && this.password){
-        this.name=null;
-        this.id = null;
-        this.address = null;
-        this.phone=null;
-        this.password = null;
+        $('#registerModal').modal('hide');
         return true;
       }
       this.errors = [];
@@ -100,7 +103,9 @@ export default {
         this.errors.push('password require');
       }
       e.preventDefault();
+      
       alert('can not submit');
+
     },
   }
 }

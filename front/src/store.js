@@ -8,6 +8,7 @@ const store = createStore({
         return{
             //데이터 여기에 보관하기 vuex
             category:'',
+            registerModal:false,
 
         }
     },
@@ -15,6 +16,9 @@ const store = createStore({
         //state변경 함수를 정의
         userSelect(state, payload){
             state.category = payload;
+        },
+        registerModalState(state,payload){
+            state.registerModal=payload;
         }
     },
     actions:{
