@@ -17,13 +17,16 @@ const store = createStore({
         userSelect(state, payload){
             state.category = payload;
         },
-        registerModalState(state,payload){
-            state.registerModal=payload;
+        openRegisterModal(state){
+            state.registerModal=true;
+        },
+        closeRegisterModal(state){
+            state.registerModal=false;
         }
     },
     actions:{
         //ajax와같이 시간걸리는것
-       
+
         
     },
 })

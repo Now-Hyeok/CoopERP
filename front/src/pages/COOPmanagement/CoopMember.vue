@@ -1,8 +1,9 @@
 <template>
 
-<MemebrRegister/>
+<MemebrRegister v-if="registerModal==true" @memberRegist="closeRegisterModal();getMemberList()"/>
+
 <div class="register">
-  <table class="table caption-top" draggable=".memberList">
+  <table>
     <caption>List of Members</caption>
     <thead>
       <tr>
@@ -25,7 +26,7 @@
   </table>
 
   <div>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">
+    <button type="button" class="btn btn-primary" @click="openRegisterModal()">
     New Member
     </button>
   </div>
@@ -38,18 +39,23 @@
 <script>
 import MemebrRegister from '@/components/MemberRegister.vue';
 import axios from 'axios';
+import { mapMutations, mapState } from 'vuex';
 
 export default {
     name: "coopRegister",
+    computed:{
+      ...mapState(['registerModal']),
+    },
     created(){
       this.getMemberList();
     },
     methods:{
+      ...mapMutations(['closeRegisterModal','openRegisterModal']),
+      
       getMemberList(){
         axios.get('/api/member/data')
       .then((res)=>{
         this.memberList = res.data
-        
       })
       .catch((err)=>{
         console.error(err);
@@ -57,9 +63,8 @@ export default {
       },
 
       deleteMember(id){
-        axios.delete(`/api/member/delete/:${id}`)
-        .then((res)=>{
-          console.log(res);
+        axios.delete(`/api/member/delete/${id}`)
+        .then(()=>{
           this.getMemberList();
         })
         .catch((err)=>{

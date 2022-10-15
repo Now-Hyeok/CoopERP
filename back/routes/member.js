@@ -7,7 +7,7 @@ router.post('/registration',(req,res,next)=>{
 
   pool.getConnection((err,conn)=>{
       if(err) console.error(err);
-      let sql =`INSERT INTO coopMember(Member_name,Member_address,Member_pw,Member_login_id,Member_phone) VALUES("${req.body.name}","${req.body.address}","${req.body.password}","${req.body.id}",${req.body.phone});`; 
+      let sql =`INSERT INTO coopMember(Member_name,Member_address,Member_pw,Member_phone) VALUES("${req.body.name}","${req.body.address}","${req.body.password}","${req.body.phone}");`; 
       conn.query(sql,(err,result)=>{
         conn.release();
         if(err){
@@ -43,13 +43,14 @@ router.delete('/delete/:id',(req,res,next)=>{
     res.status(500).send('ID is not exist.');
     return;
   }
+
   pool.getConnection((err,conn)=>{
     if(err) console.error(err);
-    let sql = `DELETE FROM coopMember WHERE Member_id = '${req.params.id}';`;
+    let sql = `DELETE FROM coopMember WHERE Member_id = ${req.params.id};`;
     conn.query(sql,(err,result)=>{
       conn.release();
       console.log(result);
-      if(err){
+      if(err){  
         console.error(err);
         res.status(500).send('Internal Serve Error');
       }

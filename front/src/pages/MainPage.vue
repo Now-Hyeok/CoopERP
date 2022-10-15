@@ -37,6 +37,7 @@ export default {
   height : -webkit-calc(100% - 65px); /* for Chrome, Safari */ 
   height : -moz-calc(100% - 65px); /* for Firefox */
   clear: both;
+  font-size: 16px;
 }
 
 .sidebar{
