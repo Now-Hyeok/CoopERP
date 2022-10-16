@@ -3,7 +3,7 @@
   <body class="text-center">
 
     <main class="form-signin w-100 m-auto">
-      <form @submit.prevent="onSubmit">
+      <form @submit.prevent>
         <h2 class="mb-5 fw-normal">Please sign in</h2>
 
         <div class="form-floating">
@@ -20,7 +20,7 @@
             <input type="checkbox" value="remember-me"> Remember me
           </label>
         </div>
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+        <button class="w-100 btn btn-lg btn-primary" type="submit" @click="onSubmit">Sign in</button>
         <p class="mt-3 mb-3 text-muted">If you don't have an account, please proceed with the <router-link to="/signup">
             Sign up</router-link> first!</p>
         <div>
@@ -49,8 +49,9 @@ export default {
       const id = this.id;
       const password = this.password;
       
-      axios.post("api/login/signIn", { id, password, }, { "Content-Type": "application-json" })
+      axios.post("api/login/signIn", { id, password })
         .then((res) => {
+          console.log(res.data.user);
           if (res.data.user) {
             this.$store.commit("setUser", res.data.user);
             this.$router.push({ name: "home" });

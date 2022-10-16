@@ -2,7 +2,7 @@ const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 const { coop } = require('../models/index.js');
-let pool = require('../config/config.json');
+
 
 router.get('/signIn', function(req, res, next) {
     if (req.isAuthenticated() && req.user) {
@@ -11,10 +11,26 @@ router.get('/signIn', function(req, res, next) {
     return res.json({ user: null });
 });
 
-router.post('/signIn', passport.authenticate('local'), function(req, res, next) {
+router.post('/signIn', function(req, res, next) {
     if (req.isAuthenticated()) {
         return res.redirect('/');
     }
+    passport.authenticate('local', (authError, user, info) => {
+        if (authError) {
+            console.error(authError);
+            return next(authError);
+        }
+        if (!user) {
+            return res.json(info);
+        }
+        return req.login(user, (loginError) => {
+            if (loginError) {
+                console.error(loginError);
+                return next(loginError);
+            }
+            return res.json({ user });
+        });
+    })(req, res, next);     // 미들웨어 호출
 });
 
 router.post('/signUp', async (req, res, next) => {

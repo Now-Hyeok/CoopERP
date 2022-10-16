@@ -9,12 +9,12 @@ import coopManagement from './pages/COOPmanagement/CoopManagement.vue'
 import member from './pages/COOPmanagement/CoopMember'
 
 import inventoryMain from './pages/InventoryManagement/InventoryMain'
-import status from './pages/InventoryManagement/InventoryStatus'
+import warehousing from './pages/InventoryManagement/InventoryWarehousing'
 import product from './pages/InventoryManagement/InventoryProduct'
+import status from './pages/InventoryManagement/InventoryStatus'
 
 import transactionMain from './pages/TransactionManagement/TransactionMain'
 import sales from './pages/TransactionManagement/TransactionSales'
-import warehousing from './pages/TransactionManagement/TransactionWarehousing'
 import shipment from './pages/TransactionManagement/TransactionShipment'
 
 import statisticsMain from './pages/Statistics/StatisticsMain'
@@ -80,6 +80,11 @@ const routes = [
                 path:'product',
                 name:'inventoryRegister',
                 component:product,
+            },
+            {
+                path:'warehousing-schedule',
+                name:'warehousingSchedule',
+                component:warehousing,
             }
         ]
     },
@@ -100,11 +105,7 @@ const routes = [
                 component:sales,
 
             },
-            {
-                path:'warehousing',
-                name:'transaction warehousing',
-                component:warehousing
-            },
+
             {
                 path:'shipment',
                 name:'transaction shipment',
