@@ -12,8 +12,10 @@
     "bootstrap": "^5.2.1",
     "bootstrap-vue": "^2.22.0",
     "core-js": "^3.8.3",
+    "jquery": "^3.6.1",
     "mitt": "^3.0.0",
     "mysql": "^2.18.1",
+    "sequelize-auto": "^0.8.8",
     "vue": "^3.2.39",
     "vue-router": "^4.1.5",
     "vuex": "^4.0.2"
@@ -25,7 +27,8 @@
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
     "eslint": "^7.32.0",
-    "eslint-plugin-vue": "^8.0.3"
+    "eslint-plugin-vue": "^8.0.3",
+    "expose-loader": "^4.0.0"
   },
   "eslintConfig": {
     "root": true,

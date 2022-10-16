@@ -1,21 +1,11 @@
-const mariadb = require('mariadb');
+const mysql = require('mysql');
 
-const pool = mariadb.createPool({
+const pool = mysql.createPool({
     host:'inventory.c9ibzimhazfs.ap-northeast-2.rds.amazonaws.com',
     user:'admin',
     password:'asdf1234',
     database:'erp',
     connectionLimit: 5
 });
-
-pool.getConnection()
-    .then(conn=>{
-        console.log('conn');
-        conn.query("CREATE TABLE")
-    }).catch(err=>{
-        console.log(err);
-        
-    })
-
 
 module.exports = pool;

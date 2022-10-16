@@ -1,5 +1,7 @@
 <template>
-  <p>inventory status page</p>
+
+<div> </div>
+  
 </template>
 
 <script>

@@ -6,6 +6,7 @@ import router from "./router.js"
 import store from './store.js'
 
 
+
 createApp(App).use(router).use(store).mount('#app')
 
 //vuex 쓰려면 store 추가해줘야함 

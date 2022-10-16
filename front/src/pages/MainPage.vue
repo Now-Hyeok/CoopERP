@@ -2,11 +2,11 @@
   <div class="top">
     <TopNavbar></TopNavbar>
   </div>
-  <div class="content">
+  <div class="main">
     <div class="sidebar">
         <side-navbar></side-navbar>
     </div>
-    <div class="contentview">
+    <div class="mainPage">
         <router-view></router-view>
     </div>
   </div>
@@ -30,13 +30,14 @@ export default {
   height: 65px;
   min-width: 850px;
 }
-.content{
+.main{
   width:100%;
   min-width: 850px;
   height: calc(100% - 65px);
   height : -webkit-calc(100% - 65px); /* for Chrome, Safari */ 
   height : -moz-calc(100% - 65px); /* for Firefox */
   clear: both;
+  font-size: 16px;
 }
 
 .sidebar{
@@ -48,12 +49,12 @@ export default {
 
   
 }
-.contentview{
+.mainPage{
   width:88%;
   min-width: 748px;
-  height: calc(100% - 50px);
-  height : -webkit-calc(100% - 50px); /* for Chrome, Safari */ 
-  height : -moz-calc(100% - 50px); /* for Firefox */
+  /* height: calc(100% - 50px);
+  height : -webkit-calc(100% - 50px);
+  height : -moz-calc(100% - 50px);  */
   float: left;
 }
 
