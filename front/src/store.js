@@ -1,6 +1,7 @@
 // import axios from 'axios'
 import axios from 'axios';
 import {createStore} from 'vuex'
+import router from "./router.js"
 // import axios from 'axios'
 
 
@@ -65,6 +66,19 @@ const store = createStore({
                 console.error(err);
             })
         },
+        getUserInfo(context){
+            axios.get('/api/login/signIn').then((res)=>{
+                const user = res.data.user;
+                if(user){
+                    context.commit('setUser',user);
+                }else{
+                    router.push({name:'login'});
+                }
+            })
+            .catch((err)=>{
+                console.error(err);
+            });
+        }
         
 
         

@@ -45,6 +45,7 @@ export default {
     }
   },
   methods: {
+    
     onSubmit() {
       const id = this.id;
       const password = this.password;

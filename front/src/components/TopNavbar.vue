@@ -41,26 +41,17 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
-import axios from'axios'
+import { mapActions, mapMutations, mapState } from 'vuex'
 
 export default {
     name:'TopNavbar',
     created() {
-    axios.get("/api/login/signIn").then((res) => {
-      const user = res.data.user;
-      if (user) {
-        this.$store.commit("setUser", user);
-      } else {
-        this.$router.push({ name: "loginPage" });
-      }
-    })
-      .catch((err) => {
-        console.error(err);
-      });
+      this.getUserInfo()
   },
   computed: {
-    user() { return this.$store.getters.user; }
+    
+    ...mapState(['user'])
+    
   },
 
     data(){
@@ -70,6 +61,7 @@ export default {
     },
     methods:{
         ...mapMutations(['userSelect']),
+        ...mapActions(['getUserInfo'])
         //mapmutations 쓰면 mutations에 있는 함수를 가져와 쓰는데 짧게 쓸수있음 그냥 함수처럼
     }
 
