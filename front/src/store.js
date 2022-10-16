@@ -14,6 +14,7 @@ const store = createStore({
             productModal:false,
             productList:{},
             memberList:{},
+            user: null,
         }
     },
     mutations:{
@@ -38,7 +39,10 @@ const store = createStore({
         },
         setMemberList(state,payload){
             state.memberList = payload;
-        }
+        },
+        setUser(state, user) {state.user = user;}
+
+
     },
     actions:{
         //ajax와같이 시간걸리는것
@@ -61,6 +65,7 @@ const store = createStore({
                 console.error(err);
             })
         },
+        
 
         
     },

@@ -26,6 +26,14 @@
         <li class="menu-item">
           <router-link @click='userSelect("monitoring")' to="/monitoring" class="menu-link">Monitoring</router-link>
         </li>
+        <li>
+          <div v-if="user">
+            id : {{ user.Coop_login_id }}<br>
+            pw : {{ user.Coop_pw }}<br>
+            coop : {{ user.Coop_name }}
+          </div>
+        </li>
+
       </ul>
   </div>
 </nav>
@@ -34,8 +42,27 @@
 
 <script>
 import { mapMutations } from 'vuex'
+import axios from'axios'
+
 export default {
     name:'TopNavbar',
+    created() {
+    axios.get("/api/login/signIn").then((res) => {
+      const user = res.data.user;
+      if (user) {
+        this.$store.commit("setUser", user);
+      } else {
+        this.$router.push({ name: "loginPage" });
+      }
+    })
+      .catch((err) => {
+        console.error(err);
+      });
+  },
+  computed: {
+    user() { return this.$store.getters.user; }
+  },
+
     data(){
         return{
             select:"", 

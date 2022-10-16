@@ -1,6 +1,6 @@
 <template>
 
-<MemebrRegister v-if="memberModal==true" @memberRegister="closeMemberModal();getMemberList()"/>
+<MemebrRegister v-if="memberModal==true" @memberRegister="closeMemberModal();getMemberList();"/>
 
 <div class="register">
   <table class="user-table">

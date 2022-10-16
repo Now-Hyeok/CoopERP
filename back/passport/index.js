@@ -1,18 +1,15 @@
 const LocalStrategy = require('passport-local').Strategy;
-const users = require('../data/users.json');
-let pool = require('../config/config.json');
+const { coop } = require('../models/index.js');
 
 exports.config = (passport) => {
 
     passport.serializeUser((user, done) => {
-        done(null, user.id);
+        done(null, user.Coop_login_id);
     });
 
-    passport.deserializeUser((id, done) => {
-        const result = users.filter((user) => user.id === id);
-        if (result.length > 0) {
-            done(null, result[0]);
-        }
+    passport.deserializeUser(async function(id, done) {
+        const result = await coop.findOne({ where: {Coop_login_id: id}});
+        done(null, result);
     });
 
     passport.use(new LocalStrategy({
@@ -21,20 +18,19 @@ exports.config = (passport) => {
         session: true,
         passReqToCallback: false,
     }, async function (id, password, done) {
-        console.log(id, password);
         try {
-            const result = await pool.findOne({
-                where: { id: id, password: password },
+            console.log(id);
+            const result = await coop.findOne({
+                where: { Coop_login_id: id }
             });
-            if (!result)
-                return done(null, false, { message: "Wrong id" });
-            if (id == result.password) {
+            
+            if (password == result.Coop_pw) {
                 return done(null, result);
             } else {
-                return done(null, false, { message: "Wrong password" });
+                return done(null, false, { message: "Wrong password." });
             }
         } catch (err) {
-            return done(err);
+            return done(null, false, { message: "Wrong id." });
         }
     }));
 };
