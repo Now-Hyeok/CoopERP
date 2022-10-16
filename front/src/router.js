@@ -6,18 +6,20 @@ import Main from './pages/MainPage'
 
 import coopMain from './pages/COOPmanagement/CoopMain'
 import coopManagement from './pages/COOPmanagement/CoopManagement.vue'
-import coopMember from './pages/COOPmanagement/CoopMember'
+import member from './pages/COOPmanagement/CoopMember'
 
 import inventoryMain from './pages/InventoryManagement/InventoryMain'
-import inventoryStatus from './pages/InventoryManagement/InventoryStatus'
-import inventoryRegister from './pages/InventoryManagement/InventoryRegister'
+import status from './pages/InventoryManagement/InventoryStatus'
+import product from './pages/InventoryManagement/InventoryProduct'
 
 import transactionMain from './pages/TransactionManagement/TransactionMain'
-import transactionOrder from './pages/TransactionManagement/TransactionOrder'
+import sales from './pages/TransactionManagement/TransactionSales'
+import warehousing from './pages/TransactionManagement/TransactionWarehousing'
+import shipment from './pages/TransactionManagement/TransactionShipment'
 
 import statisticsMain from './pages/Statistics/StatisticsMain'
 
-import communicationMain from './pages/Communication/CommunicationMain'
+// import communicationMain from './pages/Communication/CommunicationMain'
 
 const routes = [
     {
@@ -54,7 +56,7 @@ const routes = [
             {
                 path:'member',
                 name:'register',
-                component:coopMember,
+                component:member,
             },
         ]
     },
@@ -72,12 +74,12 @@ const routes = [
             {
                 path:'inventory-status',
                 name:'inventoryStatus',
-                component:inventoryStatus,
+                component:status,
             },
             {
-                path:'product-registration',
+                path:'product',
                 name:'inventoryRegister',
-                component:inventoryRegister,
+                component:product,
             }
         ]
     },
@@ -93,10 +95,20 @@ const routes = [
                 component:transactionMain,
             },
             {
-                path:'order',
-                name:'transaction order',
-                component:transactionOrder,
+                path:'sales',
+                name:'transaction sales',
+                component:sales,
 
+            },
+            {
+                path:'warehousing',
+                name:'transaction warehousing',
+                component:warehousing
+            },
+            {
+                path:'shipment',
+                name:'transaction shipment',
+                component:shipment
             }
         ]
     },
@@ -114,15 +126,15 @@ const routes = [
         ]
     },
     {
-        path:"/communication",
+        path:"/monitoring",
         component:Main,
-        name:"communication",
-        redirect:'/communication/main',
+        name:"monitoring",
+        redirect:'/monitoring/main',
         children:[
             {
                 path:'main',
                 name:'communicationMain',
-                component:communicationMain,
+                // component:communicationMain,
             },
         ]
     },

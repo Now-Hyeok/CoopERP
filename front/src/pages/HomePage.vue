@@ -14,6 +14,7 @@
 </template>
     
 <script>
+import { mapActions } from 'vuex';
     // import SideNavbar from "../components/SideNavbar.vue";
     import TopNavbar from "../components/TopNavbar.vue";
     
@@ -24,13 +25,19 @@
         // SideNavbar,
         TopNavbar
     },
-    
+      methods:{
+        ...mapActions(['getMemberList','getProductList'])
+      },
+      created(){
+        this.getMemberList();
+        this.getProductList();
+      },
       data(){
         return{
     
         }
       }
-    }
+      }
     </script>
     
 <style>

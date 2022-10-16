@@ -1,6 +1,8 @@
 // import axios from 'axios'
+import axios from 'axios';
 import {createStore} from 'vuex'
 // import axios from 'axios'
+
 
 
 const store = createStore({
@@ -8,8 +10,10 @@ const store = createStore({
         return{
             //데이터 여기에 보관하기 vuex
             category:'',
-            registerModal:false,
-
+            memberModal:false,
+            productModal:false,
+            productList:{},
+            memberList:{},
         }
     },
     mutations:{
@@ -17,15 +21,46 @@ const store = createStore({
         userSelect(state, payload){
             state.category = payload;
         },
-        openRegisterModal(state){
-            state.registerModal=true;
+        openMemberModal(state){
+            state.memberModal=true;
         },
-        closeRegisterModal(state){
-            state.registerModal=false;
+        closeMemberModal(state){
+            state.memberModal=false;
+        },
+        openProductModal(state){
+            state.productModal = true;
+        },
+        closeProductModal(state){
+            state.productModal = false;
+        },
+        setProductList(state,payload){
+            state.productList = payload;
+        },
+        setMemberList(state,payload){
+            state.memberList = payload;
         }
     },
     actions:{
         //ajax와같이 시간걸리는것
+        getProductList(context){
+            axios.get('/api/product/data')
+            .then((res)=>{
+                context.commit('setProductList',res.data);
+            })
+            .catch((err)=>{
+                console.error(err);
+            })
+        },
+
+        getMemberList(context){
+            axios.get('/api/member/data')
+            .then((res)=>{
+                context.commit('setMemberList',res.data);
+            })
+            .catch((err)=>{
+                console.error(err);
+            })
+        },
 
         
     },

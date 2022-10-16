@@ -12,13 +12,17 @@ router.post('/registration',(req,res,next)=>{
         conn.release();
         if(err){
           console.error(err);
-        } 
+        }
         console.log('1 record inserted');
+        res.send('INSERT success');
+        
 
       });
   });
 
 });
+
+
 
 router.get('/data',(req,res,next)=>{
   pool.getConnection((err,conn)=>{
@@ -30,6 +34,7 @@ router.get('/data',(req,res,next)=>{
         console.error(err);
       }
       res.send(result);
+
 
 
     });
@@ -49,7 +54,6 @@ router.delete('/delete/:id',(req,res,next)=>{
     let sql = `DELETE FROM coopMember WHERE Member_id = ${req.params.id};`;
     conn.query(sql,(err,result)=>{
       conn.release();
-      console.log(result);
       if(err){  
         console.error(err);
         res.status(500).send('Internal Serve Error');

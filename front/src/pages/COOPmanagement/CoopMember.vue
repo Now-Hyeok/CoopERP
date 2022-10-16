@@ -1,11 +1,11 @@
 <template>
 
-<MemebrRegister v-if="registerModal==true" @memberRegist="closeRegisterModal();getMemberList()"/>
+<MemebrRegister v-if="memberModal==true" @memberRegister="closeMemberModal();getMemberList()"/>
 
 <div class="register">
-  <table>
+  <table class="user-table">
     <caption>List of Members</caption>
-    <thead>
+    <thead >
       <tr>
         <th scope="col">#</th>
         <th scope="col">Name</th>
@@ -16,7 +16,7 @@
     </thead>
     <tbody>
       <tr class="memberList" scope="row" v-for="(item,i) in memberList" :key="item" >
-        <th>{{i+1}}</th>
+        <th scope="row">{{i+1}}</th>
         <td>{{item.Member_name}}</td>
         <td>{{item.Member_address}}</td>
         <td>{{item.Member_phone}}</td>
@@ -26,41 +26,27 @@
   </table>
 
   <div>
-    <button type="button" class="btn btn-primary" @click="openRegisterModal()">
+    <button type="button" class="btn btn-primary" @click="openMemberModal()">
     New Member
     </button>
   </div>
 </div>
-
-
 
 </template>
 
 <script>
 import MemebrRegister from '@/components/MemberRegister.vue';
 import axios from 'axios';
-import { mapMutations, mapState } from 'vuex';
+import { mapActions, mapMutations, mapState } from 'vuex';
 
 export default {
     name: "coopRegister",
     computed:{
-      ...mapState(['registerModal']),
-    },
-    created(){
-      this.getMemberList();
+      ...mapState(['memberModal','memberList']),
     },
     methods:{
-      ...mapMutations(['closeRegisterModal','openRegisterModal']),
-      
-      getMemberList(){
-        axios.get('/api/member/data')
-      .then((res)=>{
-        this.memberList = res.data
-      })
-      .catch((err)=>{
-        console.error(err);
-      })
-      },
+      ...mapMutations(['closeMemberModal','openMemberModal']),
+      ...mapActions(['getMemberList']),
 
       deleteMember(id){
         axios.delete(`/api/member/delete/${id}`)
@@ -72,12 +58,6 @@ export default {
         })
       }
     },
-    data() {
-        return {
-          memberList:[],
-        };
-    },
-
     components: { MemebrRegister }
 }
 </script>
@@ -88,5 +68,10 @@ export default {
   height: 100%;
   width: 100%;
   overflow: auto;
+}
+
+td,th{
+  padding:15px; 
+  border: 1px solid #c2d3de;
 }
 </style>

@@ -4,7 +4,7 @@
   <ul class="categoryhome">
     <li class="hw-100">
 
-      <router-link class="cate-home-link hw-100 " to="/home">ERP System</router-link>
+      <router-link class="cate-home-link hw-100 " to="/home">ERP</router-link>
 
     </li>
     
@@ -12,19 +12,19 @@
   <div class="topnavb">
     <ul class="menu hw-100">
         <li class="menu-item">
-          <router-link  @click='userSelect("coop-management")' to="/coop-management" class="menu-link">COOP management</router-link>
+          <router-link  @click='userSelect("coop-management")' to="/coop-management" class="menu-link">COOP</router-link>
         </li>
         <li class="menu-item">
-          <router-link   @click='userSelect("inventory-management")' to="/inventory-management" class="menu-link">Inventory Management</router-link>
+          <router-link   @click='userSelect("inventory-management")' to="/inventory-management" class="menu-link">Inventory</router-link>
         </li>
         <li class="menu-item">
-          <router-link   @click='userSelect("transaction-management")' to="/transaction-management" class="menu-link">Transaction management</router-link>
+          <router-link   @click='userSelect("transaction-management")' to="/transaction-management" class="menu-link">Transaction</router-link>
         </li>
         <li class="menu-item">
           <router-link   @click='userSelect("statistics")' to="/statistics" class="menu-link">Statistics</router-link>
         </li>
         <li class="menu-item">
-          <router-link @click='userSelect("communication")' to="/communication" class="menu-link">Communication</router-link>
+          <router-link @click='userSelect("monitoring")' to="/monitoring" class="menu-link">Monitoring</router-link>
         </li>
       </ul>
   </div>
