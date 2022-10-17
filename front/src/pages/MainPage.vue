@@ -56,6 +56,8 @@ export default {
   height : -webkit-calc(100% - 50px);
   height : -moz-calc(100% - 50px);  */
   float: left;
+  overflow: auto;
+  height: 100%;
 }
 
 </style>

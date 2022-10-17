@@ -7,9 +7,9 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Product</th>
+        <th scope="col">quailty</th>
         <th scope="col">amount</th>
         <th scope="col">member name</th>
-        <th scope="col">quailty</th>
         <th scope="col">request price</th>
         <th scope="col">schedule</th>
         <th scope="col">warehousing</th>
