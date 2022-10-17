@@ -17,6 +17,19 @@ router.get('/stock',(req,res,next)=>{
   })
 })
 
+router.post('/registration',(req,res,next)=>{
+  pool.getConnection((err,conn)=>{
+    if(err) console.error(err);
+    let sql=``;
+    conn.query(sql,(err,result)=>{
+      conn.release();
+      if(err){
+        console.log(err);
+      }
+    })
+  })
+})
+
 
 module.exports = router;
 

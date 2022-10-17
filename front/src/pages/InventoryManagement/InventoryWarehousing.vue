@@ -1,4 +1,5 @@
 <template>
+<WarehousingRegister v-if="warehousingModal == true" @warehousingRegister="closeWarehousingModal(); getWarehousing(); "/>
 
 <div>
   <table class="user-table">
@@ -23,7 +24,7 @@
   </table>
 
   <div>
-    <button type="button" class="btn btn-primary">
+    <button type="button" class="btn btn-primary" @click="openWarehousingModal()">
     New Warehousing
     </button>
   </div>
@@ -33,20 +34,26 @@
 
 <script>
 import axios from 'axios'
+import { mapMutations, mapState } from 'vuex'
+import WarehousingRegister from '@/components/WarehousingRegister.vue'
 export default {
-    name:'inventoryStatus',
-    methods:{
-        getMemberReq(){
-            axios.get('/api/member/stock')
-            .then((res)=>{
-                res.data
-            })
-            .catch((err)=>{
-                console.error(err);
-            })
-        },  
+    name: "inventoryStatus",
+    computed:{
+      ...mapState(['warehousingModal'])
     },
-
+    methods: {
+        ...mapMutations(["openWarehousingModal","closeWarehousingModal"]),
+        getWarehousing() {
+            axios.get("/api/member/stock")
+                .then((res) => {
+                res.data;
+            })
+                .catch((err) => {
+                console.error(err);
+            });
+        },
+    },
+    components: { WarehousingRegister }
 }
 </script>
 

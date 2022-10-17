@@ -13,6 +13,7 @@ const store = createStore({
             category:'',
             memberModal:false,
             productModal:false,
+            warehousingModal:false,
             productList:{},
             memberList:{},
             user: null,
@@ -34,6 +35,12 @@ const store = createStore({
         },
         closeProductModal(state){
             state.productModal = false;
+        },
+        openWarehousingModal(state){
+            state.warehousingModal = true;
+        },
+        closeWarehousingModal(state){
+            state.warehousingModal = false;
         },
         setProductList(state,payload){
             state.productList = payload;
