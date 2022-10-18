@@ -1,2 +1,3 @@
 orm.js
-config/config.js
+config/config.json
+config/auth.config.js
