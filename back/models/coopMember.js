@@ -20,7 +20,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     Coop_id: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: false,
       comment: "협동조합",
       references: {
         model: 'coop',
