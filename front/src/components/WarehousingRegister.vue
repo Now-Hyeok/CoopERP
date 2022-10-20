@@ -29,7 +29,7 @@
 
             <div class="input-group mb-4">
               <label class="input-group-text" id="inputGroup-sizing-default" >Date</label>
-              <input type="date" class="form-control" name="date" id="date" v-model="date">
+              <input type="date" class="form-control" name="date" id="date" required pattern="\d{4}-\d{2}-\d{2}" v-model="date">
             </div>
 
             <div class="input-group mb-4">

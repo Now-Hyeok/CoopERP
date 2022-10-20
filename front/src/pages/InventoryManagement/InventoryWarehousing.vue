@@ -26,9 +26,9 @@
         <td>{{item.Shipment_amount}}</td>
         <td>{{item.Member_name}}</td>
         <td>{{item.Req_price}}</td>
-        <td>{{item.Shipment_date}}</td>
-        <td>{{}}</td>
-        <td>{{}}</td>
+        <td>{{item.Shipment_date.substr(0,10)}}</td>
+        <td>{{item.Warehousing_schedule}}</td>
+        <td><button type="button" class="btn btn-light" @click="deleteWarehousing(item.Warehousing_schedule)">X</button></td>
       </tr>
     </tbody>
   </table>
@@ -45,6 +45,8 @@
 <script>
 import { mapActions, mapMutations, mapState } from 'vuex'
 import WarehousingRegister from '@/components/WarehousingRegister.vue'
+import axios from 'axios'
+
 export default {
     name: "inventoryStatus",
     computed:{
@@ -53,6 +55,17 @@ export default {
     methods: {
         ...mapMutations(["openWarehousingModal","closeWarehousingModal"]),
         ...mapActions(['getWarehousing']),
+
+        deleteWarehousing(id){
+        axios.delete(`/api/warehousing/delete/${id}`)
+        .then(()=>{
+          this.getWarehousing();
+        })
+        .catch((err)=>{
+          console.error(err);
+        })
+      },
+
     },
     components: { WarehousingRegister }
     ,
