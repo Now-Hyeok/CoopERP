@@ -13,8 +13,10 @@ const store = createStore({
             category:'',
             memberModal:false,
             productModal:false,
+            salesModal:false,
             productList:{},
             memberList:{},
+            salesList:{},
             user: null,
         }
     },
@@ -35,11 +37,20 @@ const store = createStore({
         closeProductModal(state){
             state.productModal = false;
         },
+        openSalesModal(state){
+            state.salesModal = true;
+        },
+        closeSalesModal(state){
+            state.salesModal = false;
+        },
         setProductList(state,payload){
             state.productList = payload;
         },
         setMemberList(state,payload){
             state.memberList = payload;
+        },
+        setSalesList(state,payload){
+            state.salesList = payload;
         },
         setUser(state, user) {state.user = user;}
 
@@ -66,6 +77,17 @@ const store = createStore({
                 console.error(err);
             })
         },
+
+        getSalesList(context){
+            axios.get('/api/sales/data')
+            .then((res)=>{
+                context.commit('setSalesList',res.data);
+            })
+            .catch((err)=>{
+                console.error(err);
+            })
+        },
+
         getUserInfo(context){
             axios.get('/api/login/signIn').then((res)=>{
                 const user = res.data.user;

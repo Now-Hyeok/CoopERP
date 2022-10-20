@@ -1,12 +1,64 @@
 <template>
-  <p>
-    order page 
-  </p>
+<SalesRegister v-if="salesModal == true" @salesRegister="closeSalesModal();getSalesList();"/>
+
+<div class="register">
+  <table class="user-table">
+    <caption>List of Sales</caption>
+    <thead >
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Sales Date</th>
+        <th scope="col">Product</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Price</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="memberList" scope="row" v-for="(item,i) in salesList" :key="item" >
+        <th scope="row">{{i+1}}</th>
+        <td>{{item.Sales_date}}</td>
+        <td>{{item.Sales_product}}</td>
+        <td>{{item.Sales_amount}}</td>
+        <td>{{item.Sales_price}}</td>
+        <td><button type="button" class="btn btn-light" @click="deleteSales(item.Sales_id)">X</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div>
+    <button type="button" class="btn btn-primary" @click="openSalesModal()">
+    New Product
+    </button>
+  </div>
+</div>
+
 </template>
 
 <script>
+import SalesRegister from '@/components/SalesRegister.vue';
+import axios from 'axios'
+import { mapActions, mapMutations, mapState } from 'vuex'
+
 export default {
     name:'transactionOrder',
+    computed:{
+      ...mapState(['salesList','salesModal']),
+    },
+    methods:{
+      ...mapMutations(['closeSalesModal','openSalesModal']),
+      ...mapActions(['getSalesList']),
+      deleteSales(id){
+        axios.delete(`/api/sales/delete/${id}`)
+        .then(()=>{
+          this.getSalesList();
+        })
+        .catch((err)=>{
+          console.error(err);
+        })
+      },
+    },
+    components:{SalesRegister}
 }
 </script>
 
