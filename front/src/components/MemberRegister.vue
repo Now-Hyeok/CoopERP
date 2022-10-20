@@ -49,7 +49,7 @@ import { mapMutations, mapState } from 'vuex';
 export default {
   name:"memberRegister",
   computed:{
-      ...mapState(['memberModal']),
+      ...mapState(['memberModal','user']),
     },
 
   data(){
@@ -72,6 +72,8 @@ export default {
         phone:this.phone,
         password:this.password,
         address:this.address,
+        coop:this.user.Coop_id,
+        
       })
       .then((response)=>{
         this.$emit('memberRegister');
@@ -120,7 +122,6 @@ export default {
   width:88%;
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
-
 }
 
 

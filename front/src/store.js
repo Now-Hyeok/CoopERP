@@ -13,10 +13,10 @@ const store = createStore({
             category:'',
             memberModal:false,
             productModal:false,
-            salesModal:false,
+            warehousingModal:false,
             productList:{},
             memberList:{},
-            salesList:{},
+            warehousingList:{},
             user: null,
         }
     },
@@ -37,11 +37,11 @@ const store = createStore({
         closeProductModal(state){
             state.productModal = false;
         },
-        openSalesModal(state){
-            state.salesModal = true;
+        openWarehousingModal(state){
+            state.warehousingModal = true;
         },
-        closeSalesModal(state){
-            state.salesModal = false;
+        closeWarehousingModal(state){
+            state.warehousingModal = false;
         },
         setProductList(state,payload){
             state.productList = payload;
@@ -49,17 +49,23 @@ const store = createStore({
         setMemberList(state,payload){
             state.memberList = payload;
         },
-        setSalesList(state,payload){
-            state.salesList = payload;
-        },
-        setUser(state, user) {state.user = user;}
+        setWarehousingList(state,payload){
+            state.warehousingList = payload;
+        }
+        ,
+        setUser(state, user) {
+            console.log(user);
+            state.user = user;
+        }
 
 
     },
     actions:{
         //ajax와같이 시간걸리는것
         getProductList(context){
-            axios.get('/api/product/data')
+            let id = context.state.user.Coop_id;
+            axios.get(`/api/product/data/${id}`,
+            )
             .then((res)=>{
                 context.commit('setProductList',res.data);
             })
@@ -67,27 +73,19 @@ const store = createStore({
                 console.error(err);
             })
         },
-
+ 
         getMemberList(context){
-            axios.get('/api/member/data')
+            let id = context.state.user.Coop_id;
+            axios.get(`/api/member/data/${id}`)
             .then((res)=>{
                 context.commit('setMemberList',res.data);
+                console.log();
+                
             })
             .catch((err)=>{
                 console.error(err);
             })
         },
-
-        getSalesList(context){
-            axios.get('/api/sales/data')
-            .then((res)=>{
-                context.commit('setSalesList',res.data);
-            })
-            .catch((err)=>{
-                console.error(err);
-            })
-        },
-
         getUserInfo(context){
             axios.get('/api/login/signIn').then((res)=>{
                 const user = res.data.user;
@@ -100,8 +98,18 @@ const store = createStore({
             .catch((err)=>{
                 console.error(err);
             });
-        }
-        
+        },
+
+        getWarehousing(context){
+            axios.get("/api/warehousing/stock")
+            .then((res) => {
+
+            context.commit('setWarehousingList',res.data);
+            })
+            .catch((err) => {
+            console.error(err);
+            });
+        },
 
         
     },
