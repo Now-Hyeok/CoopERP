@@ -6,7 +6,7 @@
     <caption>Warehousing schedule</caption>
     <thead >
       <tr>
-        <th scope="col">#</th>
+        <th scope="col">#</th>        
         <th scope="col">Product</th>
         <th scope="col">quailty</th>
         <th scope="col">amount</th>
@@ -19,7 +19,17 @@
       </tr>
     </thead>
     <tbody>
-
+      <tr class="warehousingList" scope="row" v-for="(item,i) in warehousingList" :key="item">
+        <th scope="row">{{i+1}}</th>
+        <td>{{item.Product_name}}</td>
+        <td>{{item.Product_quailty}}</td>
+        <td>{{item.Shipment_amount}}</td>
+        <td>{{item.Member_name}}</td>
+        <td>{{item.Req_price}}</td>
+        <td>{{item.Shipment_date}}</td>
+        <td>{{}}</td>
+        <td>{{}}</td>
+      </tr>
     </tbody>
   </table>
 
@@ -33,27 +43,20 @@
 </template>
 
 <script>
-import axios from 'axios'
-import { mapMutations, mapState } from 'vuex'
+import { mapActions, mapMutations, mapState } from 'vuex'
 import WarehousingRegister from '@/components/WarehousingRegister.vue'
 export default {
     name: "inventoryStatus",
     computed:{
-      ...mapState(['warehousingModal'])
+      ...mapState(['warehousingModal','warehousingList','memberList','productList'])
     },
     methods: {
         ...mapMutations(["openWarehousingModal","closeWarehousingModal"]),
-        getWarehousing() {
-            axios.get("/api/member/stock")
-                .then((res) => {
-                res.data;
-            })
-                .catch((err) => {
-                console.error(err);
-            });
-        },
+        ...mapActions(['getWarehousing']),
     },
     components: { WarehousingRegister }
+    ,
+
 }
 </script>
 

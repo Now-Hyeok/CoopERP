@@ -18,8 +18,10 @@
 <script>
 import SideNavbar from '@/components/SideNavbar.vue';
 import TopNavbar from '@/components/TopNavbar.vue';
+
 export default {
-    components: { SideNavbar, TopNavbar }
+    components: { SideNavbar, TopNavbar },
+
 }
 </script>
 

@@ -48,7 +48,7 @@ import { mapMutations, mapState } from 'vuex';
 export default {
   name:"productRegister",
   computed:{
-      ...mapState(['productModal']),
+      ...mapState(['productModal','user']),
     },
 
   data(){
@@ -66,12 +66,12 @@ export default {
     ...mapMutations(['closeProductModal']),
 
     sendProdcutData(){
-      
       axios.post('/api/product/registration',{
         name:this.name,
         category:this.category,
         unit:this.unit,
         price:this.price,
+        coop:this.user.Coop_id,
       })
       .then(()=>{
         this.$emit('productRegister');

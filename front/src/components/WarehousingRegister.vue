@@ -9,35 +9,37 @@
   
         <form id="registerForm" @submit.prevent>
           <div class="modalBody">
-          
             <div class="input-group mb-4">  
               <label class="input-group-text" id="inputGroup-sizing-default" >Product</label>
-              <input type="text" class="form-control" name="product" id="product" v-model="product">          
+              <select v-model="product">
+                <option v-for="(item) in productList" :key="item" :value="item.Product_id">{{item.Product_name}}</option>
+              </select>
+              <label class="input-group-text" id="inputGroup-sizing-default" >Member</label>
+              <select v-model="member">
+                <option>None</option>
+                <option v-for="(item) in memberList" :key="item" :value="item.Member_id">{{item.Member_name}}</option>
+              </select>
+
             </div>
 
             <div class="input-group mb-4">
-              <label class="input-group-text" id="inputGroup-sizing-default" >Member</label>
-              <input type="text" class="form-control"  name="member" id="member" v-model="member">
-            </div>
-  
-            <div class="input-group mb-4">
               <label class="input-group-text" id="inputGroup-sizing-default" >Amount</label>
-              <input type="text" class="form-control" name="amount" id="amount" v-model="amount">
+              <input type="number" min="0" class="form-control" name="amount" id="amount" v-model="amount">
             </div>
 
             <div class="input-group mb-4">
               <label class="input-group-text" id="inputGroup-sizing-default" >Date</label>
-              <input type="text" class="form-control" name="amount" id="amount" v-model="date">
+              <input type="date" class="form-control" name="date" id="date" v-model="date">
             </div>
 
             <div class="input-group mb-4">
               <label class="input-group-text" id="inputGroup-sizing-default" >Price</label>
-              <input type="text" class="form-control" name="amount" id="amount" v-model="price">
+              <input type="number" min="0" class="form-control" name="price" id="price" v-model="price">
             </div>
 
             <div class="input-group mb-4">
               <label class="input-group-text" id="inputGroup-sizing-default" >Quality</label>
-              <input type="text" class="form-control" name="quality" id="quality" v-model="quality">
+              <input type="number" min="0" class="form-control" name="quality" id="quality" v-model="quality">
             </div>
           </div>
           <div class="modalFooter">
@@ -45,7 +47,6 @@
             <button class="btn btn-secondary " @click="closeWarehousingModal()">Close</button>
           </div>
         </form>
-  
       </div>
     </div>
   </div>
@@ -59,21 +60,18 @@
   export default {
     name:"warehousingRegister",
     computed:{
-        ...mapState(['warehousingModal','productList']),
+        ...mapState(['warehousingModal','productList','memberList']),
       },
   
     data(){
       return{
-
         errors:[],
         member:null,
         product:null,
         amount:null,
         date:null,
         price:null,
-        quality:null,
-
-        
+        quality:null,        
       }
     },
   
@@ -84,7 +82,7 @@
         
         axios.post('/api/warehousing/registration',{
           member : this.member,
-          product : this.product,
+          product : this.product, 
           amount : this.amount,
           date : this.date,
           price : this.price,

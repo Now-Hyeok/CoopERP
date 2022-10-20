@@ -19,7 +19,7 @@ exports.config = (passport) => {
         passReqToCallback: false,
     }, async function (id, password, done) {
         try {
-            console.log(id);
+            // console.log(id);
             const result = await coop.findOne({
                 where: { Coop_login_id: id }
             });
