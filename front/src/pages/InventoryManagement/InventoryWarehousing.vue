@@ -1,15 +1,16 @@
 <template>
+<WarehousingRegister v-if="warehousingModal == true" @warehousingRegister="closeWarehousingModal(); getWarehousing(); "/>
 
 <div>
   <table class="user-table">
     <caption>Warehousing schedule</caption>
     <thead >
       <tr>
-        <th scope="col">#</th>
+        <th scope="col">#</th>        
         <th scope="col">Product</th>
+        <th scope="col">quailty</th>
         <th scope="col">amount</th>
         <th scope="col">member name</th>
-        <th scope="col">quailty</th>
         <th scope="col">request price</th>
         <th scope="col">schedule</th>
         <th scope="col">warehousing</th>
@@ -18,12 +19,22 @@
       </tr>
     </thead>
     <tbody>
-
+      <tr class="warehousingList" scope="row" v-for="(item,i) in warehousingList" :key="item">
+        <th scope="row">{{i+1}}</th>
+        <td>{{item.Product_name}}</td>
+        <td>{{item.Product_quailty}}</td>
+        <td>{{item.Shipment_amount}}</td>
+        <td>{{item.Member_name}}</td>
+        <td>{{item.Req_price}}</td>
+        <td>{{item.Shipment_date.substr(0,10)}}</td>
+        <td>{{item.Warehousing_schedule}}</td>
+        <td><button type="button" class="btn btn-light" @click="deleteWarehousing(item.Warehousing_schedule)">X</button></td>
+      </tr>
     </tbody>
   </table>
 
   <div>
-    <button type="button" class="btn btn-primary">
+    <button type="button" class="btn btn-primary" @click="openWarehousingModal()">
     New Warehousing
     </button>
   </div>
@@ -32,20 +43,32 @@
 </template>
 
 <script>
+import { mapActions, mapMutations, mapState } from 'vuex'
+import WarehousingRegister from '@/components/WarehousingRegister.vue'
 import axios from 'axios'
+
 export default {
-    name:'inventoryStatus',
-    methods:{
-        getMemberReq(){
-            axios.get('/api/member/stock')
-            .then((res)=>{
-                res.data
-            })
-            .catch((err)=>{
-                console.error(err);
-            })
-        },  
+    name: "inventoryStatus",
+    computed:{
+      ...mapState(['warehousingModal','warehousingList','memberList','productList'])
     },
+    methods: {
+        ...mapMutations(["openWarehousingModal","closeWarehousingModal"]),
+        ...mapActions(['getWarehousing']),
+
+        deleteWarehousing(id){
+        axios.delete(`/api/warehousing/delete/${id}`)
+        .then(()=>{
+          this.getWarehousing();
+        })
+        .catch((err)=>{
+          console.error(err);
+        })
+      },
+
+    },
+    components: { WarehousingRegister }
+    ,
 
 }
 </script>

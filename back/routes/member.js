@@ -2,12 +2,13 @@ const express = require('express');
 const { off } = require('../config/config');
 const router = express.Router();
 let pool = require('../config/config');
+const { coopMember } = require('../models/index');
 
 router.post('/registration',(req,res,next)=>{
 
   pool.getConnection((err,conn)=>{
       if(err) console.error(err);
-      let sql =`INSERT INTO coopMember(Member_name,Member_address,Member_pw,Member_phone) VALUES("${req.body.name}","${req.body.address}","${req.body.password}","${req.body.phone}");`; 
+      let sql =`INSERT INTO coopMember(Member_name,Member_address,Member_pw,Member_phone,Coop_id) VALUES("${req.body.name}","${req.body.address}","${req.body.password}","${req.body.phone}","${req.body.coop}");`; 
       conn.query(sql,(err,result)=>{
         conn.release();
         if(err){
@@ -24,10 +25,13 @@ router.post('/registration',(req,res,next)=>{
 
 
 
-router.get('/data',(req,res,next)=>{
+router.get('/data/:id',(req,res,next)=>{
+
+
   pool.getConnection((err,conn)=>{
     if(err) console.error(err);
-    let sql = "SELECT * FROM coopMember;";
+    console.log(req.params.id);
+    let sql = `SELECT * FROM coopMember WHERE Coop_id = "${req.params.id}";`;
     conn.query(sql ,(err,result)=>{
       conn.release();
       if(err){ 
@@ -35,11 +39,8 @@ router.get('/data',(req,res,next)=>{
       }
       res.send(result);
 
-
-
     });
   });
-
 
 });
 
@@ -70,7 +71,7 @@ router.get('/stock',(req,res,next)=>{
     conn.query(sql,(err,result)=>{
       conn.release();
       if(err){
-        console.log(err);
+        console.error(err);
       }
       res.send(result);
     })

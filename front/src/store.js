@@ -13,8 +13,10 @@ const store = createStore({
             category:'',
             memberModal:false,
             productModal:false,
+            warehousingModal:false,
             productList:{},
             memberList:{},
+            warehousingList:{},
             user: null,
         }
     },
@@ -35,20 +37,35 @@ const store = createStore({
         closeProductModal(state){
             state.productModal = false;
         },
+        openWarehousingModal(state){
+            state.warehousingModal = true;
+        },
+        closeWarehousingModal(state){
+            state.warehousingModal = false;
+        },
         setProductList(state,payload){
             state.productList = payload;
         },
         setMemberList(state,payload){
             state.memberList = payload;
         },
-        setUser(state, user) {state.user = user;}
+        setWarehousingList(state,payload){
+            state.warehousingList = payload;
+        }
+        ,
+        setUser(state, user) {
+            console.log(user);
+            state.user = user;
+        }
 
 
     },
     actions:{
         //ajax와같이 시간걸리는것
         getProductList(context){
-            axios.get('/api/product/data')
+            let id = context.state.user.Coop_id;
+            axios.get(`/api/product/data/${id}`,
+            )
             .then((res)=>{
                 context.commit('setProductList',res.data);
             })
@@ -56,11 +73,14 @@ const store = createStore({
                 console.error(err);
             })
         },
-
+ 
         getMemberList(context){
-            axios.get('/api/member/data')
+            let id = context.state.user.Coop_id;
+            axios.get(`/api/member/data/${id}`)
             .then((res)=>{
                 context.commit('setMemberList',res.data);
+                console.log();
+                
             })
             .catch((err)=>{
                 console.error(err);
@@ -78,8 +98,18 @@ const store = createStore({
             .catch((err)=>{
                 console.error(err);
             });
-        }
-        
+        },
+
+        getWarehousing(context){
+            axios.get("/api/warehousing/stock")
+            .then((res) => {
+
+            context.commit('setWarehousingList',res.data);
+            })
+            .catch((err) => {
+            console.error(err);
+            });
+        },
 
         
     },

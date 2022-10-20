@@ -7,7 +7,8 @@ router.post('/registration',(req,res,next)=>{
 
   pool.getConnection((err,conn)=>{
       if(err) console.error(err);
-      let sql =`INSERT INTO product(Product_name,Product_category,Product_unit,Product_price) VALUES("${req.body.name}","${req.body.category}","${req.body.unit}","${req.body.price}");`; 
+      let sql =`INSERT INTO product(Product_name,Product_category,Product_unit,Product_price,Coop_id) 
+      VALUES("${req.body.name}","${req.body.category}","${req.body.unit}","${req.body.price}","${req.body.coop}");`; 
       conn.query(sql,(err,result)=>{
         conn.release();
         if(err){
@@ -22,10 +23,10 @@ router.post('/registration',(req,res,next)=>{
 
 });
 
-router.get('/data',(req,res,next)=>{
+router.get('/data/:id',(req,res,next)=>{
   pool.getConnection((err,conn)=>{
     if(err) console.error(err);
-    let sql = "SELECT * FROM product;";
+    let sql = `SELECT * FROM product WHERE Coop_id = ${req.params.id} ;`;
     conn.query(sql ,(err,result)=>{
       conn.release();
       if(err){ 
@@ -55,7 +56,7 @@ router.delete('/delete/:id',(req,res,next)=>{
         console.error(err);
         res.status(500).send('Internal Serve Error');
       }
-      res.send({});
+      res.send('success');
     })
   })
 })

@@ -27,6 +27,7 @@
           <p class="mt-3 mb-3 text-muted">You can preview the <router-link to="/home">InventoryPage</router-link>
           </p>
         </div>
+        
       </form>
     </main>
 
@@ -35,6 +36,7 @@
 
 <script>
 import axios from "axios";
+import { mapActions } from 'vuex';
 
 export default {
   name: 'loginPage',
@@ -45,16 +47,17 @@ export default {
     }
   },
   methods: {
-    
+    ...mapActions(['getUserInfo']),
     onSubmit() {
       const id = this.id;
       const password = this.password;
       
       axios.post("api/login/signIn", { id, password })
         .then((res) => {
-          console.log(res.data.user);
+
           if (res.data.user) {
             this.$store.commit("setUser", res.data.user);
+            // this.getUserInfo();
             this.$router.push({ name: "home" });
           } else if (res.data.message) {
             alert(res.data.message);

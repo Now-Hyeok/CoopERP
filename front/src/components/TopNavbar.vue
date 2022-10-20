@@ -41,13 +41,11 @@
 </template>
 
 <script>
-import { mapActions, mapMutations, mapState } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 
 export default {
     name:'TopNavbar',
-    created() {
-      this.getUserInfo()
-  },
+
   computed: {
     
     ...mapState(['user'])
@@ -61,7 +59,6 @@ export default {
     },
     methods:{
         ...mapMutations(['userSelect']),
-        ...mapActions(['getUserInfo'])
         //mapmutations 쓰면 mutations에 있는 함수를 가져와 쓰는데 짧게 쓸수있음 그냥 함수처럼
     }
 
