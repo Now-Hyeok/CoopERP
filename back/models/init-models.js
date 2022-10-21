@@ -18,6 +18,8 @@ function initModels(sequelize) {
 
   coopMember.belongsTo(coop, { as: "Coop", foreignKey: "Coop_id"});
   coop.hasMany(coopMember, { as: "coopMembers", foreignKey: "Coop_id"});
+  product.belongsTo(coop, { as: "Coop", foreignKey: "Coop_id"});
+  coop.hasMany(product, { as: "products", foreignKey: "Coop_id"});
   warehousing_schedule.belongsTo(coopMember, { as: "Member", foreignKey: "Member_id"});
   coopMember.hasMany(warehousing_schedule, { as: "warehousing_schedules", foreignKey: "Member_id"});
   Sales.belongsTo(product, { as: "Product", foreignKey: "Product_id"});

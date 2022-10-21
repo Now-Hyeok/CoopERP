@@ -1,12 +1,22 @@
 const express = require('express');
+const { off } = require('../config/config');
 const router = express.Router();
-const { Sales } = require('../models/index.js');
+const { Sales, product } = require('../models/index.js');
 
-router.get('/data', async function(res, req, next){
-
+router.get('/data', async (req, res, next)=>{
+    const result = await Sales.findAll({
+        include: [{
+            model: product,
+            as: 'Product',
+            required: false
+        }]
+    }).catch((err)=>{
+        console.log(err);
+    })
+    res.send(result);
 })
 
-router.delete('/delete/:id', async function(req,res,next){
+router.delete('/delete/:id', async (req,res,next)=>{
     if(!req.params.id){
         res.status(500).send('ID is not exist.');
         return ;
@@ -20,7 +30,7 @@ router.delete('/delete/:id', async function(req,res,next){
 })
 
 
-router.post('/data', async function(res, req, next){
+router.post('/registration', async (req, res, next)=>{
     await Sales.create({
         Product_id: req.body.product,
         Sales_amount: req.body.amount,

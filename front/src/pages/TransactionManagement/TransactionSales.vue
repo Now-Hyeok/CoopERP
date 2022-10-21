@@ -15,10 +15,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="memberList" scope="row" v-for="(item,i) in salesList" :key="item" >
+      <tr class="salesList" scope="row" v-for="(item,i) in salesList" :key="item" >
         <th scope="row">{{i+1}}</th>
         <td>{{item.Sales_date}}</td>
-        <td>{{item.Sales_product}}</td>
+        <td>{{item.Product_name}}</td>
         <td>{{item.Sales_amount}}</td>
         <td>{{item.Sales_price}}</td>
         <td><button type="button" class="btn btn-light" @click="deleteSales(item.Sales_id)">X</button></td>
@@ -43,7 +43,7 @@ import { mapActions, mapMutations, mapState } from 'vuex'
 export default {
     name:'transactionOrder',
     computed:{
-      ...mapState(['salesList','salesModal']),
+      ...mapState(['salesList','salesModal','productList']),
     },
     methods:{
       ...mapMutations(['closeSalesModal','openSalesModal']),
