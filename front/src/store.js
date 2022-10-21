@@ -101,7 +101,8 @@ const store = createStore({
         },
 
         getWarehousing(context){
-            axios.get("/api/warehousing/stock")
+            let id = context.state.user.Coop_id;
+            axios.get(`/api/warehousing/stock/${id}`)
             .then((res) => {
 
             context.commit('setWarehousingList',res.data);

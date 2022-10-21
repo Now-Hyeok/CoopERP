@@ -44,6 +44,14 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(100),
       allowNull: true,
       comment: "상품의 품질"
+    },
+    Coop_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'coop',
+        key: 'Coop_id'
+      }
     }
   }, {
     sequelize,
@@ -70,6 +78,13 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "Member_id" },
+        ]
+      },
+      {
+        name: "warehousing_schedule_FK",
+        using: "BTREE",
+        fields: [
+          { name: "Coop_id" },
         ]
       },
     ]

@@ -60,7 +60,7 @@
   export default {
     name:"warehousingRegister",
     computed:{
-        ...mapState(['warehousingModal','productList','memberList']),
+        ...mapState(['warehousingModal','productList','memberList','user']),
       },
   
     data(){
@@ -80,7 +80,7 @@
   
       sendWarehousingData(){
         
-        axios.post('/api/warehousing/registration',{
+        axios.post(`/api/warehousing/registration/${this.user.Coop_id}`,{
           member : this.member,
           product : this.product, 
           amount : this.amount,
