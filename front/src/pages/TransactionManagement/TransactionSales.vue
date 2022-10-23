@@ -63,5 +63,15 @@ export default {
 </script>
 
 <style>
+.register{
+  padding:20px;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
 
+td,th{
+  padding:15px; 
+  border: 1px solid #c2d3de;
+}
 </style>
