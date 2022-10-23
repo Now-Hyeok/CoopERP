@@ -18,6 +18,7 @@ const store = createStore({
             memberList:{},
             salesList:{},
             warehousingList:{},
+            shipmentList:{},
             user: null,
         }
     },
@@ -65,7 +66,9 @@ const store = createStore({
         setSalesList(state,payload){
             state.salesList = payload;
         },
-
+        setShipmentList(state,payload){
+            state.salesList = payload;
+        },
         setUser(state, user) {
             state.user = user;
         }
@@ -118,6 +121,17 @@ const store = createStore({
                 console.error(err);
             })
         },
+
+        getShipmentList(context){
+            axios.get(`/api/sales/data`)
+            .then((res)=>{
+                context.commit('setSalesList',res.data);
+            })
+            .catch((err)=>{
+                console.error(err);
+            })
+        },
+
 
     },
 })

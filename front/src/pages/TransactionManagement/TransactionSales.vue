@@ -46,7 +46,7 @@ export default {
     created() {
       this.getSalesList();
     },
-    name:'transactionOrder',
+    name:'transactionSales',
     computed:{
       ...mapState(['salesList','salesModal','productList']),
     },

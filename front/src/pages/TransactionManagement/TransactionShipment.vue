@@ -21,7 +21,6 @@
         <td>{{item.Product_name}}</td>
         <td>{{item.Shipment_amount}}</td>
         <td>{{item.Shipment_price}}</td>
-        <td><button type="button" class="btn btn-light" @click="deleteSales(item.Sales_id)">X</button></td>
       </tr>
     </tbody>
   </table>
@@ -35,9 +34,16 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex'
+
 export default {
-    name:'transactionShipment',
-    
+  name: 'transactionShipment',
+  computed: {
+    ...mapState(['salesList', 'salesModal', 'productList']),
+  },
+  methods: {
+    ...mapActions(['getSalesList'])
+  }
 }
 </script>
 
