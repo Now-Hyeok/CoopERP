@@ -41,15 +41,28 @@
 </template>
 
 <script>
-import { mapMutations, mapState } from 'vuex'
+import { mapMutations } from 'vuex'
+import axios from 'axios'
 
 export default {
-    name:'TopNavbar',
-
+  created(){
+    axios.get("/api/login/signIn")
+      .then((res) => {
+        const user = res.data.user;
+        if (user) {
+          this.$store.commit("setUser", user);
+        } else {
+          this.$router.push({ name: "login" });
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  
+  },
+  name:'TopNavbar',
   computed: {
-    
-    ...mapState(['user'])
-    
+    user() { return this.$store.getters.user; },
   },
 
     data(){

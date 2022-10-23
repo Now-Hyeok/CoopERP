@@ -11,6 +11,7 @@
         <th scope="col">Product</th>
         <th scope="col">Amount</th>
         <th scope="col">Price</th>
+        <th scope="col">Shipment</th>
         <th scope="col">Delete</th>
       </tr>
     </thead>
@@ -21,6 +22,7 @@
         <td>{{item.Product_name}}</td>
         <td>{{item.Sales_amount}}</td>
         <td>{{item.Sales_price}}</td>
+        <td><button type="button" class="btn btn-light" @click="deleteSales(item.Sales_id)">X</button></td>
         <td><button type="button" class="btn btn-light" @click="deleteSales(item.Sales_id)">X</button></td>
       </tr>
     </tbody>
@@ -41,6 +43,9 @@ import axios from 'axios'
 import { mapActions, mapMutations, mapState } from 'vuex'
 
 export default {
+    created() {
+      this.getSalesList();
+    },
     name:'transactionOrder',
     computed:{
       ...mapState(['salesList','salesModal','productList']),

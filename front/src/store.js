@@ -1,7 +1,6 @@
 // import axios from 'axios'
 import axios from 'axios';
 import {createStore} from 'vuex'
-import router from "./router.js"
 // import axios from 'axios'
 
 
@@ -21,6 +20,9 @@ const store = createStore({
             warehousingList:{},
             user: null,
         }
+    },
+    getters: {
+        user: (state) => { return state.user; }
     },
     mutations:{
         //state변경 함수를 정의
@@ -63,12 +65,10 @@ const store = createStore({
         setSalesList(state,payload){
             state.salesList = payload;
         },
+
         setUser(state, user) {
-            console.log(user);
             state.user = user;
         }
-
-
     },
     actions:{
         //ajax와같이 시간걸리는것
@@ -97,20 +97,6 @@ const store = createStore({
             })
         },
 
-        getUserInfo(context){
-            axios.get('/api/login/signIn').then((res)=>{
-                const user = res.data.user;
-                if(user){
-                    context.commit('setUser',user);
-                }else{
-                    router.push({name:'login'});
-                }
-            })
-            .catch((err)=>{
-                console.error(err);
-            });
-        },
-
         getWarehousing(context){
             let id = context.state.user.Coop_id;
             axios.get(`/api/warehousing/stock/${id}`)
@@ -133,7 +119,6 @@ const store = createStore({
             })
         },
 
-        
     },
 })
 
