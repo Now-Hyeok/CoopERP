@@ -67,7 +67,7 @@ const store = createStore({
             state.salesList = payload;
         },
         setShipmentList(state,payload){
-            state.salesList = payload;
+            state.shipmentList = payload;
         },
         setUser(state, user) {
             state.user = user;
@@ -113,7 +113,8 @@ const store = createStore({
         },
 
         getSalesList(context){
-            axios.get(`/api/sales/data`)
+            let id = context.state.user.Coop_id;
+            axios.get(`/api/sales/data/${id}`)
             .then((res)=>{
                 context.commit('setSalesList',res.data);
             })
@@ -123,9 +124,9 @@ const store = createStore({
         },
 
         getShipmentList(context){
-            axios.get(`/api/sales/data`)
+            axios.get(`/api/shipment/data`)
             .then((res)=>{
-                context.commit('setSalesList',res.data);
+                context.commit('setShipmentList',res.data);
             })
             .catch((err)=>{
                 console.error(err);

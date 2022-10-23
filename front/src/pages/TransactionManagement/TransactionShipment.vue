@@ -24,12 +24,6 @@
       </tr>
     </tbody>
   </table>
-
-  <div>
-    <button type="button" class="btn btn-primary" @click="openSalesModal()">
-    New Product
-    </button>
-  </div>
 </div>
 </template>
 
@@ -39,14 +33,24 @@ import { mapActions, mapState } from 'vuex'
 export default {
   name: 'transactionShipment',
   computed: {
-    ...mapState(['salesList', 'salesModal', 'productList']),
+    ...mapState(['shipmentList']),
   },
   methods: {
-    ...mapActions(['getSalesList'])
+    ...mapActions(['getShipmentList'])
   }
 }
 </script>
 
 <style>
+.register{
+  padding:20px;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
 
+td,th{
+  padding:15px; 
+  border: 1px solid #c2d3de;
+}
 </style>

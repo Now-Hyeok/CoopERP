@@ -22,7 +22,7 @@
         <td>{{item.Product_name}}</td>
         <td>{{item.Sales_amount}}</td>
         <td>{{item.Sales_price}}</td>
-        <td><button type="button" class="btn btn-light" @click="deleteSales(item.Sales_id)">X</button></td>
+        <td><button type="button" class="btn btn-light">Shipment</button></td>
         <td><button type="button" class="btn btn-light" @click="deleteSales(item.Sales_id)">X</button></td>
       </tr>
     </tbody>
