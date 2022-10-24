@@ -16,7 +16,7 @@ router.get('/received/:id',(req,res,next)=>{
         left join coopMember cm ON iv.Member_id = cm.Member_id 
         WHERE iv.Coop_id = ${req.params.id}`;
         conn.query(sql,(err,result)=>{
-            conn.release();
+            conn.release(); 
             if(err){
                 console.error(err)
             }
@@ -37,13 +37,30 @@ router.post('/registration/:id',async(req,res,next)=>{
         Product_quailty : req.body.quality,
         Coop_id:req.params.id,
       }).then(_=>console.log('data is created'))
-      res.send('');
 
+    pool.getConnection((err,conn)=>{
+      let sql = `UPDATE product SET Total_amount = Total_amount + ${req.body.amount} WHERE Product_id = ${req.body.product}`
+      conn.query(sql,(err,result)=>{
+          conn.release();
+          if(err){
+              console.error(err);
+          }
+      })
+    })
+    res.send('success');
 });
 
 
 router.delete('/delete/:id',(req,res,next)=>{
     pool.getConnection((err,conn)=>{
+
+        let sql2 = `UPDATE product as p , inventory as i SET Total_amount = Total_amount - i.Warehousing_amount WHERE Warehousing_id = ${req.params.id}AND p.Product_id = i.Product_id `
+        conn.query(sql2,(err,result)=>{
+            if(err){
+                console.error(err);
+            }
+        })
+
         let sql = `DELETE FROM inventory WHERE Warehousing_id = ${req.params.id}`;
         conn.query(sql,(err,result)=>{
             conn.release();
@@ -58,10 +75,9 @@ router.delete('/delete/:id',(req,res,next)=>{
 
 router.get('/quantity/:id',(req,res,next)=>{
     pool.getConnection((err,conn)=>{
-        let sql=`SELECT STRAIGHT_JOIN p.Product_name,IFNULL(sum(ws.Shipment_amount),0) as Shipment_amount,IFNULL(sum(i.Warehousing_amount),0) as Warehousing_amount 
+        let sql=`SELECT STRAIGHT_JOIN p.Product_name,IFNULL(sum(ws.Shipment_amount),0) as Shipment_amount,p.Total_amount as Warehousing_amount, p.Product_unit as Unit
         FROM product p 
         left join warehousing_schedule ws on p.Product_id = ws.Product_id  
-        left join inventory i on p.Product_id  = i.Product_id 
         WHERE p.Coop_id =${req.params.id}
         GROUP BY p.Product_id `
         conn.query(sql,(err,result)=>{

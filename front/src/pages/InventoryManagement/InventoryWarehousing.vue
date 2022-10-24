@@ -1,5 +1,5 @@
 <template>
-<WarehousingRegister v-if="warehousingModal == true" @warehousingRegister="closeWarehousingModal(); getWarehousing(); "/>
+<WarehousingRegister v-if="warehousingModal == true" @warehousingRegister="closeWarehousingModal(); getWarehousing();getQuantity(); "/>
 
 <div>
   <table class="user-table">

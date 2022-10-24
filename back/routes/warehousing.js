@@ -71,16 +71,28 @@ router.get('/received/:id',(req,res,next)=>{
     return;
   }
   pool.getConnection((err,conn)=>{
-    let sql = `INSERT into inventory(Member_id,Warehousing_amount,Warehousing_date,Coop_id,Product_id,Product_quailty,Price) 
-    SELECT Member_id,Shipment_amount, Shipment_date,Coop_id,Product_id,Product_quailty,Req_price FROM warehousing_schedule where Schedule_id = ${req.params.id}`
-    conn.query(sql,(err,result)=>{
-      conn.release();
+
+    let sql2 = `UPDATE product as p, warehousing_schedule as ws SET p.Total_amount = p.Total_amount + ws.Shipment_amount WHERE ws.Schedule_id = ${req.params.id} AND p.Product_id = ws.Product_id;`
+    conn.query(sql2,(err,result)=>{
       if(err){
         console.error(err);
         res.status(500).send('internal Serve Error');
       }
-      res.send('success');
-    })
+    });
+
+    let sql = `INSERT into inventory(Member_id,Warehousing_amount,Warehousing_date,Coop_id,Product_id,Product_quailty,Price) 
+    SELECT Member_id,Shipment_amount, Shipment_date,Coop_id,Product_id,Product_quailty,Req_price FROM warehousing_schedule where Schedule_id = ${req.params.id};`
+    conn.query(sql,(err,result)=>{
+      conn.release()
+      if(err){
+        console.error(err);
+        res.status(500).send('internal Serve Error');
+      }
+      res.send('')
+    });
+
+
+
   })
 })
 

@@ -47,8 +47,8 @@
             <tr scope="row" v-for="(item,i) in quantityList" :key="item">
                 <th>{{i+1}}</th>
                 <td>{{item.Product_name}}</td>
-                <td>{{item.Warehousing_amount}}</td>
-                <td>{{item.Shipment_amount}}</td>
+                <td>{{`${item.Warehousing_amount} ${item.Unit}`}}</td>
+                <td>{{`${item.Warehousing_amount} ${item.Unit}`}}</td>
             </tr>
         </tbody>
     </table>

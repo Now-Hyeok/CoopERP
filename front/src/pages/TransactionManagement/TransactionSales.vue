@@ -18,11 +18,11 @@
     <tbody>
       <tr class="salesList" scope="row" v-for="(item,i) in salesList" :key="item" >
         <th scope="row">{{i+1}}</th>
-        <td>{{item.Sales_date}}</td>
+        <td>{{item.Sales_date.substring(0,10)}}</td>
         <td>{{item.Product_name}}</td>
         <td>{{item.Sales_amount}}</td>
         <td>{{item.Sales_price}}</td>
-        <td><button type="button" class="btn btn-light">Shipment</button></td>
+        <td><button type="button" class="btn btn-light" @click="shipment(item.Sales_id)">Shipment</button></td>
         <td><button type="button" class="btn btn-light" @click="deleteSales(item.Sales_id)">X</button></td>
       </tr>
     </tbody>
@@ -43,9 +43,7 @@ import axios from 'axios'
 import { mapActions, mapMutations, mapState } from 'vuex'
 
 export default {
-    created() {
-      this.getSalesList();
-    },
+
     name:'transactionSales',
     computed:{
       ...mapState(['salesList','salesModal','productList']),
@@ -57,6 +55,17 @@ export default {
         axios.delete(`/api/sales/delete/${id}`)
         .then(()=>{
           this.getSalesList();
+        })
+        .catch((err)=>{
+          console.error(err);
+        })
+      },
+      shipment(id){
+        axios.get(`/api/sales/shipment/${id}`)
+        .then(()=>{
+          this.deleteSales(id);
+          this.getSalesList();
+
         })
         .catch((err)=>{
           console.error(err);

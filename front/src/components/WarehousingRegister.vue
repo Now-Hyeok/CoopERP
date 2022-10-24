@@ -132,7 +132,7 @@
 
         alert(this.errors);
   
-      },
+      }, 
     }
   }
   </script>

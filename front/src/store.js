@@ -68,7 +68,7 @@ const store = createStore({
         },
         closeSalesModal(state){
             state.salesModal=false;
-
+        },
         openInventoryModal(state){
             state.inventoryModal = true;
         },
@@ -146,6 +146,11 @@ const store = createStore({
             axios.get(`/api/sales/data/${id}`)
             .then((res)=>{
                 context.commit('setSalesList',res.data);
+            })
+            .catch((err)=>{
+                console.error(err);
+            })
+        },
 
         getReceived(context){
             let id = context.state.user.Coop_id;
@@ -164,7 +169,12 @@ const store = createStore({
             axios.get(`/api/shipment/data`)
             .then((res)=>{
                 context.commit('setShipmentList',res.data);
-
+            })
+            .catch((err)=>{
+                console.error(err);
+            })
+            
+        },
         getQuantity(context){
             let id = context.state.user.Coop_id;
             axios.get(`/api/inventory/quantity/${id}`)
@@ -183,7 +193,7 @@ const store = createStore({
         }
 
         
-    },
+    
 })
 
 
