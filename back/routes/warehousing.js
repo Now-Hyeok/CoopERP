@@ -7,12 +7,11 @@ const { warehousing_schedule } = require('../models/index.js')
 
 router.get('/stock/:id',(req,res,next)=>{
   pool.getConnection((err,conn)=>{
-    if(err) console.error(err); 
 
+    if(err) console.error(err); 
     let sql = `select STRAIGHT_JOIN ws.Schedule_id, ws.Shipment_amount, ws.Shipment_date, ws.Req_price, ws.Product_quailty ,p.Product_name,cm.Member_name  
     from warehousing_schedule ws left join product p on ws.Product_id = p.Product_id left join coopMember cm ON ws.Member_id = cm.Member_id 
     WHERE ws.Coop_id = ${req.params.id}` ;
-
     conn.query(sql,(err,result)=>{
       conn.release();
       if(err){
@@ -24,7 +23,9 @@ router.get('/stock/:id',(req,res,next)=>{
 })
 
 router.post('/registration/:id',async (req,res,next)=>{
+
   await warehousing_schedule.create({ 
+
 
 
     Member_id : req.body.member,
@@ -34,7 +35,9 @@ router.post('/registration/:id',async (req,res,next)=>{
     Req_price : req.body.price,
     Product_quailty : req.body.quality,
     Coop_id:req.params.id,
+
     Member_update_date:req.body.updateDate,
+
   }).then(_=>console.log('data is created'))
   res.send('');
 

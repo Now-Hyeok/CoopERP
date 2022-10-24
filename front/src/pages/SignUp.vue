@@ -82,7 +82,7 @@ export default {
           address:this.address,
         })
         .then(()=>{
-          this.$router.push({ name: "loginPage" });
+          this.$router.push({ name: "login" });
         })
         .catch((err)=>{
           console.error(err);

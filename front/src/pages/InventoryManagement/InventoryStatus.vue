@@ -1,5 +1,6 @@
 <template>
 
+
 <InventoryRegister v-if="inventoryModal == true" @inventoryRegister="getData();closeInventoryModal();"/>
 
 <div class="received-list">

@@ -52,7 +52,7 @@ export default {
       const id = this.id;
       const password = this.password;
       
-      axios.post("api/login/signIn", { id, password })
+      axios.post("api/login/signIn", { id, password }, { "Content-Type": "application-json" })
         .then((res) => {
 
           if (res.data.user) {

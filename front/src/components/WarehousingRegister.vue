@@ -60,7 +60,9 @@
   export default {
     name:"warehousingRegister",
     computed:{
+
         ...mapState(['warehousingModal','productList','memberList','user','todayDate']),
+
       },
   
     data(){

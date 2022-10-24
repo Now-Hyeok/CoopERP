@@ -1,7 +1,6 @@
 // import axios from 'axios'
 import axios from 'axios';
 import {createStore} from 'vuex'
-import router from "./router.js"
 // import axios from 'axios'
 
 let today = new Date();   
@@ -21,16 +20,24 @@ const store = createStore({
             memberModal:false,
             productModal:false,
             warehousingModal:false,
+
+            salesModal:false,
+
             inventoryModal:false,
             productList:{},
             memberList:{},
+            salesList:{},
             warehousingList:{},
+            shipmentList:{},
             user: null,
             receivedList:{},
             quantityList:{},
             todayDate: todayDate,
 
         }
+    },
+    getters: {
+        user: (state) => { return state.user; }
     },
     mutations:{
         //state변경 함수를 정의
@@ -55,11 +62,19 @@ const store = createStore({
         closeWarehousingModal(state){
             state.warehousingModal = false;
         },
+
+        openSalesModal(state){
+            state.salesModal=true;
+        },
+        closeSalesModal(state){
+            state.salesModal=false;
+
         openInventoryModal(state){
             state.inventoryModal = true;
         },
         closeInventoryModal(state){
             state.inventoryModal = false;
+
         },
         setProductList(state,payload){
             state.productList = payload;
@@ -69,10 +84,14 @@ const store = createStore({
         },
         setWarehousingList(state,payload){
             state.warehousingList = payload;
-        }
-        ,
+        },
+        setSalesList(state,payload){
+            state.salesList = payload;
+        },
+        setShipmentList(state,payload){
+            state.shipmentList = payload;
+        },
         setUser(state, user) {
-            console.log(user);
             state.user = user;
         },
         setReceivedList(state,payload){
@@ -81,8 +100,6 @@ const store = createStore({
         setQuantityList(state,payload){
             state.quantityList = payload;
         }
-
-
     },
     actions:{
         //ajax와같이 시간걸리는것
@@ -110,19 +127,6 @@ const store = createStore({
                 console.error(err);
             })
         },
-        getUserInfo(context){
-            axios.get('/api/login/signIn').then((res)=>{
-                const user = res.data.user;
-                if(user){
-                    context.commit('setUser',user);
-                }else{
-                    router.push({name:'login'});
-                }
-            })
-            .catch((err)=>{
-                console.error(err);
-            });
-        },
 
         getWarehousing(context){
             let id = context.state.user.Coop_id;
@@ -136,25 +140,46 @@ const store = createStore({
             });
         },
 
+
+        getSalesList(context){
+            let id = context.state.user.Coop_id;
+            axios.get(`/api/sales/data/${id}`)
+            .then((res)=>{
+                context.commit('setSalesList',res.data);
+
         getReceived(context){
             let id = context.state.user.Coop_id;
             axios.get(`/api/inventory/received/${id}`)
             .then((res)=>{
                 context.commit('setReceivedList',res.data);
+
             })
             .catch((err)=>{
                 console.error(err);
             })
         },
+
+
+        getShipmentList(context){
+            axios.get(`/api/shipment/data`)
+            .then((res)=>{
+                context.commit('setShipmentList',res.data);
+
         getQuantity(context){
             let id = context.state.user.Coop_id;
             axios.get(`/api/inventory/quantity/${id}`)
             .then((res)=>{
                 context.commit('setQuantityList',res.data);
+
             })
             .catch((err)=>{
                 console.error(err);
             })
+
+        },
+
+
+
         }
 
         
