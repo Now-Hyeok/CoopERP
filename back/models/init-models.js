@@ -20,16 +20,22 @@ function initModels(sequelize) {
 
   coopMember.belongsTo(coop, { as: "Coop", foreignKey: "Coop_id"});
   coop.hasMany(coopMember, { as: "coopMembers", foreignKey: "Coop_id"});
+  inventory.belongsTo(coop, { as: "Coop", foreignKey: "Coop_id"});
+  coop.hasMany(inventory, { as: "inventories", foreignKey: "Coop_id"});
   product.belongsTo(coop, { as: "Coop", foreignKey: "Coop_id"});
   coop.hasMany(product, { as: "products", foreignKey: "Coop_id"});
   warehousing_schedule.belongsTo(coop, { as: "Coop", foreignKey: "Coop_id"});
   coop.hasMany(warehousing_schedule, { as: "warehousing_schedules", foreignKey: "Coop_id"});
+  inventory.belongsTo(coopMember, { as: "Member", foreignKey: "Member_id"});
+  coopMember.hasMany(inventory, { as: "inventories", foreignKey: "Member_id"});
   warehousing_schedule.belongsTo(coopMember, { as: "Member", foreignKey: "Member_id"});
   coopMember.hasMany(warehousing_schedule, { as: "warehousing_schedules", foreignKey: "Member_id"});
   Sales.belongsTo(product, { as: "Product", foreignKey: "Product_id"});
   product.hasMany(Sales, { as: "Sales", foreignKey: "Product_id"});
   Shipment.belongsTo(product, { as: "Product", foreignKey: "Product_id"});
   product.hasMany(Shipment, { as: "Shipments", foreignKey: "Product_id"});
+  inventory.belongsTo(product, { as: "Product", foreignKey: "Product_id"});
+  product.hasMany(inventory, { as: "inventories", foreignKey: "Product_id"});
   warehousing_schedule.belongsTo(product, { as: "Product", foreignKey: "Product_id"});
   product.hasMany(warehousing_schedule, { as: "warehousing_schedules", foreignKey: "Product_id"});
 
