@@ -55,15 +55,17 @@
   <script>
   import axios from 'axios';
   import { mapMutations, mapState } from 'vuex';
-  
+
   
   export default {
     name:"warehousingRegister",
     computed:{
-        ...mapState(['warehousingModal','productList','memberList']),
+        ...mapState(['warehousingModal','productList','memberList','user','todayDate']),
       },
   
     data(){
+
+
       return{
         errors:[],
         member:null,
@@ -72,6 +74,7 @@
         date:null,
         price:null,
         quality:null,        
+        updateDate:this.todayDate,
       }
     },
   
@@ -80,13 +83,15 @@
   
       sendWarehousingData(){
         
-        axios.post('/api/warehousing/registration',{
+        axios.post(`/api/warehousing/registration/${this.user.Coop_id}`,{
           member : this.member,
           product : this.product, 
           amount : this.amount,
           date : this.date,
           price : this.price,
           quality : this.quality,
+          updateDate: this.updateDate,
+          
         })
         .then(()=>{
           this.$emit('warehousingRegister');

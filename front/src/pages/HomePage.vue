@@ -26,12 +26,14 @@ import { mapActions } from 'vuex';
         TopNavbar
     },
       methods:{
-        ...mapActions(['getMemberList','getProductList','getWarehousing','getUserInfo'])
+        ...mapActions(['getMemberList','getProductList','getWarehousing','getUserInfo','getReceived','getQuantity'])
       },
       created(){
         this.getMemberList();
         this.getProductList();
         this.getWarehousing();
+        this.getReceived();
+        this.getQuantity();
       },
       data(){
         return{

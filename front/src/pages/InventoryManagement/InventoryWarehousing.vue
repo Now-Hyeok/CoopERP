@@ -8,27 +8,26 @@
       <tr>
         <th scope="col">#</th>        
         <th scope="col">Product</th>
-        <th scope="col">quailty</th>
-        <th scope="col">amount</th>
+        <th scope="col">quantity</th>
         <th scope="col">member name</th>
         <th scope="col">request price</th>
         <th scope="col">schedule</th>
+        <th scope="col">quailty</th>
         <th scope="col">warehousing</th>
         <th scope="col">delete</th>
-        <th scope="col">total amount</th>
       </tr>
     </thead>
     <tbody>
       <tr class="warehousingList" scope="row" v-for="(item,i) in warehousingList" :key="item">
         <th scope="row">{{i+1}}</th>
         <td>{{item.Product_name}}</td>
-        <td>{{item.Product_quailty}}</td>
         <td>{{item.Shipment_amount}}</td>
         <td>{{item.Member_name}}</td>
         <td>{{item.Req_price}}</td>
         <td>{{item.Shipment_date.substr(0,10)}}</td>
-        <td>{{item.Warehousing_schedule}}</td>
-        <td><button type="button" class="btn btn-light" @click="deleteWarehousing(item.Warehousing_schedule)">X</button></td>
+        <td>{{item.Product_quailty}}</td>
+        <td><button @click="received(item.Schedule_id)" type="button" class="btn btn-light">Received</button></td>
+        <td><button type="button" class="btn btn-light" @click="deleteWarehousing(item.Schedule_id)">X</button></td>
       </tr>
     </tbody>
   </table>
@@ -54,7 +53,7 @@ export default {
     },
     methods: {
         ...mapMutations(["openWarehousingModal","closeWarehousingModal"]),
-        ...mapActions(['getWarehousing']),
+        ...mapActions(['getWarehousing','getReceived','getQuantity']),
 
         deleteWarehousing(id){
         axios.delete(`/api/warehousing/delete/${id}`)
@@ -65,7 +64,18 @@ export default {
           console.error(err);
         })
       },
-
+      received(id){
+        axios.get(`/api/warehousing/received/${id}`)
+        .then(()=>{
+          this.deleteWarehousing(id);
+          this.getReceived();
+          this.getQuantity();
+        })
+        .catch((err)=>{
+          console.error(err);
+        })
+        //warehousing schedule 들어가서 received 를 true 로 바꾸는코드
+      }
     },
     components: { WarehousingRegister }
     ,
