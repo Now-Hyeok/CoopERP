@@ -15,7 +15,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="memberList" scope="row" v-for="(item,i) in memberList" :key="item" >
+      <tr class="memberList" scope="row" v-for="(item,i) in memberList" :key="item" @click="openMemberModal()">
         <th scope="row">{{i+1}}</th>
         <td>{{item.Member_name}}</td>
         <td>{{item.Member_address}}</td>

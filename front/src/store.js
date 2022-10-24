@@ -4,9 +4,16 @@ import {createStore} from 'vuex'
 import router from "./router.js"
 // import axios from 'axios'
 
+let today = new Date();   
 
+let year = today.getFullYear(); // 년도
+let month = today.getMonth() + 1;  // 월
+let date = today.getDate();  // 날짜
+
+let todayDate = `${year}-${month}-${date}`
 
 const store = createStore({
+    
     state(){
         return{
             //데이터 여기에 보관하기 vuex
@@ -14,10 +21,15 @@ const store = createStore({
             memberModal:false,
             productModal:false,
             warehousingModal:false,
+            inventoryModal:false,
             productList:{},
             memberList:{},
             warehousingList:{},
             user: null,
+            receivedList:{},
+            quantityList:{},
+            todayDate: todayDate,
+
         }
     },
     mutations:{
@@ -43,6 +55,12 @@ const store = createStore({
         closeWarehousingModal(state){
             state.warehousingModal = false;
         },
+        openInventoryModal(state){
+            state.inventoryModal = true;
+        },
+        closeInventoryModal(state){
+            state.inventoryModal = false;
+        },
         setProductList(state,payload){
             state.productList = payload;
         },
@@ -56,6 +74,12 @@ const store = createStore({
         setUser(state, user) {
             console.log(user);
             state.user = user;
+        },
+        setReceivedList(state,payload){
+            state.receivedList = payload;
+        },
+        setQuantityList(state,payload){
+            state.quantityList = payload;
         }
 
 
@@ -111,6 +135,27 @@ const store = createStore({
             console.error(err);
             });
         },
+
+        getReceived(context){
+            let id = context.state.user.Coop_id;
+            axios.get(`/api/inventory/received/${id}`)
+            .then((res)=>{
+                context.commit('setReceivedList',res.data);
+            })
+            .catch((err)=>{
+                console.error(err);
+            })
+        },
+        getQuantity(context){
+            let id = context.state.user.Coop_id;
+            axios.get(`/api/inventory/quantity/${id}`)
+            .then((res)=>{
+                context.commit('setQuantityList',res.data);
+            })
+            .catch((err)=>{
+                console.error(err);
+            })
+        }
 
         
     },
