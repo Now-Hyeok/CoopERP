@@ -15,8 +15,12 @@ var memberRouter = require('./routes/member');
 var loginRouter = require('./routes/login');
 var productRouter = require('./routes/product');
 var warehousingRouter = require('./routes/warehousing');
+
 var salesRouter = require('./routes/sales');
 var shipmentRouter = require('./routes/shipment');
+
+var inventoryRouter = require('./routes/inventory');
+
 
 var app = express();
 
@@ -59,6 +63,8 @@ app.use('/api/login',loginRouter);
 app.use('/api/warehousing',warehousingRouter);
 app.use('/api/sales',salesRouter);
 app.use('/api/shipment',shipmentRouter);
+app.use('/api/inventory',inventoryRouter);
+
 
 
 // catch 404 and forward to error handler
