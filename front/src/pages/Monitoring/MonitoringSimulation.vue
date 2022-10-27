@@ -27,20 +27,32 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
+    
     name:"monitoringSimulation",
     data(){
         return{
             storagePeriod:null,
             demand:null,
             afterSowing:null,
-            
+            engineGo: false,
+            GoData: null
         }
     },
     methods:{
         simulationStart(){
-
-        },
+        const period = this.storagePeriod
+        const demand = this.demand
+        axios.post(`/api/simulate/engine`, {period,demand})
+          .then((res) => {
+            this.GoData = res.data;
+          })
+          .catch((err) => {
+            console.error(err);
+          })
+      },
         
     },
 

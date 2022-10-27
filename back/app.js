@@ -64,7 +64,7 @@ app.use('/api/warehousing',warehousingRouter);
 app.use('/api/sales',salesRouter);
 app.use('/api/shipment',shipmentRouter);
 app.use('/api/inventory',inventoryRouter);
-app.use('/api/statistics',simulateRouter);
+app.use('/api/simulate',simulateRouter);
 
 
 
