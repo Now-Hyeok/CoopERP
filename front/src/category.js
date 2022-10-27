@@ -2,7 +2,7 @@ export default {
     'coop-management':['Member','COOP Management','menu1-3'],
     'inventory-management':['Product','WareHousing Schedule','Inventory Status'],
     'transaction-management':['Sales','Warehousing','Shipment'],
-    'statistics':['menu4-1','menu4-2','menu4-3'],
+    'statistics':['Simulate','menu4-2','menu4-3'],
     'monitoring':['menu1','menu2','menu3'],
 }
 

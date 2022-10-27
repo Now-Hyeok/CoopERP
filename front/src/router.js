@@ -18,6 +18,7 @@ import sales from './pages/TransactionManagement/TransactionSales'
 import shipment from './pages/TransactionManagement/TransactionShipment'
 
 import statisticsMain from './pages/Statistics/StatisticsMain'
+import statisticsSimulate from './pages/Statistics/StatisticsSimulate'
 
 // import communicationMain from './pages/Communication/CommunicationMain'
 
@@ -123,7 +124,13 @@ const routes = [
                 path:'main',
                 name:'statisticsMain',
                 component:statisticsMain,
-            }
+            },
+            {
+                path:'simulate',
+                name:'statisticsSimulate',
+                component:statisticsSimulate,
+
+            },
         ]
     },
     {
