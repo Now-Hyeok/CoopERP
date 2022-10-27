@@ -21,6 +21,9 @@
           <div class="input-group mb-4">
             <label class="input-group-text" id="inputGroup-sizing-default" >Phone Number</label>
             <input type="text" class="form-control"  name="phone" id="phone" v-model="phone">
+
+            <label class="input-group-text" id="inputGroup-sizing-default" type="number" >Area</label>
+            <input type="number" class="form-control" name="area" id="area" v-model="area">
           </div>
 
           <div class="input-group mb-4">
@@ -59,7 +62,8 @@ export default {
       id:null,
       address:null,
       phone:null,
-      password:null
+      password:null,
+      area:null,
     }
   },
 
@@ -73,6 +77,7 @@ export default {
         password:this.password,
         address:this.address,
         coop:this.user.Coop_id,
+        area:this.area,
         
       })
       .then((response)=>{

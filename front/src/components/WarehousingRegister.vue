@@ -93,7 +93,6 @@
           price : this.price,
           quality : this.quality,
           updateDate: this.updateDate,
-          
         })
         .then(()=>{
           this.$emit('warehousingRegister');

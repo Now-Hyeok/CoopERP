@@ -8,6 +8,7 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Sales Date</th>
+        <th scope="col">Buyer</th>
         <th scope="col">Product</th>
         <th scope="col">Amount</th>
         <th scope="col">Price</th>
@@ -19,6 +20,7 @@
       <tr class="salesList" scope="row" v-for="(item,i) in salesList" :key="item" >
         <th scope="row">{{i+1}}</th>
         <td>{{item.Sales_date.substring(0,10)}}</td>
+        <td>{{item.Sales_buyer}}</td>
         <td>{{item.Product_name}}</td>
         <td>{{item.Sales_amount}}</td>
         <td>{{item.Sales_price}}</td>
@@ -50,7 +52,8 @@ export default {
     },
     methods:{
       ...mapMutations(['closeSalesModal','openSalesModal']),
-      ...mapActions(['getSalesList']),
+      ...mapActions(['getSalesList','getShipmentList','getQuantity']),
+
       deleteSales(id){
         axios.delete(`/api/sales/delete/${id}`)
         .then(()=>{
@@ -60,12 +63,13 @@ export default {
           console.error(err);
         })
       },
+
       shipment(id){
         axios.get(`/api/sales/shipment/${id}`)
         .then(()=>{
           this.deleteSales(id);
-          this.getSalesList();
-
+          this.getShipmentList();
+          this.getQuantity();
         })
         .catch((err)=>{
           console.error(err);

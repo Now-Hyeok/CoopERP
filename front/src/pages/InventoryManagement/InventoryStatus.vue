@@ -48,7 +48,7 @@
                 <th>{{i+1}}</th>
                 <td>{{item.Product_name}}</td>
                 <td>{{`${item.Warehousing_amount} ${item.Unit}`}}</td>
-                <td>{{`${item.Warehousing_amount} ${item.Unit}`}}</td>
+                <td>{{`${item.Shipment_amount} ${item.Unit}`}}</td>
             </tr>
         </tbody>
     </table>

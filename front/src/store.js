@@ -102,6 +102,7 @@ const store = createStore({
         }
     },
     actions:{
+        
         //ajax와같이 시간걸리는것
         getProductList(context){
             let id = context.state.user.Coop_id;
@@ -166,7 +167,8 @@ const store = createStore({
 
 
         getShipmentList(context){
-            axios.get(`/api/shipment/data`)
+            let id = context.state.user.Coop_id;
+            axios.get(`/api/shipment/data/${id}`)
             .then((res)=>{
                 context.commit('setShipmentList',res.data);
             })

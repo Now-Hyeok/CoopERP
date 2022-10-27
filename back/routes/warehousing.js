@@ -23,7 +23,7 @@ router.get('/stock/:id',(req,res,next)=>{
 })
 
 router.post('/registration/:id',async (req,res,next)=>{
-
+  console.log(req.params.id);
   await warehousing_schedule.create({ 
 
 
