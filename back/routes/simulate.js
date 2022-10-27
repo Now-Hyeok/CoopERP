@@ -3,23 +3,28 @@ const router = express.Router();
 const zmq = require("zeromq")
 
 
-router.post('/engine', async (req, res, next)=>{
-  if(req.body.Go){
-    async function run() {
-        const sock = new zmq.Request
-      
-        sock.connect("tcp://127.0.0.1:5555")
-        console.log("Producer bound to port 5555")
-      
-        await sock.send("4")
-        const [result] = await sock.receive()
-      
-        console.log(result)
-        res.send(result)
-      }
-      run()
+router.post('/engine', async (req, res, next) => {
+
+  async function runClient() {
+    console.log('Connecting to hello world server…');
+
+    //  Socket to talk to server
+    const sock = new zmq.Request();
+    sock.connect('tcp://172.17.15.116:5000');
+
+
+    let s = [req.body.period, req.body.demand, req.body.supply, 'start']
+    console.log(s);
+    await sock.send(s);
+
+    const [result] = await sock.receive();
+    console.log('Received ', result.toString());
+    res.send('30');
   }
-  
+
+  runClient();
+
+
 })
 
 
