@@ -1,5 +1,5 @@
 <template>
-<ProductRegister v-if="productModal == true" @productRegister="closeProductModal();getProductList();"/>
+<ProductRegister v-if="productModal == true" @productRegister="closeProductModal();getProductList();getQuantity()"/>
 
 <div class="register">
   <table class="user-table">
@@ -49,11 +49,12 @@ export default {
 
     methods:{
       ...mapMutations(['closeProductModal','openProductModal']),
-      ...mapActions(['getProductList']),
+      ...mapActions(['getProductList','getQuantity']),
       deleteProduct(id){
         axios.delete(`/api/product/delete/${id}`)
         .then(()=>{
           this.getProductList();
+          this.getQuantity();
         })
         .catch((err)=>{
           console.error(err);

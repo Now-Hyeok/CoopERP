@@ -7,10 +7,6 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       primaryKey: true
     },
-    Sales_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
     Shipment_date: {
       type: DataTypes.DATEONLY,
       allowNull: false
@@ -26,6 +22,14 @@ module.exports = function(sequelize, DataTypes) {
         model: 'product',
         key: 'Product_id'
       }
+    },
+    Shipment_price: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    Shipment_buyer: {
+      type: DataTypes.STRING(100),
+      allowNull: false
     }
   }, {
     sequelize,

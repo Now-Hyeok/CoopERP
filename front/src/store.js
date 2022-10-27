@@ -102,6 +102,7 @@ const store = createStore({
         }
     },
     actions:{
+        
         //ajax와같이 시간걸리는것
         getProductList(context){
             let id = context.state.user.Coop_id;
@@ -144,13 +145,14 @@ const store = createStore({
         getSalesList(context) {
             let id = context.state.user.Coop_id;
             axios.get(`/api/sales/data/${id}`)
-                .then((res) => {
-                    context.commit('setSalesList', res.data);
-                })
-                .catch((err) => {
-                    console.error(err);
-                })
+            .then((res)=>{
+                context.commit('setSalesList',res.data);
+            })
+            .catch((err)=>{
+                console.error(err);
+            })
         },
+
         getReceived(context){
             let id = context.state.user.Coop_id;
             axios.get(`/api/inventory/received/${id}`)
@@ -165,15 +167,16 @@ const store = createStore({
 
 
         getShipmentList(context){
-            axios.get(`/api/shipment/data`)
+            let id = context.state.user.Coop_id;
+            axios.get(`/api/shipment/data/${id}`)
             .then((res)=>{
                 context.commit('setShipmentList',res.data);
             })
             .catch((err)=>{
                 console.error(err);
             })
+            
         },
-
         getQuantity(context){
             let id = context.state.user.Coop_id;
             axios.get(`/api/inventory/quantity/${id}`)
@@ -191,6 +194,8 @@ const store = createStore({
 
         }
 
+        
+    
 })
 
 

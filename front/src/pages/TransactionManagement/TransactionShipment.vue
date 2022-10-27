@@ -8,19 +8,23 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Shipment Date</th>
+        <th scope="col">Buyer</th>
         <th scope="col">Product</th>
-        <th scope="col">Amount</th>
+        <th scope="col">Quantity</th>
         <th scope="col">Sales Price</th>
         <th scope="col">Delete</th>
       </tr>
     </thead>
     <tbody>
-      <tr class="salesList" scope="row" v-for="(item,i) in salesList" :key="item" >
+      <tr class="shipmentList" scope="row" v-for="(item,i) in shipmentList" :key="item" >
         <th scope="row">{{i+1}}</th>
-        <td>{{item.Shipment_date}}</td>
+        <td>{{item.Shipment_date.substring(0,10)}}</td>
+        <td>{{item.Shipment_buyer}}</td>
         <td>{{item.Product_name}}</td>
         <td>{{item.Shipment_amount}}</td>
         <td>{{item.Shipment_price}}</td>
+        <td><button class="btn btn-light" @click="deleteShipment(item.Shipment_id)">x</button></td>
+
       </tr>
     </tbody>
   </table>
@@ -28,6 +32,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import { mapActions, mapState } from 'vuex'
 
 export default {
@@ -36,7 +41,17 @@ export default {
     ...mapState(['shipmentList']),
   },
   methods: {
-    ...mapActions(['getShipmentList'])
+    ...mapActions(['getShipmentList','getQuantity']),
+    deleteShipment(id){
+      axios.delete(`/api/shipment/delete/${id}`)
+      .then(()=>{
+        this.getShipmentList();
+        this.getQuantity();
+      })
+      .catch((err)=>{
+        console.error(err);
+      })
+    },
   }
 }
 </script>
