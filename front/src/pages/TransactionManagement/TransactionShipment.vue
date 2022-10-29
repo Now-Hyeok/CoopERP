@@ -1,8 +1,10 @@
 <template>
-<SalesRegister v-if="salesModal == true" @salesRegister="closeSalesModal();getSalesList();"/>
+
+<shipmentRegister v-if="shipModal==true" @shipRegister="closeShipModal();getShipmentList();getQuantity();"/>
 
 <div class="register">
-  <table class="user-table">
+  <div class="ship">
+    <table class="user-table">
     <caption>Shipment</caption>
     <thead >
       <tr>
@@ -27,20 +29,50 @@
 
       </tr>
     </tbody>
-  </table>
+    </table>
+    <div>
+    <button type="button" class="btn btn-primary" @click="openShipModal()">
+    New Shipment
+    </button>
+    </div>
+  </div>
+  
+  <div class="quantity">
+    <table class="user-table">
+      <caption>Total Quantity</caption>
+      <thead >
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Product</th>
+          <th scope="col">Current Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr scope="row" v-for="(item,i) in quantityList" :key="item">
+          <th>{{i+1}}</th>
+          <td>{{item.Product_name}}</td>
+          <td>{{`${item.Warehousing_amount} ${item.Unit}`}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
+
+
 </template>
 
 <script>
 import axios from 'axios'
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapMutations, mapState } from 'vuex'
+import shipmentRegister from '@/components/ShipmentRegister.vue'
 
 export default {
   name: 'transactionShipment',
   computed: {
-    ...mapState(['shipmentList']),
+    ...mapState(['shipmentList','quantityList']),
   },
   methods: {
+    ...mapMutations(['openShipModal','closeShipModal']),
     ...mapActions(['getShipmentList','getQuantity']),
     deleteShipment(id){
       axios.delete(`/api/shipment/delete/${id}`)
@@ -52,7 +84,9 @@ export default {
         console.error(err);
       })
     },
-  }
+  },
+  components:{shipmentRegister}
+
 }
 </script>
 
@@ -62,6 +96,17 @@ export default {
   height: 100%;
   width: 100%;
   overflow: auto;
+}
+
+.ship{
+  float: left;
+  width:50%;
+  height: 100%;
+}
+.quantity{
+  float: left;
+  width:50%;
+  height: 100%;
 }
 
 td,th{

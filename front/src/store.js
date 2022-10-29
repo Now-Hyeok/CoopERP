@@ -20,6 +20,7 @@ const store = createStore({
             memberModal:false,
             productModal:false,
             warehousingModal:false,
+            shipModal:false,
 
             salesModal:false,
 
@@ -75,6 +76,12 @@ const store = createStore({
         closeInventoryModal(state){
             state.inventoryModal = false;
 
+        },
+        openShipModal(state){
+            state.shipModal = true;
+        },
+        closeShipModal(state){
+            state.shipModal = false;
         },
         setProductList(state,payload){
             state.productList = payload;

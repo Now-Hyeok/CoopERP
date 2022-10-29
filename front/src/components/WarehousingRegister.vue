@@ -23,7 +23,7 @@
             </div>
 
             <div class="input-group mb-4">
-              <label class="input-group-text" id="inputGroup-sizing-default" >Amount</label>
+              <label class="input-group-text" id="inputGroup-sizing-default" >Quantity</label>
               <input type="number" min="0" class="form-control" name="amount" id="amount" v-model="amount">
             </div>
 

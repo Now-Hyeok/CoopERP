@@ -32,7 +32,7 @@
 
   <div>
     <button type="button" class="btn btn-primary" @click="openSalesModal()">
-    New Product
+    New SalesRegister
     </button>
   </div>
 </div>
