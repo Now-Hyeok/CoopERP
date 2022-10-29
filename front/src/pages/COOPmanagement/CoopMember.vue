@@ -11,6 +11,7 @@
         <th scope="col">Name</th>
         <th scope="col">Address</th>
         <th scope="col">phone</th>
+        <th scope="col">Land Area</th>
         <th scope="col">Delete</th>
       </tr>
     </thead>
@@ -20,6 +21,7 @@
         <td>{{item.Member_name}}</td>
         <td>{{item.Member_address}}</td>
         <td>{{item.Member_phone}}</td>
+        <td>{{item.Member_area}}</td>
         <td><button type="button" class="btn btn-light" @click="deleteMember(item.Member_id)">X</button></td>
       </tr>
     </tbody>

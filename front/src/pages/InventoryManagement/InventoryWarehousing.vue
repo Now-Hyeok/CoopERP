@@ -1,5 +1,5 @@
 <template>
-<WarehousingRegister v-if="warehousingModal == true" @warehousingRegister="closeWarehousingModal(); getWarehousing(); "/>
+<WarehousingRegister v-if="warehousingModal == true" @warehousingRegister="closeWarehousingModal(); getWarehousing();getQuantity(); "/>
 
 <div>
   <table class="user-table">
@@ -59,6 +59,7 @@ export default {
         axios.delete(`/api/warehousing/delete/${id}`)
         .then(()=>{
           this.getWarehousing();
+          this.getQuantity();
         })
         .catch((err)=>{
           console.error(err);
@@ -69,7 +70,6 @@ export default {
         .then(()=>{
           this.deleteWarehousing(id);
           this.getReceived();
-          this.getQuantity();
         })
         .catch((err)=>{
           console.error(err);

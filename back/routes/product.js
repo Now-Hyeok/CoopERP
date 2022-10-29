@@ -3,9 +3,9 @@ const { off } = require('../config/config');
 const router = express.Router();
 let pool = require('../config/config');
 
-router.post('/registration',(req,res,next)=>{
+router.post('/registration',async (req,res,next)=>{
 
-  pool.getConnection((err,conn)=>{
+  await pool.getConnection((err,conn)=>{
       if(err) console.error(err);
       let sql =`INSERT INTO product(Product_name,Product_category,Product_unit,Product_price,Coop_id) 
       VALUES("${req.body.name}","${req.body.category}","${req.body.unit}","${req.body.price}","${req.body.coop}");`; 
@@ -16,15 +16,13 @@ router.post('/registration',(req,res,next)=>{
         } 
         res.send('INSERT success');
         console.log('1 record inserted');
-
-
       });
   });
 
 });
 
-router.get('/data/:id',(req,res,next)=>{
-  pool.getConnection((err,conn)=>{
+router.get('/data/:id',async (req,res,next)=>{
+  await pool.getConnection((err,conn)=>{
     if(err) console.error(err);
     let sql = `SELECT * FROM product WHERE Coop_id = ${req.params.id} ;`;
     conn.query(sql ,(err,result)=>{
@@ -33,21 +31,17 @@ router.get('/data/:id',(req,res,next)=>{
         console.error(err);
       }
       res.send(result);
-
-
     });
   });
-
-
 });
 
-router.delete('/delete/:id',(req,res,next)=>{
+router.delete('/delete/:id',async (req,res,next)=>{
   if(!req.params.id){
     res.status(500).send('ID is not exist.');
     return;
   }
 
-  pool.getConnection((err,conn)=>{
+  await pool.getConnection((err,conn)=>{
     if(err) console.error(err);
     let sql = `DELETE FROM product WHERE Product_id = ${req.params.id};`;
     conn.query(sql,(err,result)=>{

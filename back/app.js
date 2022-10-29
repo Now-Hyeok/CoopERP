@@ -20,6 +20,7 @@ var salesRouter = require('./routes/sales');
 var shipmentRouter = require('./routes/shipment');
 
 var inventoryRouter = require('./routes/inventory');
+var commuRouter = require('./routes/comm');
 
 
 var app = express();
@@ -64,6 +65,7 @@ app.use('/api/warehousing',warehousingRouter);
 app.use('/api/sales',salesRouter);
 app.use('/api/shipment',shipmentRouter);
 app.use('/api/inventory',inventoryRouter);
+app.use('/api/community',commuRouter);
 
 
 

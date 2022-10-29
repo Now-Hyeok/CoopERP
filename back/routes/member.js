@@ -4,11 +4,12 @@ const router = express.Router();
 let pool = require('../config/config');
 const { coopMember } = require('../models/index');
 
-router.post('/registration',(req,res,next)=>{
+router.post('/registration',async (req,res,next)=>{
 
-  pool.getConnection((err,conn)=>{
+  await pool.getConnection((err,conn)=>{
       if(err) console.error(err);
-      let sql =`INSERT INTO coopMember(Member_name,Member_address,Member_pw,Member_phone,Coop_id) VALUES("${req.body.name}","${req.body.address}","${req.body.password}","${req.body.phone}","${req.body.coop}");`; 
+      let sql =`INSERT INTO coopMember(Member_name,Member_address,Member_pw,Member_phone,Coop_id,Member_area) 
+      VALUES("${req.body.name}","${req.body.address}","${req.body.password}","${req.body.phone}","${req.body.coop}","${req.body.area}");`; 
       conn.query(sql,(err,result)=>{
         conn.release();
         if(err){
@@ -25,12 +26,12 @@ router.post('/registration',(req,res,next)=>{
 
 
 
-router.get('/data/:id',(req,res,next)=>{
+router.get('/data/:id',async(req,res,next)=>{
 
 
-  pool.getConnection((err,conn)=>{
+  await pool.getConnection((err,conn)=>{
     if(err) console.error(err);
-    console.log(req.params.id);
+
     let sql = `SELECT * FROM coopMember WHERE Coop_id = "${req.params.id}";`;
     conn.query(sql ,(err,result)=>{
       conn.release();
@@ -44,13 +45,13 @@ router.get('/data/:id',(req,res,next)=>{
 
 });
 
-router.delete('/delete/:id',(req,res,next)=>{
+router.delete('/delete/:id',async (req,res,next)=>{
   if(!req.params.id){
     res.status(500).send('ID is not exist.');
     return;
   }
 
-  pool.getConnection((err,conn)=>{
+  await pool.getConnection((err,conn)=>{
     if(err) console.error(err);
     let sql = `DELETE FROM coopMember WHERE Member_id = ${req.params.id};`;
     conn.query(sql,(err,result)=>{
@@ -64,8 +65,8 @@ router.delete('/delete/:id',(req,res,next)=>{
   })
 })
 
-router.get('/stock',(req,res,next)=>{
-  pool.getConnection((err,conn)=>{
+router.get('/stock',async (req,res,next)=>{
+  await pool.getConnection((err,conn)=>{
     if(err) console.error(err);
     let sql = ``;
     conn.query(sql,(err,result)=>{

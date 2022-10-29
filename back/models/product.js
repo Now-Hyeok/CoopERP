@@ -35,6 +35,11 @@ module.exports = function(sequelize, DataTypes) {
         model: 'coop',
         key: 'Coop_id'
       }
+    },
+    Total_amount: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 0
     }
   }, {
     sequelize,

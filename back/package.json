@@ -22,7 +22,8 @@
     "sequelize": "^6.25.2",
     "sequelize-auto": "^0.8.8",
     "vue-tailwind": "^2.5.1",
-    "yarn": "^1.22.19"
+    "yarn": "^1.22.19",
+    "zeromq": "^5.2.8"
   },
   "devDependencies": {
     "sequelize-cli": "^6.5.1"

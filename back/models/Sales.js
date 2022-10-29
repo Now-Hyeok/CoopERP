@@ -26,6 +26,10 @@ module.exports = function(sequelize, DataTypes) {
         model: 'product',
         key: 'Product_id'
       }
+    },
+    Sales_buyer: {
+      type: DataTypes.STRING(100),
+      allowNull: false
     }
   }, {
     sequelize,

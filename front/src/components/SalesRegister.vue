@@ -16,6 +16,8 @@
             <select v-model="product">
               <option v-for="(item) in productList" :key="item" :value="item.Product_id">{{item.Product_name}}</option>
             </select>
+            <label class="input-group-text" id="inputGroup-sizing-default" >Buyer</label>
+            <input type="text" class="form-control"  name="buyer" id="buyer" v-model="buyer">
           </div>
           <div class="input-group mb-4">
             <label class="input-group-text" id="inputGroup-sizing-default" >Date</label>
@@ -23,12 +25,12 @@
           </div>
 
           <div class="input-group mb-4">
-            <label class="input-group-text" id="inputGroup-sizing-default" >Amount</label>
-            <input type="text" class="form-control" name="amount" id="amount" v-model="amount">
+            <label class="input-group-text" id="inputGroup-sizing-default" >Quantity</label>
+            <input type="number" class="form-control" name="amount" id="amount" v-model="amount">
           </div>
           <div class="input-group mb-4">
             <label class="input-group-text" id="inputGroup-sizing-default" >Price</label>
-            <input type="text" class="form-control" name="price" id="price" v-model="price">
+            <input type="number" class="form-control" name="price" id="price" v-model="price">
           </div>
         </div>
         <div class="modalFooter">
@@ -61,6 +63,7 @@
           date:null,
           amount:null,
           price:null,
+          buyer:null,
         }
       },
     
@@ -73,6 +76,7 @@
             date: this.date,
             amount: this.amount,
             price: this.price,
+            buyer:this.buyer,
           })
           .then(()=>{
             this.$emit('salesRegister');
@@ -83,7 +87,7 @@
         },
     
         registerSales(){
-          if(this.product && this.date && this.amount && this.price){
+          if(this.product && this.date && this.amount && this.price &&this.buyer){
             this.sendSalesData();
             return true;
           }
@@ -102,6 +106,9 @@
           }
           if(!this.price){
             this.errors.push('price require');
+          }
+          if(!this.buyer){
+            this.errors.push('buyer require');
           }
           
           alert(this.errors);

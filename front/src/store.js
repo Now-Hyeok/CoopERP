@@ -20,10 +20,10 @@ const store = createStore({
             memberModal:false,
             productModal:false,
             warehousingModal:false,
-
+            shipModal:false,
             salesModal:false,
-
             inventoryModal:false,
+            postModal:false,
             productList:{},
             memberList:{},
             salesList:{},
@@ -32,7 +32,10 @@ const store = createStore({
             user: null,
             receivedList:{},
             quantityList:{},
+            postList:{},
+
             todayDate: todayDate,
+
 
         }
     },
@@ -62,19 +65,30 @@ const store = createStore({
         closeWarehousingModal(state){
             state.warehousingModal = false;
         },
-
+        openPostModal(state){
+            state.postModal = true
+        },
+        closePostModal(state){
+            state.postModal = false
+        },
         openSalesModal(state){
             state.salesModal=true;
         },
         closeSalesModal(state){
             state.salesModal=false;
-
+        },
         openInventoryModal(state){
             state.inventoryModal = true;
         },
         closeInventoryModal(state){
             state.inventoryModal = false;
 
+        },
+        openShipModal(state){
+            state.shipModal = true;
+        },
+        closeShipModal(state){
+            state.shipModal = false;
         },
         setProductList(state,payload){
             state.productList = payload;
@@ -99,9 +113,13 @@ const store = createStore({
         },
         setQuantityList(state,payload){
             state.quantityList = payload;
+        },
+        setPostList(state,payload){
+            state.postList = payload;
         }
     },
     actions:{
+        
         //ajax와같이 시간걸리는것
         getProductList(context){
             let id = context.state.user.Coop_id;
@@ -146,6 +164,11 @@ const store = createStore({
             axios.get(`/api/sales/data/${id}`)
             .then((res)=>{
                 context.commit('setSalesList',res.data);
+            })
+            .catch((err)=>{
+                console.error(err);
+            })
+        },
 
         getReceived(context){
             let id = context.state.user.Coop_id;
@@ -161,10 +184,16 @@ const store = createStore({
 
 
         getShipmentList(context){
-            axios.get(`/api/shipment/data`)
+            let id = context.state.user.Coop_id;
+            axios.get(`/api/shipment/data/${id}`)
             .then((res)=>{
                 context.commit('setShipmentList',res.data);
-
+            })
+            .catch((err)=>{
+                console.error(err);
+            })
+            
+        },
         getQuantity(context){
             let id = context.state.user.Coop_id;
             axios.get(`/api/inventory/quantity/${id}`)
@@ -177,13 +206,23 @@ const store = createStore({
             })
 
         },
+        getPostList(context){
+            let id = context.state.user.Coop_id
+            axios.get(`/api/community/post/${id}`)
+            .then((res)=>{
+                context.commit('setPostList',res.data)
+            })
+            .catch((err)=>{
+                console.error(err);
+            })
+        }
 
 
 
         }
 
         
-    },
+    
 })
 
 
