@@ -29,12 +29,11 @@
 
       </tr>
     </tbody>
-    </table>
-    <div>
-    <button type="button" class="btn btn-primary" @click="openShipModal()">
+
+  </table>
+  <button type="button" class="btn btn-primary" @click="openShipModal()">
     New Shipment
     </button>
-    </div>
   </div>
   
   <div class="quantity">
@@ -69,7 +68,7 @@ import shipmentRegister from '@/components/ShipmentRegister.vue'
 export default {
   name: 'transactionShipment',
   computed: {
-    ...mapState(['shipmentList','quantityList']),
+    ...mapState(['shipmentList','quantityList','shipModal']),
   },
   methods: {
     ...mapMutations(['openShipModal','closeShipModal']),

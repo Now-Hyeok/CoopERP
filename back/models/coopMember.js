@@ -36,6 +36,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(100),
       allowNull: false,
       comment: "휴대전화"
+    },
+    Member_area: {
+      type: DataTypes.INTEGER,
+      allowNull: true
     }
   }, {
     sequelize,

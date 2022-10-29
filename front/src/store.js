@@ -21,10 +21,9 @@ const store = createStore({
             productModal:false,
             warehousingModal:false,
             shipModal:false,
-
             salesModal:false,
-
             inventoryModal:false,
+            postModal:false,
             productList:{},
             memberList:{},
             salesList:{},
@@ -33,7 +32,10 @@ const store = createStore({
             user: null,
             receivedList:{},
             quantityList:{},
+            postList:{},
+
             todayDate: todayDate,
+
 
         }
     },
@@ -63,7 +65,12 @@ const store = createStore({
         closeWarehousingModal(state){
             state.warehousingModal = false;
         },
-
+        openPostModal(state){
+            state.postModal = true
+        },
+        closePostModal(state){
+            state.postModal = false
+        },
         openSalesModal(state){
             state.salesModal=true;
         },
@@ -106,6 +113,9 @@ const store = createStore({
         },
         setQuantityList(state,payload){
             state.quantityList = payload;
+        },
+        setPostList(state,payload){
+            state.postList = payload;
         }
     },
     actions:{
@@ -196,6 +206,16 @@ const store = createStore({
             })
 
         },
+        getPostList(context){
+            let id = context.state.user.Coop_id
+            axios.get(`/api/community/post/${id}`)
+            .then((res)=>{
+                context.commit('setPostList',res.data)
+            })
+            .catch((err)=>{
+                console.error(err);
+            })
+        }
 
 
 

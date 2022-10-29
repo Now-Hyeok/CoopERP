@@ -20,6 +20,7 @@ import shipment from './pages/TransactionManagement/TransactionShipment'
 import statisticsMain from './pages/Statistics/StatisticsMain'
 
 import simulation from './pages/Monitoring/MonitoringSimulation'
+import commu from './pages/Monitoring/MonitoringCommunity'
 
 // import communicationMain from './pages/Communication/CommunicationMain'
 
@@ -143,6 +144,11 @@ const routes = [
                 path:'simulation',
                 name:'simulation',
                 component:simulation,
+            },
+            {
+                path:'community',
+                name:'community',
+                component:commu,
             }
         ]
     },

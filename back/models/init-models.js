@@ -1,6 +1,8 @@
 var DataTypes = require("sequelize").DataTypes;
+var _Commu = require("./Commu");
 var _Sales = require("./Sales");
 var _Shipment = require("./Shipment");
+var _Simulate_Sales = require("./Simulate_Sales");
 var _coop = require("./coop");
 var _coopMember = require("./coopMember");
 var _inventory = require("./inventory");
@@ -9,8 +11,10 @@ var _user = require("./user");
 var _warehousing_schedule = require("./warehousing_schedule");
 
 function initModels(sequelize) {
+  var Commu = _Commu(sequelize, DataTypes);
   var Sales = _Sales(sequelize, DataTypes);
   var Shipment = _Shipment(sequelize, DataTypes);
+  var Simulate_Sales = _Simulate_Sales(sequelize, DataTypes);
   var coop = _coop(sequelize, DataTypes);
   var coopMember = _coopMember(sequelize, DataTypes);
   var inventory = _inventory(sequelize, DataTypes);
@@ -18,6 +22,8 @@ function initModels(sequelize) {
   var user = _user(sequelize, DataTypes);
   var warehousing_schedule = _warehousing_schedule(sequelize, DataTypes);
 
+  Commu.belongsTo(coop, { as: "Coop", foreignKey: "Coop_id"});
+  coop.hasMany(Commu, { as: "Commus", foreignKey: "Coop_id"});
   coopMember.belongsTo(coop, { as: "Coop", foreignKey: "Coop_id"});
   coop.hasMany(coopMember, { as: "coopMembers", foreignKey: "Coop_id"});
   inventory.belongsTo(coop, { as: "Coop", foreignKey: "Coop_id"});
@@ -40,8 +46,10 @@ function initModels(sequelize) {
   product.hasMany(warehousing_schedule, { as: "warehousing_schedules", foreignKey: "Product_id"});
 
   return {
+    Commu,
     Sales,
     Shipment,
+    Simulate_Sales,
     coop,
     coopMember,
     inventory,
