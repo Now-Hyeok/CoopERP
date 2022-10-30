@@ -37,7 +37,7 @@
 
 <script>
 import axios from 'axios'
-import LineChart from '@/components/SimulateChart.vue'
+import LineChart from '@/components/Chart/SimulateChart.vue'
 
 export default {
     name: "monitoringSimulation",

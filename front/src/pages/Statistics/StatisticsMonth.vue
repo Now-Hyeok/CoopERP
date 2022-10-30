@@ -8,8 +8,8 @@
 </template>
   
 <script>
-import Line from '@/components/LineChart.vue'
-import bar from '@/components/barChart.vue'
+import Line from '@/components/Chart/LineChart.vue'
+import bar from '@/components/Chart/barChart.vue'
 
 
 export default {
