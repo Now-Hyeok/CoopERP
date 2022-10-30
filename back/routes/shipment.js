@@ -48,4 +48,31 @@ router.delete('/delete/:id',async(req,res,next)=>{
 })
 
 
+router.post('/registration', async (req, res, next)=>{
+  await Shipment.create({
+      Product_id: req.body.product,
+      Shipment_amount: req.body.amount,
+      Shipment_price: req.body.price,
+      Shipment_date: req.body.date,
+      Shipment_buyer: req.body.buyer,
+  }).then(_ => console.log("Data is created!"));
+
+  await pool.getConnection((err,conn)=>{
+    let sql = `UPDATE product SET Total_amount = Total_amount - ${req.body.amount} WHERE Product_id = ${req.body.product}`
+    conn.query(sql,(err,result)=>{
+        conn.release();
+        if(err){
+            console.error(err);
+        }
+    })
+  })
+
+
+  res.send('');
+})
+
+
+
+
+
 module.exports = router;

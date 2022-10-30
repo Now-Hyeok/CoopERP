@@ -27,33 +27,35 @@ export default {
 
 <style>
 
+
 .top{
   width: 100%;
-  height: 65px;
-  min-width: 850px;
+  height: 55px;
+  min-width: z1000px;
 }
 .main{
   width:100%;
-  min-width: 850px;
-  height: calc(100% - 65px);
-  height : -webkit-calc(100% - 65px); /* for Chrome, Safari */ 
-  height : -moz-calc(100% - 65px); /* for Firefox */
+  min-width: 1000px;
+  height: calc(100% - 55px);
+  height : -webkit-calc(100% - 55px); /* for Chrome, Safari */ 
+  height : -moz-calc(100% - 55px); /* for Firefox */
   clear: both;
-  font-size: 16px;
+
 }
 
 .sidebar{
   min-width: 100px;
   float: left;
-  width: 12%;
+  width: 10%;
   height:100%;
-  border-right: solid #eee;
-
+  background: #624F82;
+  color: #eee;
+  font-size: 12px;
   
 }
 .mainPage{
-  width:88%;
-  min-width: 748px;
+  width:90%;
+  min-width: 880px;
   /* height: calc(100% - 50px);
   height : -webkit-calc(100% - 50px);
   height : -moz-calc(100% - 50px);  */

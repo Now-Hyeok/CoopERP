@@ -124,7 +124,7 @@ export default {
 <style>
 .modal-bg{
   position:fixed;
-  width:88%;
+  width:90%;
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
 }

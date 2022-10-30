@@ -26,6 +26,7 @@ var monitoringRouter = require('./routes/monitoring');
 var statisticsRouter = require('./routes/statistics');
 
 var inventoryRouter = require('./routes/inventory');
+var commuRouter = require('./routes/commu');
 
 
 var app = express();
@@ -68,6 +69,8 @@ app.use('/api/shipment',shipmentRouter);
 app.use('/api/inventory',inventoryRouter);
 app.use('/api/monitoring',monitoringRouter);
 app.use('/api/statistics',statisticsRouter);
+app.use('/api/community',commuRouter);
+
 
 
 

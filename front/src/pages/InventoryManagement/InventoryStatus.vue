@@ -4,38 +4,39 @@
 <InventoryRegister v-if="inventoryModal == true" @inventoryRegister="getData();closeInventoryModal();"/>
 
 <div class="received-list">
-    <table class="user-table">
+    <table class="inven-table">
         <caption>received list</caption>
-    <thead>
-        <th scope="col">#</th>
-        <th scope="col">Product</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Member name</th>
-        <th scope="col">Price</th>
-        <th scope="col">Quailty</th>
-        <th scope="col">Receiving date</th>
-        <th scope="col">delete</th>
-    </thead>
-    <tbody>
-        <tr scope="row" class="inventoryList" v-for="(item,i) in receivedList" :key="item">
-            <th scope="row">{{i+1}}</th>
-            <td>{{item.Product_name}}</td>
-            <td>{{item.Warehousing_amount}}</td>
-            <td>{{item.Member_name}}</td>
-            <td>{{item.Price}}</td>
-            <td>{{item.Product_quailty}}</td>
-            <td>{{item.Warehousing_date.substr(0,10)}}</td>
-            <td><button type="button" class="btn btn-light" @click="deleteInventory(item.Warehousing_id)">X</button></td>
-        </tr>
-    </tbody>
-</table>
+        <thead>
+            <th scope="col">#</th>
+            <th scope="col">Product</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Member name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quailty</th>
+            <th scope="col">Receiving date</th>
+            <th scope="col">delete</th>
+        </thead>
+        <tbody>
+            <tr scope="row" class="inventoryList" v-for="(item,i) in receivedList" :key="item">
+                <th scope="row">{{i+1}}</th>
+                <td>{{item.Product_name}}</td>
+                <td>{{item.Warehousing_amount}}</td>
+                <td>{{item.Member_name}}</td>
+                <td>{{item.Price}}</td>
+                <td>{{item.Product_quailty}}</td>
+                <td>{{item.Warehousing_date.substr(0,10)}}</td>
+                <td><button type="button" class="btn btn-light" @click="deleteInventory(item.Warehousing_id)">X</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="empty-box">
 
-<button class="btn btn-primary" @click="openInventoryModal()">inventory Register</button>
+    </div>
 </div>
 
 <div class="inventory">
     <!-- 입고예정 수량 + 입고된 수량 -->
-    <table>
+    <table class="inven">
         <caption>inventory</caption>
         <thead>
             <th scope="col">#</th>
@@ -52,6 +53,9 @@
             </tr>
         </tbody>
     </table>
+    <div class="inven-btn">
+        <button class="btn btn-primary" @click="openInventoryModal()">inventory Register</button>
+    </div>
 </div>
 
 
@@ -91,14 +95,33 @@ export default{
 </script>
 
 <style>
+.inven{
+    text-align: center;
+    font-size: 12px;
+    width:400px
+}
+.inven-table{
+    text-align: center;
+    font-size: 12px;
+    margin:auto;
+    width:600px;
+}
 .inventory{
     float: left;
     height: 100%;
-    width:50%
+    width:40%
 }
 .received-list{
     float: left;
     height: 100%;
-    width:50%;
+    width:60%;
+}
+
+.inven-btn{
+    text-align: right;
+    margin-right: 120px;
+}
+.empty-box{
+    height: 50px;
 }
 </style>

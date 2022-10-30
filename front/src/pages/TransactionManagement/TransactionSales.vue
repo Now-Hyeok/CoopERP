@@ -19,7 +19,7 @@
     <tbody>
       <tr class="salesList" scope="row" v-for="(item,i) in salesList" :key="item" >
         <th scope="row">{{i+1}}</th>
-        <td>{{item.Sales_date.substring(0,10)}}</td>
+        <td>{{item.Sales_date.substr(0,10)}}</td>
         <td>{{item.Sales_buyer}}</td>
         <td>{{item.Product_name}}</td>
         <td>{{item.Sales_amount}}</td>
@@ -32,7 +32,7 @@
 
   <div>
     <button type="button" class="btn btn-primary" @click="openSalesModal()">
-    New Product
+    New SalesRegister
     </button>
   </div>
 </div>
@@ -88,8 +88,4 @@ export default {
   overflow: auto;
 }
 
-td,th{
-  padding:15px; 
-  border: 1px solid #c2d3de;
-}
 </style>

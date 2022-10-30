@@ -1,8 +1,10 @@
 <template>
-<SalesRegister v-if="salesModal == true" @salesRegister="closeSalesModal();getSalesList();"/>
+
+<shipmentRegister v-if="shipModal==true" @shipRegister="closeShipModal();getShipmentList();getQuantity();"/>
 
 <div class="register">
-  <table class="user-table">
+  <div class="received-list">
+    <table class="inven-table">
     <caption>Shipment</caption>
     <thead >
       <tr>
@@ -18,7 +20,7 @@
     <tbody>
       <tr class="shipmentList" scope="row" v-for="(item,i) in shipmentList" :key="item" >
         <th scope="row">{{i+1}}</th>
-        <td>{{item.Shipment_date.substring(0,10)}}</td>
+        <td>{{item.Shipment_date.substr(0,10)}}</td>
         <td>{{item.Shipment_buyer}}</td>
         <td>{{item.Product_name}}</td>
         <td>{{item.Shipment_amount}}</td>
@@ -27,20 +29,49 @@
 
       </tr>
     </tbody>
+
   </table>
+  <button type="button" class="btn btn-primary" @click="openShipModal()">
+    New Shipment
+    </button>
+  </div>
+  
+  <div class="inventory">
+    <table class="inven">
+      <caption>Total Quantity</caption>
+      <thead >
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Product</th>
+          <th scope="col">Current Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr scope="row" v-for="(item,i) in quantityList" :key="item">
+          <th>{{i+1}}</th>
+          <td>{{item.Product_name}}</td>
+          <td>{{`${item.Warehousing_amount} ${item.Unit}`}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
+
+
 </template>
 
 <script>
 import axios from 'axios'
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapMutations, mapState } from 'vuex'
+import shipmentRegister from '@/components/ShipmentRegister.vue'
 
 export default {
   name: 'transactionShipment',
   computed: {
-    ...mapState(['shipmentList']),
+    ...mapState(['shipmentList','quantityList','shipModal']),
   },
   methods: {
+    ...mapMutations(['openShipModal','closeShipModal']),
     ...mapActions(['getShipmentList','getQuantity']),
     deleteShipment(id){
       axios.delete(`/api/shipment/delete/${id}`)
@@ -52,7 +83,9 @@ export default {
         console.error(err);
       })
     },
-  }
+  },
+  components:{shipmentRegister}
+
 }
 </script>
 
@@ -64,8 +97,16 @@ export default {
   overflow: auto;
 }
 
-td,th{
-  padding:15px; 
-  border: 1px solid #c2d3de;
+.ship{
+  float: left;
+  width:50%;
+  height: 100%;
 }
+.quantity{
+  float: left;
+  width:50%;
+  height: 100%;
+}
+
+
 </style>

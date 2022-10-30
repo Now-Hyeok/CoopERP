@@ -10,29 +10,34 @@ let month = today.getMonth() + 1;  // 월
 let date = today.getDate();  // 날짜
 
 let todayDate = `${year}-${month}-${date}`
-
 const store = createStore({
 
-    state() {
-        return {
+    state(){
+        return{
             //데이터 여기에 보관하기 vuex
-            category: '',
-            memberModal: false,
-            productModal: false,
-            warehousingModal: false,
-
-            salesModal: false,
-
-            inventoryModal: false,
-            productList: {},
-            memberList: {},
-            salesList: {},
-            warehousingList: {},
-            shipmentList: {},
+            category:'',
+            memberModal:false,
+            productModal:false,
+            warehousingModal:false,
+            shipModal:false,
+            salesModal:false,
+            inventoryModal:false,
+            postModal:false,
+            productList:{},
+            memberList:{},
+            salesList:{},
+            warehousingList:{},
+            shipmentList:{},
             user: null,
-            receivedList: {},
-            quantityList: {},
+            receivedList:{},
+            quantityList:{},
+            postList:{},
+            commentList:{},
+
             todayDate: todayDate,
+
+
+
         }
     },
     getters: {
@@ -62,8 +67,15 @@ const store = createStore({
             state.warehousingModal = false;
         },
 
-        openSalesModal(state) {
-            state.salesModal = true;
+        openPostModal(state){
+            state.postModal = true
+        },
+        closePostModal(state){
+            state.postModal = false
+        },
+        openSalesModal(state){
+            state.salesModal=true;
+
         },
         closeSalesModal(state) {
             state.salesModal = false;
@@ -75,7 +87,15 @@ const store = createStore({
             state.inventoryModal = false;
 
         },
-        setProductList(state, payload) {
+
+        openShipModal(state){
+            state.shipModal = true;
+        },
+        closeShipModal(state){
+            state.shipModal = false;
+        },
+        setProductList(state,payload){
+
             state.productList = payload;
         },
         setMemberList(state, payload) {
@@ -99,6 +119,14 @@ const store = createStore({
         setQuantityList(state, payload) {
             state.quantityList = payload;
         },
+
+        setPostList(state,payload){
+            state.postList = payload;
+        },
+        setCommentList(state,payload){
+            state.commentList = payload;
+        }
+
     },
     actions: {
 
@@ -175,6 +203,25 @@ const store = createStore({
                 })
 
         },
+        getPostList(context){
+            let id = context.state.user.Coop_id
+            axios.get(`/api/community/post/${id}`)
+            .then((res)=>{
+                context.commit('setPostList',res.data)
+            })
+            .catch((err)=>{
+                console.error(err);
+            })
+        },
+        getCommentList(context,id){
+            axios.get(`/api/community/comment/${id}`)
+            .then((res)=>{
+                context.commit('setCommentList',res.data)
+            })
+            .catch((err)=>{
+                console.error(err)
+            })
+        }
 
         getQuantity(context) {
             let id = context.state.user.Coop_id;

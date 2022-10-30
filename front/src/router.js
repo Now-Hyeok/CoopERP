@@ -21,6 +21,9 @@ import statisticsMain from './pages/Statistics/StatisticsMain'
 import statisticsMonth from './pages/Statistics/StatisticsMonth'
 
 import simulation from './pages/Monitoring/MonitoringSimulation'
+import commu from './pages/Monitoring/MonitoringCommunity'
+
+import detail from './pages/Monitoring/CommunityDetail'
 
 // import communicationMain from './pages/Communication/CommunicationMain'
 
@@ -150,7 +153,19 @@ const routes = [
                 path:'simulation',
                 name:'simulation',
                 component:simulation,
+            },
+            {
+                path:'community',
+                name:'community',
+                component:commu,   
+            },
+            {
+                
+                path:'/detail/:id',
+                name:'postDetail',
+                component:detail,
             }
+            
         ]
     },
     {
