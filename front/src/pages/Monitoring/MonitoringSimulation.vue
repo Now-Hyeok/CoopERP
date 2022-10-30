@@ -21,11 +21,13 @@
             <input type="number" min="0" class="form-control" name="afterSowing" id="supply" v-model="supply">
             <span class="input-group-text">%</span>
         </div>
-
+        
         <button class="btn btn-primary" type="button" @click="simulationStart">Simulation</button>
-    </div>
 
-    <div class="simulation-result">
+    </div>
+    
+
+    <div class="sim-result">
         <h1>Simulation Result</h1>
         <LineChart />
     </div>
@@ -73,16 +75,14 @@ export default {
 
 <style>
 .simulation-input {
-    padding: 5px;
+    padding: 10px;
     width: 50%;
-    height: 30%;
-    margin:auto;
-    margin-right: 600px;
+    margin-left: 100px;
+}
+.sim-result{
+
+    padding: 15px;
+    margin-left: 100px;
 }
 
-.simulation-result {
-    padding: 15px;
-    width: 70%;
-    margin:auto;
-}
 </style>

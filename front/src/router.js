@@ -47,7 +47,7 @@ const routes = [
         path:'/coop-management',
         component:Main,
         name:'coop-main',
-        redirect:'/coop-management/main',
+        redirect:'/coop-management/member',
         children:[
             {
                 path:'main',
@@ -70,7 +70,7 @@ const routes = [
         path:"/inventory-management",
         component:Main,
         name:'category2',
-        redirect:'/inventory-management/main',
+        redirect:'/inventory-management/product',
         children:[
             {
                 path:'main',
@@ -98,7 +98,7 @@ const routes = [
         path:"/transaction-management",
         component:Main,
         name:'category3',
-        redirect:'/transaction-management/main',
+        redirect:'/transaction-management/sales',
         children:[
             {
                 path:'main',
@@ -123,7 +123,7 @@ const routes = [
         path:"/statistics",
         component:Main,
         name:'category4',
-        redirect:'/statistics/main',
+        redirect:'/statistics/month',
         children:[
             {
                 path:'main',
@@ -142,7 +142,7 @@ const routes = [
         path:"/monitoring",
         component:Main,
         name:"monitoring",
-        redirect:'/monitoring/main',
+        redirect:'/monitoring/simulation',
         children:[
             {
                 path:'main',
