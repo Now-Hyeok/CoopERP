@@ -18,6 +18,7 @@ import sales from './pages/TransactionManagement/TransactionSales'
 import shipment from './pages/TransactionManagement/TransactionShipment'
 
 import statisticsMain from './pages/Statistics/StatisticsMain'
+import statisticsMonth from './pages/Statistics/StatisticsMonth'
 
 import simulation from './pages/Monitoring/MonitoringSimulation'
 import commu from './pages/Monitoring/MonitoringCommunity'
@@ -128,7 +129,13 @@ const routes = [
                 path:'main',
                 name:'statisticsMain',
                 component:statisticsMain,
-            }
+            },
+            {
+                path:'month',
+                name:'statisticsMonth',
+                component:statisticsMonth,
+
+            },
         ]
     },
     {

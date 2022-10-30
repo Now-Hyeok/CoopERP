@@ -6,6 +6,8 @@ var logger = require('morgan');
 
 const passport = require('passport');
 const session = require('express-session');
+// const zmq = require("zeromq")
+
 require('dotenv').config();
 require('./passport').config(passport);
 
@@ -18,6 +20,10 @@ var warehousingRouter = require('./routes/warehousing');
 
 var salesRouter = require('./routes/sales');
 var shipmentRouter = require('./routes/shipment');
+
+var monitoringRouter = require('./routes/monitoring');
+
+var statisticsRouter = require('./routes/statistics');
 
 var inventoryRouter = require('./routes/inventory');
 var commuRouter = require('./routes/commu');
@@ -37,10 +43,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 //passport
-
-
-
-
 app.use(session({
   resave: false,
   saveUninitialized: false,
@@ -65,7 +67,10 @@ app.use('/api/warehousing',warehousingRouter);
 app.use('/api/sales',salesRouter);
 app.use('/api/shipment',shipmentRouter);
 app.use('/api/inventory',inventoryRouter);
+app.use('/api/monitoring',monitoringRouter);
+app.use('/api/statistics',statisticsRouter);
 app.use('/api/community',commuRouter);
+
 
 
 
@@ -86,13 +91,22 @@ app.use(function(err, req, res, next) {
 });
 
 
+// zeromq
+// async function run() {
+//   const sock = new zmq.Request
 
+//   sock.connect("tcp://127.0.0.1:3000")
+//   console.log("Producer bound to port 3000")
+
+//   await sock.send("4")
+//   const [result] = await sock.receive()
+
+//   console.log(result)
+// }
+
+// run()
 
 
 
 
 module.exports = app;
-
-
-
-

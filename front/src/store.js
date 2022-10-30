@@ -1,9 +1,9 @@
 // import axios from 'axios'
 import axios from 'axios';
-import {createStore} from 'vuex'
+import { createStore } from 'vuex'
 // import axios from 'axios'
 
-let today = new Date();   
+let today = new Date();
 
 let year = today.getFullYear(); // 년도
 let month = today.getMonth() + 1;  // 월
@@ -37,34 +37,36 @@ const store = createStore({
             todayDate: todayDate,
 
 
+
         }
     },
     getters: {
         user: (state) => { return state.user; }
     },
-    mutations:{
+    mutations: {
         //state변경 함수를 정의
-        userSelect(state, payload){
+        userSelect(state, payload) {
             state.category = payload;
         },
-        openMemberModal(state){
-            state.memberModal=true;
+        openMemberModal(state) {
+            state.memberModal = true;
         },
-        closeMemberModal(state){
-            state.memberModal=false;
+        closeMemberModal(state) {
+            state.memberModal = false;
         },
-        openProductModal(state){
+        openProductModal(state) {
             state.productModal = true;
         },
-        closeProductModal(state){
+        closeProductModal(state) {
             state.productModal = false;
         },
-        openWarehousingModal(state){
+        openWarehousingModal(state) {
             state.warehousingModal = true;
         },
-        closeWarehousingModal(state){
+        closeWarehousingModal(state) {
             state.warehousingModal = false;
         },
+
         openPostModal(state){
             state.postModal = true
         },
@@ -73,17 +75,19 @@ const store = createStore({
         },
         openSalesModal(state){
             state.salesModal=true;
+
         },
-        closeSalesModal(state){
-            state.salesModal=false;
+        closeSalesModal(state) {
+            state.salesModal = false;
         },
-        openInventoryModal(state){
+        openInventoryModal(state) {
             state.inventoryModal = true;
         },
-        closeInventoryModal(state){
+        closeInventoryModal(state) {
             state.inventoryModal = false;
 
         },
+
         openShipModal(state){
             state.shipModal = true;
         },
@@ -91,122 +95,112 @@ const store = createStore({
             state.shipModal = false;
         },
         setProductList(state,payload){
+
             state.productList = payload;
         },
-        setMemberList(state,payload){
+        setMemberList(state, payload) {
             state.memberList = payload;
         },
-        setWarehousingList(state,payload){
+        setWarehousingList(state, payload) {
             state.warehousingList = payload;
         },
-        setSalesList(state,payload){
+        setSalesList(state, payload) {
             state.salesList = payload;
         },
-        setShipmentList(state,payload){
+        setShipmentList(state, payload) {
             state.shipmentList = payload;
         },
         setUser(state, user) {
             state.user = user;
         },
-        setReceivedList(state,payload){
+        setReceivedList(state, payload) {
             state.receivedList = payload;
         },
-        setQuantityList(state,payload){
+        setQuantityList(state, payload) {
             state.quantityList = payload;
         },
+
         setPostList(state,payload){
             state.postList = payload;
         },
         setCommentList(state,payload){
             state.commentList = payload;
         }
+
     },
-    actions:{
-        
+    actions: {
+
         //ajax와같이 시간걸리는것
-        getProductList(context){
+        getProductList(context) {
             let id = context.state.user.Coop_id;
             axios.get(`/api/product/data/${id}`,
             )
-            .then((res)=>{
-                context.commit('setProductList',res.data);
-            })
-            .catch((err)=>{
-                console.error(err);
-            })
+                .then((res) => {
+                    context.commit('setProductList', res.data);
+                })
+                .catch((err) => {
+                    console.error(err);
+                })
         },
- 
-        getMemberList(context){
+
+        getMemberList(context) {
             let id = context.state.user.Coop_id;
             axios.get(`/api/member/data/${id}`)
-            .then((res)=>{
-                context.commit('setMemberList',res.data);
-                console.log();
-                
-            })
-            .catch((err)=>{
-                console.error(err);
-            })
+                .then((res) => {
+                    context.commit('setMemberList', res.data);
+                    console.log();
+
+                })
+                .catch((err) => {
+                    console.error(err);
+                })
         },
 
-        getWarehousing(context){
+        getWarehousing(context) {
             let id = context.state.user.Coop_id;
             axios.get(`/api/warehousing/stock/${id}`)
-            .then((res) => {
+                .then((res) => {
 
-            context.commit('setWarehousingList',res.data);
-            })
-            .catch((err) => {
-            console.error(err);
-            });
+                    context.commit('setWarehousingList', res.data);
+                })
+                .catch((err) => {
+                    console.error(err);
+                });
         },
 
 
-        getSalesList(context){
+        getSalesList(context) {
             let id = context.state.user.Coop_id;
             axios.get(`/api/sales/data/${id}`)
-            .then((res)=>{
-                context.commit('setSalesList',res.data);
-            })
-            .catch((err)=>{
-                console.error(err);
-            })
+                .then((res) => {
+                    context.commit('setSalesList', res.data);
+                })
+                .catch((err) => {
+                    console.error(err);
+                })
         },
 
-        getReceived(context){
+        getReceived(context) {
             let id = context.state.user.Coop_id;
             axios.get(`/api/inventory/received/${id}`)
-            .then((res)=>{
-                context.commit('setReceivedList',res.data);
+                .then((res) => {
+                    context.commit('setReceivedList', res.data);
 
-            })
-            .catch((err)=>{
-                console.error(err);
-            })
+                })
+                .catch((err) => {
+                    console.error(err);
+                })
         },
 
-
-        getShipmentList(context){
+        getShipmentList(context) {
             let id = context.state.user.Coop_id;
             axios.get(`/api/shipment/data/${id}`)
-            .then((res)=>{
-                context.commit('setShipmentList',res.data);
-            })
-            .catch((err)=>{
-                console.error(err);
-            })
-            
-        },
-        getQuantity(context){
-            let id = context.state.user.Coop_id;
-            axios.get(`/api/inventory/quantity/${id}`)
-            .then((res)=>{
-                context.commit('setQuantityList',res.data);
-
-            })
-            .catch((err)=>{
-                console.error(err);
-            })
+                .then((res) => {
+                    context.commit('setShipmentList', res.data);
+                })
+                .catch((err) => {
+                    console.error(err);
+                })
 
         },
         getPostList(context){
@@ -229,12 +223,19 @@ const store = createStore({
             })
         }
 
+        getQuantity(context) {
+            let id = context.state.user.Coop_id;
+            axios.get(`/api/inventory/quantity/${id}`)
+                .then((res) => {
+                    context.commit('setQuantityList', res.data);
 
+                })
+                .catch((err) => {
+                    console.error(err);
+                })
+        },
 
-        }
-
-        
-    
+    }
 })
 
 
