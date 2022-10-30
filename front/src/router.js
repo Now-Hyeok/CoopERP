@@ -18,7 +18,7 @@ import sales from './pages/TransactionManagement/TransactionSales'
 import shipment from './pages/TransactionManagement/TransactionShipment'
 
 import statisticsMain from './pages/Statistics/StatisticsMain'
-import statisticsSimulate from './pages/Statistics/StatisticsSimulate'
+import statisticsMonth from './pages/Statistics/StatisticsMonth'
 
 import simulation from './pages/Monitoring/MonitoringSimulation'
 
@@ -128,9 +128,9 @@ const routes = [
                 component:statisticsMain,
             },
             {
-                path:'simulate',
-                name:'statisticsSimulate',
-                component:statisticsSimulate,
+                path:'month',
+                name:'statisticsMonth',
+                component:statisticsMonth,
 
             },
         ]

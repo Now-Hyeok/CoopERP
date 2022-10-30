@@ -23,6 +23,8 @@ var shipmentRouter = require('./routes/shipment');
 
 var simulateRouter = require('./routes/simulate');
 
+var statisticsRouter = require('./routes/statistics');
+
 var inventoryRouter = require('./routes/inventory');
 
 
@@ -65,6 +67,7 @@ app.use('/api/sales',salesRouter);
 app.use('/api/shipment',shipmentRouter);
 app.use('/api/inventory',inventoryRouter);
 app.use('/api/simulate',simulateRouter);
+app.use('/api/statistics',statisticsRouter);
 
 
 

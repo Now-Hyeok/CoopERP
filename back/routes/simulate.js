@@ -19,12 +19,13 @@ router.post('/engine', async (req, res, next) => {
 
     const [result] = await sock.receive();
     console.log('Received ', result.toString());
-    res.send('30');
+    
   }
-
-  runClient();
-
-
+  
+  // runClient();
+  let s = [req.body.period, req.body.demand, req.body.supply, 'start']
+  console.log(s);
+  res.send([10, 20, 30]);
 })
 
 

@@ -2,8 +2,8 @@ export default {
     'coop-management':['Member','COOP Management'],
     'inventory-management':['Product','WareHousing Schedule','Inventory Status'],
     'transaction-management':['Sales','Shipment'],
-    'statistics':['menu4-1','menu4-2','menu4-3'],
-    'monitoring':['simulation','menu2','menu3'],
+    'statistics':['Month','menu4-2','menu4-3'],
+    'monitoring':['Simulation','Simulation Report','Board'],
 }
 
 //inventory status 표 2개 -> 농가에서 출하예정인 수량 / 이미 출하해서 입고한 수량
