@@ -14,9 +14,9 @@
       </div>
       
     </div>
-    <p class="comment-header">comment</p>
+    <span class="comment-header">comment</span>
     <div class="comment" v-for="item in commentList" :key="item">
-      <h5 class="detail-author">{{item.author}}</h5>
+      <h5 class="detail-author">{{item.autnor}}</h5>
       <p class="detail-comment">{{item.comment}}</p>
       <p class="detail-date">{{item.post_date.substr(0,10)}}</p>
     </div>
@@ -103,6 +103,7 @@ export default {
 }
 .commentInput{  
   height: 100px;
+  width:500px;
 }
 
 .content-title{
@@ -115,6 +116,6 @@ export default {
 }
 
 .comment-header{
-  
+  margin-top: 5px;
 }
 </style>

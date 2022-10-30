@@ -3,7 +3,7 @@ export default {
     'inventory-management':['Product','WareHousing Schedule','Inventory Status'],
     'transaction-management':['Sales','Shipment'],
 
-    'statistics':['Month','menu4-2','menu4-3'],
+    'statistics':['Month'],
 
     'monitoring':['simulation','community'],
 
