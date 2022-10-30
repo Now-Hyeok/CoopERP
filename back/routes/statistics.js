@@ -42,7 +42,8 @@ router.post('/month/:id', async (req, res, next) => {
                             label: 'Shipment-amount',
                             backgroundColor: 'red',
                             data: shipment
-                        }
+                        },
+
                     ]
                 }
             } else if (req.body.form == 'price'){

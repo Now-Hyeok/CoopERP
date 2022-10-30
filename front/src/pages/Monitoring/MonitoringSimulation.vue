@@ -37,7 +37,7 @@
 
 <script>
 import axios from 'axios'
-import LineChart from '@/components/useChart.vue'
+import LineChart from '@/components/SimulateChart.vue'
 
 export default {
     name: "monitoringSimulation",
@@ -57,7 +57,7 @@ export default {
             const period = this.storagePeriod
             const demand = this.demand
             const supply = this.supply
-            axios.post(`/api/simulate/engine`, { period, demand, supply })
+            axios.post(`/api/monitoring/simulate`, { period, demand, supply })
                 .then((res) => {
                     this.GoData = res.data;
                 })

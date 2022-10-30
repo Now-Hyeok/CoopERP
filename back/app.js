@@ -21,7 +21,7 @@ var warehousingRouter = require('./routes/warehousing');
 var salesRouter = require('./routes/sales');
 var shipmentRouter = require('./routes/shipment');
 
-var simulateRouter = require('./routes/simulate');
+var monitoringRouter = require('./routes/monitoring');
 
 var statisticsRouter = require('./routes/statistics');
 
@@ -66,7 +66,7 @@ app.use('/api/warehousing',warehousingRouter);
 app.use('/api/sales',salesRouter);
 app.use('/api/shipment',shipmentRouter);
 app.use('/api/inventory',inventoryRouter);
-app.use('/api/simulate',simulateRouter);
+app.use('/api/monitoring',monitoringRouter);
 app.use('/api/statistics',statisticsRouter);
 
 

@@ -1,10 +1,12 @@
 <template>
   <Line :chart-options="chartOptions" :chart-data="chartData" :chart-id="chartId" :plugins="plugins"
-    :css-classes="cssClasses" :styles="styles" :width="width" :height="height" />
+    :css-classes="cssClasses" :styles="styles" :width="1000" :height="400" />
 </template>
 
+
 <script>
-import { Line } from 'vue-chartjs' 
+import { Line } from 'vue-chartjs'
+import axios from 'axios'
 
 import {
   Chart as ChartJS,
@@ -28,7 +30,7 @@ ChartJS.register(
 )
 
 export default {
-  name: 'useChart',
+  name: 'SimulateChart',
   components: {
     Line
   },
@@ -39,11 +41,11 @@ export default {
     },
     width: {
       type: Number,
-      default: 400
+      default: 1000
     },
     height: {
       type: Number,
-      default: 400
+      default: 500
     },
     cssClasses: {
       default: '',
@@ -56,16 +58,38 @@ export default {
     plugins: {
       type: Array,
       default: () => []
-    },
-    chartData: {
-        type: Object,
-        required: true
-      },
-    chartOptions: {
-      type: Object,
-      default: () => {}
     }
+  },
+  data() {
+    return {
+      chartData: {
+        labels: [],
+        datasets: [{ data: [] }]
+      },
+      chartOptions: {
+        responsive: false,
+        maintainAspectRatio: false
+      }
+    }
+  },
+  methods: {
+    setData() {
+      // let id = this.$store.state.user.Coop_id;
+      axios.get(`/api/monitoring/simulate`, { "Content-Type": "application-json" })
+        .then((res) => {
+          this.chartData = res.data;
+        })
+        .catch((err) => {
+          console.error(err);
+        })
+    }
+  },
+  created() {
+    this.setData()
   }
 }
+
 </script>
 
+
+<style></style>
