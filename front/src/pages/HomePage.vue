@@ -26,7 +26,7 @@ import { mapActions } from 'vuex';
         TopNavbar
     },
       methods:{
-        ...mapActions(['getMemberList','getProductList','getWarehousing','getUserInfo','getReceived','getQuantity','getSalesList','getShipmentList','getPostList'])
+        ...mapActions(['getMemberList','getProductList','getWarehousing','getUserInfo','getReceived','getQuantity','getSalesList','getShipmentList','getPostList','todayDate'])
       },
       created(){
         this.getMemberList();

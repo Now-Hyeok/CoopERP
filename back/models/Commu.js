@@ -11,7 +11,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(100),
       allowNull: false
     },
-    aurthor: {
+    author: {
       type: DataTypes.STRING(100),
       allowNull: false
     },
@@ -21,7 +21,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     post_date: {
       type: DataTypes.DATEONLY,
-      allowNull: false
+      allowNull: true
     },
     Coop_id: {
       type: DataTypes.INTEGER,

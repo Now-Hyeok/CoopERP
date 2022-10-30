@@ -38,14 +38,20 @@ export default {
 .sidemenu{
   width:100%;
   text-align: center;
-
 }
 .sidemenu-list{
-  padding-top: 40px;
+  padding-top: 30px;
   padding-bottom: 40px;
+  flex-grow: 1;
+  transition: 0.5s;
 }
+
 .sidemenu-item{
   cursor: pointer;
+}
+.sidemenu-list:hover{
+  background-color: #9F73AB;
+  flex-grow: 1.2;
 }
 
 

@@ -16,7 +16,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="memberList" scope="row" v-for="(item,i) in memberList" :key="item" @click="openMemberModal()">
+      <tr class="memberList" scope="row" v-for="(item,i) in memberList" :key="item">
         <th scope="row">{{i+1}}</th>
         <td>{{item.Member_name}}</td>
         <td>{{item.Member_address}}</td>
@@ -26,12 +26,12 @@
       </tr>
     </tbody>
   </table>
-
-  <div>
+  <div class="btBtn">
     <button type="button" class="btn btn-primary" @click="openMemberModal()">
     New Member
     </button>
   </div>
+  
 </div>
 
 </template>
@@ -71,9 +71,23 @@ export default {
   width: 100%;
   overflow: auto;
 }
-
-td,th{
-  padding:15px; 
-  border: 1px solid #c2d3de;
+caption{
+  caption-side: top
 }
+td,th{
+  padding:5px;
+  border-bottom: 1px solid #f2f2f2;
+}
+.user-table{
+  background-color: transparent;
+  width:900px;
+  margin:auto;
+}
+.btBtn{
+  text-align: center;
+  margin-top: 20px;
+  margin-left: 700px;
+  
+}
+
 </style>
