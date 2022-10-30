@@ -14,18 +14,18 @@
               
                 <label class="input-group-text" id="inputGroup-sizing-default">category</label>
                 <select v-model="category">
-                  <option v-for="(item) in productList" :key="item" :value="item.Product_id">{{item.Product_name}}</option>
+                  <option>Notice</option>
                 </select>
               </div>
               <div class="input-group mb-4">
                 <label class="input-group-text" id="inputGroup-sizing-default" >text</label>
                 <textarea type="text" class="form-control"  name="text" id="text" v-model="text"/>
               </div>
- 
             </div>
             <div class="modalFooter">
               <button type="submit" class="btn btn-primary" @click="registerPost()">Register</button>
               <button class="btn btn-secondary " @click="closePostModal()">Close</button>
+              <p>{{date}}</p>
             </div>
           </form>
     
@@ -43,15 +43,14 @@
         export default {
           name:"writePost",
           computed:{
-              ...mapState(['productList']),
+              ...mapState(['productList','todayDate','user']),
             },
         
           data(){
             return{
               errors:[],
-                category:null,
-                text:null,
-
+              category:null,
+              text:null,
             }
           },
         
@@ -59,9 +58,11 @@
             ...mapMutations(['closePostModal']),
         
             sendPostData(){
-                
-              axios.post(`/api/warehousing/registration/${this.user.Coop_id}`,{
-
+              axios.post(`/api/community/registration/${this.user.Coop_id}`,{
+                category:this.category,
+                text:this.text,
+                updateDate:this.todayDate,
+                author:"admin"
               })
               .then(()=>{
                 this.$emit('postRegister');

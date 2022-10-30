@@ -76,7 +76,6 @@
         date:null,
         price:null,
         quality:null,        
-        updateDate:this.todayDate,
       }
     },
   
@@ -92,7 +91,7 @@
           date : this.date,
           price : this.price,
           quality : this.quality,
-          updateDate: this.updateDate,
+          updateDate: this.todayDate,
         })
         .then(()=>{
           this.$emit('warehousingRegister');

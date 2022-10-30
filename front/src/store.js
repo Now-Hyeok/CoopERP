@@ -10,9 +10,8 @@ let month = today.getMonth() + 1;  // 월
 let date = today.getDate();  // 날짜
 
 let todayDate = `${year}-${month}-${date}`
-
 const store = createStore({
-    
+
     state(){
         return{
             //데이터 여기에 보관하기 vuex
@@ -33,6 +32,7 @@ const store = createStore({
             receivedList:{},
             quantityList:{},
             postList:{},
+            commentList:{},
 
             todayDate: todayDate,
 
@@ -116,6 +116,9 @@ const store = createStore({
         },
         setPostList(state,payload){
             state.postList = payload;
+        },
+        setCommentList(state,payload){
+            state.commentList = payload;
         }
     },
     actions:{
@@ -214,6 +217,15 @@ const store = createStore({
             })
             .catch((err)=>{
                 console.error(err);
+            })
+        },
+        getCommentList(context,id){
+            axios.get(`/api/community/comment/${id}`)
+            .then((res)=>{
+                context.commit('setCommentList',res.data)
+            })
+            .catch((err)=>{
+                console.error(err)
             })
         }
 

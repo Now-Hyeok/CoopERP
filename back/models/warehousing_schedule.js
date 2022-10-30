@@ -55,7 +55,8 @@ module.exports = function(sequelize, DataTypes) {
     },
     Member_update_date: {
       type: DataTypes.DATEONLY,
-      allowNull: true
+      allowNull: true,
+      defaultValue: Sequelize.Sequelize.fn('curdate')
     }
   }, {
     sequelize,

@@ -3,8 +3,8 @@
 <shipmentRegister v-if="shipModal==true" @shipRegister="closeShipModal();getShipmentList();getQuantity();"/>
 
 <div class="register">
-  <div class="ship">
-    <table class="user-table">
+  <div class="received-list">
+    <table class="inven-table">
     <caption>Shipment</caption>
     <thead >
       <tr>
@@ -20,7 +20,7 @@
     <tbody>
       <tr class="shipmentList" scope="row" v-for="(item,i) in shipmentList" :key="item" >
         <th scope="row">{{i+1}}</th>
-        <td>{{item.Shipment_date.substring(0,10)}}</td>
+        <td>{{item.Shipment_date.substr(0,10)}}</td>
         <td>{{item.Shipment_buyer}}</td>
         <td>{{item.Product_name}}</td>
         <td>{{item.Shipment_amount}}</td>
@@ -36,8 +36,8 @@
     </button>
   </div>
   
-  <div class="quantity">
-    <table class="user-table">
+  <div class="inventory">
+    <table class="inven">
       <caption>Total Quantity</caption>
       <thead >
         <tr>
@@ -108,8 +108,5 @@ export default {
   height: 100%;
 }
 
-td,th{
-  padding:15px; 
-  border: 1px solid #c2d3de;
-}
+
 </style>

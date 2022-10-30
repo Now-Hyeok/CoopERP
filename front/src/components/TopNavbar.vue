@@ -4,7 +4,7 @@
   <ul class="categoryhome">
     <li class="hw-100">
 
-      <router-link class="cate-home-link hw-100 " to="/home">ERP</router-link>
+      <router-link class="cate-home-link hw-100 " to="/home" style="color:#eee; padding:10px;">ERP</router-link>
 
     </li>
     
@@ -25,13 +25,6 @@
         </li>
         <li class="menu-item">
           <router-link @click='userSelect("monitoring")' to="/monitoring" class="menu-link">Monitoring</router-link>
-        </li>
-        <li>
-          <div v-if="user">
-            id : {{ user.Coop_login_id }}<br>
-            pw : {{ user.Coop_pw }}<br>
-            coop : {{ user.Coop_name }}
-          </div>
         </li>
 
       </ul>
@@ -88,7 +81,7 @@ ul li {
 .cate-home-link{
   display: block;
   padding: 18px;
-  font-size: 17px;
+  font-size: 20px;
 }
 
 a {
@@ -102,16 +95,17 @@ a {
 
 .categoryhome{
 
-  width: 12%;
+  width: 10%;
   float: left;
   height: 100%;
-
+  background: #3F3B6C;
+  
 }
 
 
 .topnavb{
   float: left;
-  width:88%;
+  width:90%;
   height: 100%;
 }
 body,ul,li {
@@ -125,28 +119,25 @@ ul, li {
   display: flex;
 }
 .menu-item {
-  background-color: rgb(255, 255, 255);
+  background-color:#3F3B6C;
   flex-grow: 1;
   transition: 0.5s;
 }
-.menu-item:hover {
-  background-color: rgb(0, 162, 255);
-  flex-grow: 1.2;
+.menu-item:hover{
+  background: #624F82;
 }
+
 .menu-link {
   /* block이면 마우스 클릭영역이 더 커짐, a태그는 inline으로서 클릭영역이 콘텐츠에 한정됨*/
   height: 100%;
   widows: 100%;
   padding: 18px;
   display: block; 
-  font-size: 15px;
+  font-size: 9px;
   font-weight: bold;
-  color: #555;
+  color: #eee;
   text-decoration: none;
   text-align: center;
-}
-.menu-link:hover {
-  color: white;
 }
 
 
