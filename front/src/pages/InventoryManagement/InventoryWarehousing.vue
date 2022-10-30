@@ -32,7 +32,7 @@
     </tbody>
   </table>
 
-  <div>
+  <div class="btn1">
     <button type="button" class="btn btn-primary" @click="openWarehousingModal()">
     New Warehousing
     </button>
@@ -84,5 +84,9 @@ export default {
 </script>
 
 <style>
-
+.btn1{
+  text-align: right;
+  margin-top: 30px;
+  margin-right: 450px;
+}
 </style>

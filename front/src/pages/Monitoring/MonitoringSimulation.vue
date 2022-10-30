@@ -28,8 +28,6 @@
     <div class="simulation-result">
         <h1>Simulation Result</h1>
         <LineChart />
-
-        <span>{{ this.GoData }}</span>
     </div>
 
 
@@ -59,7 +57,11 @@ export default {
             const supply = this.supply
             axios.post(`/api/monitoring/simulate`, { period, demand, supply })
                 .then((res) => {
-                    this.GoData = res.data;
+                    console.log(res);
+                    for (var i = 0; i<10; i++){
+                    setTimeout(() => console.log("after"), 10000);
+                    this.$router.go();
+                    }
                 })
                 .catch((err) => {
                     console.error(err);
@@ -71,13 +73,16 @@ export default {
 
 <style>
 .simulation-input {
-    padding: 15px;
+    padding: 5px;
     width: 50%;
     height: 30%;
+    margin:auto;
+    margin-right: 600px;
 }
 
 .simulation-result {
     padding: 15px;
     width: 70%;
+    margin:auto;
 }
 </style>

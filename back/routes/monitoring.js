@@ -15,18 +15,16 @@ router.post('/simulate', async (req, res, next) => {
 
 
     let s = [req.body.period, req.body.demand, req.body.supply, 'start']
-    console.log(s);
     await sock.send(s);
 
     const [result] = await sock.receive();
     console.log('Received ', result.toString());
-
+x`x`
   }
 
-  // runClient();
+  runClient();
   let s = [req.body.period, req.body.demand, req.body.supply, 'start']
-  console.log(s);
-  res.send([10, 20, 30]);
+  res.send('end');
 })
 
 router.get('/simulate', async (req, res, next) => {

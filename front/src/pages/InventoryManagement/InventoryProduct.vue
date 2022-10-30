@@ -26,7 +26,7 @@
     </tbody>
   </table>
 
-  <div>
+  <div class="btn1">
     <button type="button" class="btn btn-primary" @click="openProductModal()">
     New Product
     </button>

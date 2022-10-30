@@ -1,5 +1,5 @@
 <template>
-  <p>communication main</p>
+  <p></p>
 </template>
 
 <script>

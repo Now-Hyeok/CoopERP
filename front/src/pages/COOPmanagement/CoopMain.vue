@@ -1,5 +1,5 @@
 <template>
-  <p>coop main</p>
+  <P></P>
 </template>
 
 <script>

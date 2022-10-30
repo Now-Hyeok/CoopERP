@@ -5,8 +5,7 @@
 
 
 <div class="maincontent">
-  <h4>hello~</h4> 
-  <p>welecome</p>
+
 </div>
 
 

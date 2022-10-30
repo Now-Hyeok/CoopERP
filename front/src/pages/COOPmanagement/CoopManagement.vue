@@ -1,7 +1,7 @@
 <template>
     
     <p>
-        coop management page
+
     </p>
 </template>
         

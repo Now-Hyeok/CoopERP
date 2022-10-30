@@ -30,7 +30,7 @@
     </tbody>
   </table>
 
-  <div>
+  <div class="btn1">
     <button type="button" class="btn btn-primary" @click="openSalesModal()">
     New SalesRegister
     </button>

@@ -1,5 +1,5 @@
 <template>
-  <p>inventory main</p>
+<p></p>
 </template>
 
 <script>

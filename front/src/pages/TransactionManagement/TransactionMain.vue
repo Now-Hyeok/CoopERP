@@ -1,5 +1,5 @@
 <template>
-  <p>transaction main</p>
+  <p></p>
 </template>
 
 <script>

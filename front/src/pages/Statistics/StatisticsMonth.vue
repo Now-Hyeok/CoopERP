@@ -1,7 +1,10 @@
 <template>
-  <h1>Statistics Month</h1>
-  <Line />
-  <bar />
+  <div class="bar-chart">
+    <h1>Statistics Month</h1>
+    <Line />
+    <bar />
+  </div>
+
 
   
 
@@ -25,7 +28,6 @@ export default {
   
 <style>
 .bar-chart{
-  width: 50%;
-  max-height: 300px;
+  margin-left: 300px;
 }
 </style>

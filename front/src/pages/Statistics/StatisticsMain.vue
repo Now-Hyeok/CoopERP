@@ -1,5 +1,5 @@
 <template>
-  <p>statistics main</p>
+  <p> </p>
 </template>
 
 <script>

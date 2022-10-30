@@ -119,7 +119,9 @@ export default{
 
 .inven-btn{
     text-align: right;
-    margin-right: 120px;
+    margin-right: 150px;
+    margin-top: 10px;
+    
 }
 .empty-box{
     height: 50px;
