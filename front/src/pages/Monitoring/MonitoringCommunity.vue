@@ -20,8 +20,12 @@
     </tr>
   </tbody>
 </table>
+</div >
+<div class="postbtn"> 
+  <button class="btn btn-primary" @click="openPostModal()">new post</button>
 </div>
-  <button @click="openPostModal()">new Post</button>
+
+  
   
 </template>
 
@@ -65,5 +69,9 @@ export default {
 
 .post-lost{
   height: 2rem;
+}
+.postbtn{
+  text-align: right;
+  margin-right: 150px;
 }
 </style>

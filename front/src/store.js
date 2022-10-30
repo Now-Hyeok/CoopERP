@@ -221,7 +221,7 @@ const store = createStore({
             .catch((err)=>{
                 console.error(err)
             })
-        }
+        },
 
         getQuantity(context) {
             let id = context.state.user.Coop_id;

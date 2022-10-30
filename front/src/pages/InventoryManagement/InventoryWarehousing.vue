@@ -32,7 +32,7 @@
     </tbody>
   </table>
 
-  <div>
+  <div class="btBtn">
     <button type="button" class="btn btn-primary" @click="openWarehousingModal()">
     New Warehousing
     </button>

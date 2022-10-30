@@ -31,9 +31,7 @@
     </tbody>
 
   </table>
-  <button type="button" class="btn btn-primary" @click="openShipModal()">
-    New Shipment
-    </button>
+
   </div>
   
   <div class="inventory">
@@ -54,6 +52,12 @@
         </tr>
       </tbody>
     </table>
+    <div class="inven-btn">
+      <button type="button" class="btn btn-primary" @click="openShipModal()">
+    New Shipment
+    </button> 
+    </div>
+    
   </div>
 </div>
 
