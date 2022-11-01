@@ -25,7 +25,7 @@ import { mapActions } from 'vuex';
         TopNavbar
     },
       methods:{
-        ...mapActions(['getMemberList','getProductList','getWarehousing','getUserInfo','getReceived','getQuantity','getSalesList','getShipmentList','getPostList','todayDate'])
+        ...mapActions(['getMemberList','getProductList','getWarehousing','getUserInfo','getReceived','getQuantity','getSalesList','getShipmentList','getPostList','todayDate','getManage'])
       },
       created(){
         this.getMemberList();
@@ -36,6 +36,7 @@ import { mapActions } from 'vuex';
         this.getSalesList();
         this.getShipmentList();
         this.getPostList();
+        this.getManage();
       },
       data(){
         return{

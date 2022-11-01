@@ -33,7 +33,7 @@ const store = createStore({
             quantityList:{},
             postList:{},
             commentList:{},
-
+            manageList:{},
             todayDate: todayDate,
 
 
@@ -125,6 +125,9 @@ const store = createStore({
         },
         setCommentList(state,payload){
             state.commentList = payload;
+        },
+        setManage(state,payload){
+            state.manageList=payload;
         }
 
     },
@@ -233,6 +236,16 @@ const store = createStore({
                 .catch((err) => {
                     console.error(err);
                 })
+        },
+        getManage(context){
+            let id = context.state.user.Coop_id;
+            axios.get(`/api/member/management/${id}`)
+            .then((res)=>{
+                context.commit('setManage',res.data);
+            })
+            .catch((err)=>{
+                console.error(err);
+            })
         },
 
     }
