@@ -1,6 +1,5 @@
 var express = require('express');
 const router = express.Router();
-const zmq = require("zeromq");
 let pool = require('../config/config');
 
 
@@ -11,11 +10,10 @@ router.post('/simulate', async (req, res, next) => {
 
     //  Socket to talk to server
     const sock = new zmq.Request();
-    sock.connect('tcp://172.17.10.111:5000');
+    sock.connect('tcp://172.31.14.142:5000');
 
 
     let s = [req.body.period, req.body.demand, req.body.supply, 'start']
-    console.log(s);
     await sock.send(s);
 
     const [result] = await sock.receive();
@@ -23,18 +21,19 @@ router.post('/simulate', async (req, res, next) => {
 
   }
 
-  // runClient();
-  let s = [req.body.period, req.body.demand, req.body.supply, 'start']
-  console.log(s);
-  res.send([10, 20, 30]);
+  runClient();
+
+
+  res.send('end');
 })
+
 
 router.get('/simulate', async (req, res, next) => {
 
   await pool.getConnection((err, conn) => {
     if (err) console.error(err);
 
-    let sql = `select Sales_amount, Warehousing_amount, Trash_amount FROM Simulate_Sales `;
+    let sql = `select Sales_amount, Warehousing_amount, Trash_amount, Oversell_request FROM Simulate_Sales `;
     conn.query(sql, (err, result) => {
       conn.release();
       if (err) {
@@ -44,11 +43,13 @@ router.get('/simulate', async (req, res, next) => {
       var sales = [];
       var ware = [];
       var trash = [];
+      var over = [];
       var inventory = [];
       for (item in result) {
         sales[item] = result[item].Sales_amount;
         ware[item] = result[item].Warehousing_amount;
         trash[item] = result[item].Trash_amount;
+        over[item] = result[item].Oversell_request;
         if (item == 1){
           inventory[item] = ware[item] - trash[item] - sales[item];
           continue;
@@ -63,38 +64,47 @@ router.get('/simulate', async (req, res, next) => {
         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
         datasets: [
           {
-            label: 'Shipment-amount',
+            label: 'Shipment-quantity',
             backgroundColor: 'red',
+            borderWidth: 2,
+            borderColor: 'red',
+            pointBorderColor: 'red',
             data: sales
           },
           {
-            label: 'Warehousing-amount',
+            label: 'Warehousing-quantity',
             backgroundColor: 'blue',
+            borderWidth: 2,
+            borderColor: 'blue',
+            pointBorderColor: 'blue',
             data: ware
           },
           {
-            label: 'Disuse-amount',
+            label: 'Disuse-quantity',
             backgroundColor: 'green',
+            borderWidth: 2,
+            borderColor: 'green',
+            pointBorderColor: 'green',
             data: trash
+          },
+          {
+            label: 'Oversell-request',
+            borderWidth: 2,
+            borderColor: 'orange',
+            pointBorderColor: 'orange',
+            backgroundColor: 'orange',
+            data: over
           },
           {
             label: 'Inventory',
             backgroundColor: 'black',
+            borderWidth: 2,
+            borderColor: 'black',
+            pointBorderColor: 'black',
             data: inventory
           },
         ]
       }
-
-      // data = {
-      //   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-      //   datasets: [
-      //     {
-      //       label: 'Shipment-sales',
-      //       backgroundColor: 'blue',
-      //       data: price
-      //     }
-      //   ]
-      // }
 
       res.send(data);
     })

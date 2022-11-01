@@ -70,7 +70,7 @@ router.delete('/delete/:id',async (req,res,next)=>{
 router.get('/management/:id',async (req,res,next)=>{
   await pool.getConnection((err,conn)=>{
     if(err) console.error(err);
-    let sql = `SELECT cm.Member_name, MIN(IFNULL(ws.Shipment_date, 0) ) as shipment_date, MIN(IFNULL(ws.Member_update_date,0)) as update_date 
+    let sql = `SELECT cm.Member_name, MIN(IFNULL(ws.Shipment_date,"-") ) as shipment_date, MIN(IFNULL(ws.Member_update_date,"-")) as update_date 
     FROM coopMember cm left join warehousing_schedule ws on cm.Member_id = ws.Member_id WHERE cm.Coop_id =${req.params.id}
     GROUP BY cm.Member_id`;
     conn.query(sql,(err,result)=>{
