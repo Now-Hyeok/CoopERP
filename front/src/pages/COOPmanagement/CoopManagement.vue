@@ -4,24 +4,6 @@
   
   <div class="manage">
     <table class="manage-table">
-      <caption>List of Members</caption>
-      <thead >
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Name</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="memberList" scope="row" v-for="(item,i) in memberList" :key="item">
-          <th scope="row">{{i+1}}</th>
-          <td>{{item.Member_name}}</td>
-        </tr>
-      </tbody>
-    </table>
-    
-  </div>
-  <div>
-    <table class="manage-table">
       <caption>Coop Infomation</caption>
       <thead >
         <tr>
@@ -31,8 +13,35 @@
       </thead>
       <tbody>
         <tr class="memberList" scope="row" >
+          <th scope="row">name</th>
+          <td>{{user.Coop_name}}</td>
+        </tr>
+        <tr>
+          <th scope="row">address</th>
+          <td>{{user.Coop_address}}</td>
+        </tr>
+
+      </tbody>
+    </table>
+    
+  </div>
+  <div>
+    <table class="manage-table">
+      <caption>List of Members</caption>
+      <thead >
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th>Expected warehousing date</th>
+          <th>Recent Updates</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="memberList" scope="row" v-for="(item,i) in manageList" :key="item">
           <th scope="row">{{i+1}}</th>
-          <td>{{user}}</td>
+          <td>{{item.Member_name}}</td>
+          <td>{{item.shipment_date}}</td>
+          <td>{{item.update_date}}</td>
         </tr>
       </tbody>
     </table>
@@ -49,7 +58,7 @@
   export default {
       name: "coopRegister",
       computed:{
-        ...mapState(['memberModal','memberList','user']),
+        ...mapState(['manageList','memberList','user']),
       },
       methods:{
         ...mapMutations(['closeMemberModal','openMemberModal']),
@@ -72,7 +81,8 @@
   <style>
 .manage{
   float: left;
-
+  width:30%;
+  margin-left: 50px;
 }
   caption{
     caption-side: top
@@ -86,6 +96,7 @@
     width:900px;
     margin:auto;
   }
+
   .btBtn{
     text-align: center;
     margin-top: 20px;
