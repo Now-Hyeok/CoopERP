@@ -1,5 +1,5 @@
 <template>
-<WarehousingRegister v-if="warehousingModal == true" @warehousingRegister="closeWarehousingModal(); getWarehousing();getQuantity(); "/>
+<WarehousingRegister v-if="warehousingModal == true" @warehousingRegister="closeWarehousingModal(); getWarehousing();getQuantity(); getManage();"/>
 
 <div>
   <table class="user-table">
@@ -32,7 +32,7 @@
     </tbody>
   </table>
 
-  <div>
+  <div class="btBtn">
     <button type="button" class="btn btn-primary" @click="openWarehousingModal()">
     New Warehousing
     </button>
@@ -53,13 +53,14 @@ export default {
     },
     methods: {
         ...mapMutations(["openWarehousingModal","closeWarehousingModal"]),
-        ...mapActions(['getWarehousing','getReceived','getQuantity']),
+        ...mapActions(['getWarehousing','getReceived','getQuantity','getManage']),
 
         deleteWarehousing(id){
         axios.delete(`/api/warehousing/delete/${id}`)
         .then(()=>{
           this.getWarehousing();
           this.getQuantity();
+          this.getManage();
         })
         .catch((err)=>{
           console.error(err);
@@ -70,6 +71,7 @@ export default {
         .then(()=>{
           this.deleteWarehousing(id);
           this.getReceived();
+          this.getManage();
         })
         .catch((err)=>{
           console.error(err);

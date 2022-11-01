@@ -118,6 +118,7 @@ export default{
 }
 
 .inven-btn{
+    margin-top:20px;
     text-align: right;
     margin-right: 120px;
 }

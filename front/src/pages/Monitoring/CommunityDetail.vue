@@ -1,23 +1,29 @@
 <template>
   <div class="comment-detail">
     <div class="post-content">
-      <h5>
-        {{post.author}}
-      </h5>
-      <p>
-        {{post.post_date.substr(0,10)}}
-      </p>
-      <p>{{post.text}}</p>
+      <div class="content-title">
+        <h5>
+          {{post.author}}
+        </h5>
+        <p style="font-size:8px;">
+          {{post.post_date.substr(0,10)}}
+        </p>
+      </div>
+      <div class="content-text">
+        <p>{{post.text}}</p>
+      </div>
+      
     </div>
+    <span class="comment-header">comment</span>
     <div class="comment" v-for="item in commentList" :key="item">
-      <h5 class="detail-author">{{item.author}}</h5>
+      <h5 class="detail-author">{{item.autnor}}</h5>
       <p class="detail-comment">{{item.comment}}</p>
       <p class="detail-date">{{item.post_date.substr(0,10)}}</p>
     </div>
     <div>
       <form @submit.prevent>
-        <input v-model="text">
-        <button @click="postComment(post.post_id)">comment</button>
+        <input type="text" class="commentInput" v-model="text">
+        <button class="btn btn-primary" @click="postComment(post.post_id)">comment</button>
       </form>
 
     </div>
@@ -87,11 +93,29 @@ export default {
   margin-bottom: -1px;
   box-sizing: border-box;
   dispaly:block;
-  padding: 10px ;
+  padding: 10px;
 }
 
 .comment-detail{
-  width: 1000px ;
+  width: 500px ;
   margin: auto;
+  margin-top:10px ;
+}
+.commentInput{  
+  height: 100px;
+  width:500px;
+}
+
+.content-title{
+  width:100%;
+  height: 100%;
+  border-bottom: 1px solid #e3e3e3;
+}
+.content-text{
+  padding: 10px;
+}
+
+.comment-header{
+  margin-top: 5px;
 }
 </style>
