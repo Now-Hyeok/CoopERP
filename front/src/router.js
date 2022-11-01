@@ -19,6 +19,8 @@ import shipment from './pages/TransactionManagement/TransactionShipment'
 
 import statisticsMain from './pages/Statistics/StatisticsMain'
 import statisticsMonth from './pages/Statistics/StatisticsMonth'
+import statisticsWeek from './pages/Statistics/StatisticsWeek'
+import statisticsYear from './pages/Statistics/StatisticsYear'
 
 import simulation from './pages/Monitoring/MonitoringSimulation'
 import commu from './pages/Monitoring/MonitoringCommunity'
@@ -123,7 +125,7 @@ const routes = [
         path:"/statistics",
         component:Main,
         name:'category4',
-        redirect:'/statistics/month',
+        redirect:'/statistics/year',
         children:[
             {
                 path:'main',
@@ -134,6 +136,18 @@ const routes = [
                 path:'month',
                 name:'statisticsMonth',
                 component:statisticsMonth,
+
+            },
+            {
+                path:'week',
+                name:'statisticsWeek',
+                component:statisticsWeek,
+
+            },
+            {
+                path:'year',
+                name:'statisticsYear',
+                component:statisticsYear,
 
             },
         ]

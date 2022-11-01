@@ -1,29 +1,29 @@
 var express = require('express');
 const router = express.Router();
-const zmq = require("zeromq");
 let pool = require('../config/config');
 
 
 router.post('/simulate', async (req, res, next) => {
 
-  async function runClient() {
-    console.log('Connecting to hello world server…');
+  // async function runClient() {
+  //   console.log('Connecting to hello world server…');
 
-    //  Socket to talk to server
-    const sock = new zmq.Request();
-    sock.connect('tcp://172.17.10.111:5000');
+  //   //  Socket to talk to server
+  //   const sock = new zmq.Request();
+  //   sock.connect('tcp://172.17.10.111:5000');
 
 
-    let s = [req.body.period, req.body.demand, req.body.supply, 'start']
-    await sock.send(s);
+  //   let s = [req.body.period, req.body.demand, req.body.supply, 'start']
+  //   await sock.send(s);
 
-    const [result] = await sock.receive();
-    console.log('Received ', result.toString());
-x`x`
-  }
+  //   const [result] = await sock.receive();
+  //   console.log('Received ', result.toString());
 
-  runClient();
-  let s = [req.body.period, req.body.demand, req.body.supply, 'start']
+  // }
+
+  // runClient();
+
+
   res.send('end');
 })
 

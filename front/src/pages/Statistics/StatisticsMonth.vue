@@ -11,8 +11,8 @@
 </template>
   
 <script>
-import Line from '@/components/Chart/LineChart.vue'
-import bar from '@/components/Chart/barChart.vue'
+import Line from '@/components/Chart/MonthLineChart.vue'
+import bar from '@/components/Chart/MonthBarChart.vue'
 
 
 export default {

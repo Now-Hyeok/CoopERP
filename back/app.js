@@ -12,7 +12,7 @@ require('dotenv').config();
 require('./passport').config(passport);
 
 //route
-var indexRouter = require('./routes/index');
+
 var memberRouter = require('./routes/member');
 var loginRouter = require('./routes/login');
 var productRouter = require('./routes/product');
@@ -59,7 +59,6 @@ app.use(passport.session());
 
 
 //route
-app.use('/', indexRouter);
 app.use('/api/member',memberRouter);
 app.use('/api/product',productRouter);
 app.use('/api/login',loginRouter);

@@ -1,15 +1,16 @@
 <template>
-    <h1>Statistics Month</h1>
+  <div class="bar-chart">
+    <h1>Statistics Week</h1>
     <Line />
     <bar />
-  
+  </div>
+
+
+</template>
     
-  
-  </template>
-    
-  <script>
-  import Line from '@/components/Chart/LineChart.vue'
-  import bar from '@/components/Chart/barChart.vue'
+<script>
+  import Line from '@/components/Chart/WeekLineChart.vue'
+  import bar from '@/components/Chart/WeekBarChart.vue'
   
   
   export default {
@@ -23,9 +24,11 @@
   }
   </script>
     
-  <style>
-  .bar-chart{
-    width: 50%;
-    max-height: 300px;
-  }
-  </style>
+<style>
+
+.bar-chart{
+  margin-left: 300px;
+}
+
+
+</style>
