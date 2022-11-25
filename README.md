@@ -5,18 +5,18 @@
 3명
 
 ## 개발 환경
-vue.js 3.2.13 
-node.js 16.17.0
-express 4.16.4
+- vue.js 3.2.13 
+- node.js 16.17.0
+- express 4.16.4
 
-html
-css
-BootStrap
-Javascript
+- html
+- css
+- BootStrap
+- Javascript
 
 tools 
-vscode
-draw.io (DB설계)
+- vscode
+- draw.io (DB설계)
 
 
 AWS EC2
