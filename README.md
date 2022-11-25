@@ -18,12 +18,8 @@ tools
 - vscode
 - draw.io (DB설계)
 
-
-AWS EC2
-NginX
-,
-AWS RDS
-Maria DBN
+- AWS RDS
+- Maria DB
 
 ## 프로젝트 개요
 배경내용 등등
