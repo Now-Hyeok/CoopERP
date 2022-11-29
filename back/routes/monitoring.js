@@ -1,6 +1,7 @@
 var express = require('express');
 const router = express.Router();
 let pool = require('../config/config');
+const zmq = require("zeromq")
 
 
 router.post('/simulate', async (req, res, next) => {
@@ -10,21 +11,21 @@ router.post('/simulate', async (req, res, next) => {
 
     //  Socket to talk to server
     const sock = new zmq.Request();
-    sock.connect('tcp://172.31.14.142:5000');
+    sock.connect('tcp://172.17.22.59:5000');
 
 
     let s = [req.body.period, req.body.demand, req.body.supply, 'start']
     await sock.send(s);
 
     const [result] = await sock.receive();
-    console.log('Received ', result.toString());
-
+    if(result.toString() == 'end'){
+      res.send('end');
+    }
   }
 
   runClient();
 
 
-  res.send('end');
 })
 
 
@@ -33,7 +34,7 @@ router.get('/simulate', async (req, res, next) => {
   await pool.getConnection((err, conn) => {
     if (err) console.error(err);
 
-    let sql = `select Sales_amount, Warehousing_amount, Trash_amount, Oversell_request FROM Simulate_Sales `;
+    let sql = `select Sales_amount, Warehousing_amount, Trash_amount, Oversell_request, Inventory FROM Simulate_Sales `;
     conn.query(sql, (err, result) => {
       conn.release();
       if (err) {
@@ -50,11 +51,7 @@ router.get('/simulate', async (req, res, next) => {
         ware[item] = result[item].Warehousing_amount;
         trash[item] = result[item].Trash_amount;
         over[item] = result[item].Oversell_request;
-        if (item == 1){
-          inventory[item] = ware[item] - trash[item] - sales[item];
-          continue;
-        }
-        inventory[item] = inventory[item-1] + ware[item] - trash[item] - sales[item];
+        inventory[item] = result[item].Inventory;
       }
 
 
