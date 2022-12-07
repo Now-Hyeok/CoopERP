@@ -11,7 +11,7 @@ router.post('/simulate', async (req, res, next) => {
 
     //  Socket to talk to server
     const sock = new zmq.Request();
-    sock.connect('tcp://172.17.22.59:5000');
+    sock.connect('tcp://172.17.48.113:5000');
 
 
     let s = [req.body.period, req.body.demand, req.body.supply, 'start']
